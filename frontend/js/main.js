@@ -108,3 +108,41 @@
     
 })(jQuery);
 
+// Booking Form Submission
+$(document).ready(function () {
+    $("form").on("submit", function (e) {
+        e.preventDefault();
+
+        const name = $('input[name="name"]').val();
+        const email = $('input[name="email"]').val();
+        const service = $('select[name="service"]').val();
+        const serviceDate = $('input[name="serviceDate"]').val();
+        const specialRequest = $('textarea[name="specialRequest"]').val();
+
+        fetch("/api/bookings", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              service,
+              serviceDate,
+              specialRequest,
+            }),
+          })
+        .then(response => {
+            if (response.ok) {
+                alert("Booking sukses! Kami akan segera menghubungi Anda.");
+                $("form")[0].reset();
+            } else {
+                alert("Booking gagal. Silakan coba lagi.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Terjadi kesalahan server.");
+        });
+    });
+});
