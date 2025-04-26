@@ -1,4 +1,4 @@
 node_modules/
-frontend/lib/
-frontend/scss/
+frontend/lib
+frontend/scss
 frontend/LICENSE.txt
