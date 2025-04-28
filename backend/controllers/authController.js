@@ -11,6 +11,12 @@ function generateOTP() {
 exports.register = async (req, res) => {
   const { email, password } = req.body;
   try {
+    // Cek kalau email sudah ada
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email sudah terdaftar.' });
+    }
+
     const hashPassword = await bcrypt.hash(password, 10);
     await User.create({ email, password: hashPassword, isVerified: false });
 
@@ -19,7 +25,12 @@ exports.register = async (req, res) => {
 
     await OTP.create({ email, otp, expiresAt });
 
-    await sendOTP(email, otp);
+    try {
+      await sendOTP(email, otp);
+    } catch (emailError) {
+      console.error('Gagal kirim OTP:', emailError.message);
+      return res.status(500).json({ error: 'Gagal kirim OTP ke email.' });
+    }
 
     res.status(201).json({ message: 'User terdaftar. Cek email untuk OTP.' });
   } catch (error) {
@@ -28,41 +39,68 @@ exports.register = async (req, res) => {
   }
 };
 
+
+
 // Verifikasi OTP
 exports.verifyOTP = async (req, res) => {
   const { email, otp } = req.body;
+
   try {
-    const validOtp = await OTP.findOne({ where: { email, otp } });
+    const otpRecord = await OTP.findOne({ where: { email, otp } });
 
-    if (!validOtp) return res.status(400).json({ error: 'OTP tidak valid' });
+    if (!otpRecord) {
+      return res.status(400).json({ error: 'Kode OTP salah atau tidak ditemukan.' });
+    }
 
-    if (validOtp.expiresAt < new Date()) return res.status(400).json({ error: 'OTP Expired' });
+    // Cek expired
+    if (otpRecord.expiresAt < new Date()) {
+      return res.status(400).json({ error: 'Kode OTP sudah kadaluarsa.' });
+    }
 
+    // Update user menjadi verified
     await User.update({ isVerified: true }, { where: { email } });
+
+    // Hapus OTP setelah sukses
     await OTP.destroy({ where: { email } });
 
-    res.json({ message: 'Verifikasi berhasil' });
+    res.status(200).json({ message: 'Verifikasi OTP berhasil.' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Verifikasi gagal' });
+    res.status(500).json({ error: 'Verifikasi OTP gagal.' });
   }
 };
+
 
 // Login
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+
   try {
+    // Cari user berdasarkan email
     const user = await User.findOne({ where: { email } });
-    if (!user) return res.status(404).json({ error: 'User tidak ditemukan' });
 
-    if (!user.isVerified) return res.status(400).json({ error: 'User belum verifikasi' });
+    // Kalau user tidak ada
+    if (!user) {
+      return res.status(400).json({ error: 'Email belum terdaftar.' });
+    }
 
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.status(400).json({ error: 'Password salah' });
+    // Kalau user belum verifikasi
+    if (!user.isVerified) {
+      return res.status(400).json({ error: 'Akun belum diverifikasi. Silakan cek email untuk OTP.' });
+    }
 
-    res.json({ message: 'Login berhasil' });
+    // Cek password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Email atau password salah.' });
+    }
+
+    // Kalau semua cocok
+    res.status(200).json({ message: 'Login berhasil.' });
+
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Login gagal' });
+    res.status(500).json({ error: 'Login gagal.' });
   }
 };
+

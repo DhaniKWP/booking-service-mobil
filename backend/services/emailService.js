@@ -1,16 +1,19 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,            
+  secure: false,
   auth: {
-    user: 'GMAIL_LO',       // ganti
-    pass: 'PASSWORD_GMAIL'  // ganti, kalau pakai 2FA harus App Password
+    user: process.env.EMAIL_USER,  // dari .env
+    pass: process.env.EMAIL_PASS   // dari .env
   }
 });
 
 async function sendOTP(email, otp) {
   const mailOptions = {
-    from: 'GMAIL_LO',
+    from: process.env.EMAIL_USER,
     to: email,
     subject: 'Verifikasi OTP',
     text: `Kode OTP kamu adalah ${otp}. Jangan kasih ke siapa pun ya!`
