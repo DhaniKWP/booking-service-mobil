@@ -665,4 +665,9 @@
   .modal-content p a:hover {
     text-decoration: underline;
   }
+
+  #userDropdown {
+    margin-left: auto;
+  }
+  
   

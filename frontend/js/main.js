@@ -134,95 +134,149 @@
       }
     });
   });
+
+  // ===========================
+  // Submit Form Register
+  // ===========================
+  $("#registerForm").submit(async function (e) {
+    e.preventDefault();
+    const email = $(this).find('input[name="email"]').val();
+    const password = $(this).find('input[name="password"]').val();
+    const name = $(this).find('input[name="name"]').val();
+
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, name }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Register sukses! Cek email kamu untuk OTP.");
+        $("#registerModal").addClass("hidden");
+        $("#otpModal").removeClass("hidden");
+      } else {
+        alert(result.error || "Register gagal.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Terjadi kesalahan saat register.");
+    }
+  });
+
+  // ===========================
+  // Submit Form OTP
+  // ===========================
+  $("#otpForm").submit(async function (e) {
+    e.preventDefault();
+    const otp = $(this).find('input[name="otp"]').val();
+    const email = $("#registerForm").find('input[name="email"]').val(); // ambil email dari form register
+
+    try {
+      const response = await fetch("/api/auth/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Verifikasi OTP berhasil! Silahkan login.");
+        $("#otpModal").addClass("hidden");
+        $("#loginModal").removeClass("hidden");
+      } else {
+        alert(result.error || "Verifikasi OTP gagal.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Terjadi kesalahan saat verifikasi OTP.");
+    }
+  });
+
+  // ===========================
+  // Submit Form Login
+  // ===========================
+  $("#loginForm").submit(async function (e) {
+    e.preventDefault();
+    const email = $(this).find('input[name="email"]').val();
+    const password = $(this).find('input[name="password"]').val();
+
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Login berhasil!");
+
+        // Simpan ke localStorage
+        localStorage.setItem("user", JSON.stringify({ email }));
+
+        // Refresh halaman (biar navbar berubah)
+        location.reload();
+      } else {
+        alert(result.error || "Login gagal.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Terjadi kesalahan saat login.");
+    }
+  });
+
+  // ===========================
+  // Setup navbar login/logout
+  // ===========================
+  function updateNavbar() {
+    const user = JSON.parse(localStorage.getItem('user'));
   
-      // ===========================
-    // Submit Form Register
-    // ===========================
-    $("#registerForm").submit(async function(e) {
-      e.preventDefault();
-      const email = $(this).find('input[name="email"]').val();
-      const password = $(this).find('input[name="password"]').val();
-      const name = $(this).find('input[name="name"]').val();
-
-      try {
-        const response = await fetch('/api/auth/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password, name })
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          alert('Register sukses! Cek email kamu untuk OTP.');
-          $("#registerModal").addClass('hidden');
-          $("#otpModal").removeClass('hidden');
-        } else {
-          alert(result.error || 'Register gagal.');
-        }
-      } catch (error) {
-        console.error(error);
-        alert('Terjadi kesalahan saat register.');
+    if (user) {
+      // Hilangin tombol login
+      $("#openLoginModal").remove();
+  
+      // Bikin dropdown profile
+      const profileHTML = `
+        <div class="dropdown ms-3" id="userDropdown">
+          <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle fa-2x text-primary me-2"></i>
+            <span>${user.email}</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn">Logout</a></li>
+          </ul>
+        </div>
+      `;
+  
+      // Taruh dropdown setelah navbar menu
+      $(".navbar-collapse .navbar-nav").after(profileHTML);
+      
+    } else {
+      // Kalau logout
+      if ($("#userDropdown").length) {
+        $("#userDropdown").remove();
       }
+      $("#openLoginModal").show();
+    }
+  }
+  
+  
+
+  // Cek saat halaman load
+  $(document).ready(function () {
+    updateNavbar();
+
+    // Event logout
+    $(document).on("click", "#logoutBtn", function () {
+      localStorage.removeItem("user");
+      location.reload(); // refresh halaman
     });
-
-    // ===========================
-    // Submit Form OTP
-    // ===========================
-    $("#otpForm").submit(async function(e) {
-      e.preventDefault();
-      const otp = $(this).find('input[name="otp"]').val();
-      const email = $("#registerForm").find('input[name="email"]').val(); // ambil email dari form register
-
-      try {
-        const response = await fetch('/api/auth/verify-otp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, otp })
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          alert('Verifikasi OTP berhasil! Silahkan login.');
-          $("#otpModal").addClass('hidden');
-          $("#loginModal").removeClass('hidden');
-        } else {
-          alert(result.error || 'Verifikasi OTP gagal.');
-        }
-      } catch (error) {
-        console.error(error);
-        alert('Terjadi kesalahan saat verifikasi OTP.');
-      }
-    });
-
-    // ===========================
-    // Submit Form Login
-    // ===========================
-    $("#loginForm").submit(async function(e) {
-      e.preventDefault();
-      const email = $(this).find('input[name="email"]').val();
-      const password = $(this).find('input[name="password"]').val();
-
-      try {
-        const response = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          alert('Login berhasil!');
-          window.location.href = "/dashboard.html"; // <-- redirect setelah login
-        } else {
-          alert(result.error || 'Login gagal.');
-        }
-      } catch (error) {
-        console.error(error);
-        alert('Terjadi kesalahan saat login.');
-      }
-    });
-
+  });
 })(jQuery);
