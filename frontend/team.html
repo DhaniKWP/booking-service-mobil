@@ -60,7 +60,12 @@
                     <a href="team.html" class="nav-item nav-link" style="color: red;">Our Team</a>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Log in<i class="fa fa-arrow-right ms-3"></i></a>
+                <button
+          id="openLoginModal"
+          class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block"
+        >
+          LOG IN<i class="fa fa-arrow-right ms-3"></i>
+        </button>
             </div>
     </nav>
     <!-- Navbar End -->
@@ -280,6 +285,63 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Modal Login -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close" id="closeLoginModal">&times;</span>
+          <h2>Login</h2>
+          <form id="loginForm">
+            <input type="email" name="email" placeholder="Email" required /><br />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            /><br />
+            <button type="submit">Login</button>
+          </form>
+          <p>
+            Belum punya akun?
+            <a href="#" id="openRegisterFromLogin">Daftar di sini</a>
+          </p>
+        </div>
+      </div>
+  
+      <!-- Modal Register -->
+      <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close" id="closeRegisterModal">&times;</span>
+          <h2>Register</h2>
+          <form id="registerForm">
+            <input type="text" name="name" placeholder="Nama" required /><br />
+            <input type="email" name="email" placeholder="Email" required /><br />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            /><br />
+            <button type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+      <!-- Modal OTP Verification -->
+      <div id="otpModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close" id="closeOtpModal">&times;</span>
+          <h2>Verify OTP</h2>
+          <form id="otpForm">
+            <input
+              type="text"
+              name="otp"
+              placeholder="Masukkan Kode OTP"
+              required
+            /><br />
+            <button type="submit">Verifikasi</button>
+          </form>
+        </div>
+      </div>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
