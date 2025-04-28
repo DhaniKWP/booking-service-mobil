@@ -670,4 +670,17 @@
     margin-left: auto;
   }
   
+  @media (max-width: 991.98px) {
+    #userDropdown {
+      margin-top: 10px;
+      margin-left: 0;
+      width: 100%;
+      text-align: left;
+    }
+  
+    #userDropdown .dropdown-toggle {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
   
