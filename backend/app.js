@@ -3,10 +3,12 @@ const path = require('path');
 const app = express();
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use('/api/bookings', bookingRoutes);
 
 // Serve static files dari frontend
 app.use(express.static(path.join(__dirname, '../frontend')));

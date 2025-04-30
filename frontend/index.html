@@ -61,10 +61,11 @@
                 <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
                 <a href="service.html" class="nav-item nav-link">Layanan</a>
                 <a href="contact.html" class="nav-item nav-link">Kontak</a>
+                <a href="listbooking.html" class="nav-item nav-link">History Booking</a>
             </div>
             <button id="openLoginModal" class="btn btn-primary ms-lg-3 ms-0 mt-2 mt-lg-0 me-4">
             Login
-          </button>
+        </button>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -364,39 +365,36 @@
                             Note : <br>
                             - Klik ikon kalender untuk mengisi tanggal booking <br>
                             - Klik ikon jam untuk mengisi waktu booking</p>
-                        <form>
+                        <form id="bookingForm">
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Nama Anda" style="height: 55px;">
+                                    <input type="text" class="form-control border-0" name="name" placeholder="Nama Anda" style="height: 55px;" required />
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control border-0" placeholder="Email Anda" style="height: 55px;">
+                                    <input type="text" class="form-control border-0" name="phone" placeholder="Nomor Telepon Anda" style="height: 55px;" required />
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Nomor Telepon Anda" style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <select class="form-select border-0" style="height: 55px;">
-                                        <option selected>Pilih Layanan</option>
-                                        <option value="1">Service Ringan</option>
-                                        <option value="2">Overhoul</option>
-                                        <option value="3">Panggilan Darurat</option>
-                                        <option value="4">Scanning</option>
-                                        <option value="5">Kaki - Kaki</option>
-                                        <option value="6">Lainnya</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type='date' class="form-control border-0" id='tanggal' name='tanggal' onchange='cetakTanggal()'/>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="time" class="form-control border-0"/>
-                                </div>
+                                    <select class="form-select border-0" name="serviceType" style="height: 55px;" required>
+                                    <option value="">Pilih Layanan</option>
+                                    <option value="Service Ringan">Service Ringan</option>
+                                    <option value="Overhoul">Overhoul</option>
+                                    <option value="Panggilan Darurat">Panggilan Darurat</option>
+                                    <option value="Scanning">Scanning</option>
+                                    <option value="Kaki - Kaki">Kaki - Kaki</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="date" class="form-control border-0" name="date" required />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="time" class="form-control border-0" name="time" required />
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control border-0" name="notes" placeholder="Catatan: (Sertakan merk, jenis, tahun kendaraan anda | Contoh : Toyota Avanza Veloz 2023 )" required></textarea>
+                            </div>
                                 <div class="col-12">
-                                    <textarea class="form-control border-0" placeholder="Catatan: (Sertakan merk, jenis, tahun kendaraan anda | Contoh : Toyota Avanza Veloz 2023 )"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Submit</button>
+                                <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Booking</button>
                                 </div>
                             </div>
                         </form>

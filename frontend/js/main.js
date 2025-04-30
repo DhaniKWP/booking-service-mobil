@@ -231,6 +231,91 @@
   });
 
   // ===========================
+  // Submit Form Booking
+  // ===========================
+  $("#bookingForm").submit(async function (e) {
+    e.preventDefault();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      alert("Silakan login terlebih dahulu untuk booking.");
+      return;
+    }
+
+    const serviceType = $(this).find('select[name="serviceType"]').val();
+    const date = $(this).find('input[name="date"]').val();
+    const time = $(this).find('input[name="time"]').val();
+    const notes = $(this).find('textarea[name="notes"]').val();
+
+    try {
+      const response = await fetch("/api/bookings/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: user.email,
+          serviceType,
+          date,
+          time,
+          notes
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Booking berhasil!");
+        $("#bookingForm")[0].reset();
+      } else {
+        alert(result.error || "Gagal melakukan booking.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Terjadi kesalahan saat proses booking.");
+    }
+  });
+
+  // ===========================
+  // Tampilkan Data Booking User
+  // ===========================
+  $(document).ready(async function () {
+    if (window.location.pathname.includes("listbooking.html")) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user || !user.email) {
+        alert("Silakan login terlebih dahulu.");
+        window.location.href = "index.html";
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/bookings/user?email=${user.email}`);
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || "Gagal ambil data");
+
+        if (data.length === 0) {
+          $("#bookingTableBody").html("<tr><td colspan='5'>Belum ada data booking.</td></tr>");
+        } else {
+          $("#bookingTableBody").html(
+            data.map((b, i) => `
+              <tr>
+                <td>${i + 1}</td>
+                <td>${b.serviceType}</td>
+                <td>${b.date}</td>
+                <td>${b.time}</td>
+                <td>${b.notes}</td>
+              </tr>
+            `).join("")
+          );
+        }
+      } catch (err) {
+        console.error(err);
+        $("#bookingTableBody").html("<tr><td colspan='5'>Terjadi kesalahan saat mengambil data.</td></tr>");
+      }
+    }
+  });
+
+
+  // ===========================
   // Setup navbar login/logout
   // ===========================
   function updateNavbar() {
