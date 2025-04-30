@@ -1,702 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
+
+<head>
+    <meta charset="utf-8">
     <title>Wijaya Motor (Bengkel Mobil)</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="keywords" />
-    <meta content="" name="description" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.jpg" rel="icon" />
+    <link href="img/favicon.jpg" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
 
     <!-- Icon Font Stylesheet -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet" />
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet" />
-  </head>
+    <link href="css/style.css" rel="stylesheet">
+</head>
 
-  <body>
+<body>
     <!-- Spinner Start -->
-    <div
-      id="spinner"
-      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
-    >
-      <div
-        class="spinner-border text-primary"
-        style="width: 3rem; height: 3rem"
-        role="status"
-      >
-        <span class="sr-only">Loading...</span>
-      </div>
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
     <!-- Spinner End -->
 
+
+
+
+
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-      <a
-        href="index.html"
-        class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5"
-        style="color: red"
-      >
-        <h2 style="color: red">WIJAYA MOTOR</h2>
-      </a>
-      <button
-        type="button"
-        class="navbar-toggler me-4"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarCollapse"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto p-4 p-lg-0">
-          <a href="index.html" class="nav-item nav-link" style="color: red"
-            >Home</a
-          >
-          <a href="about.html" class="nav-item nav-link">About</a>
-          <a href="service.html" class="nav-item nav-link">Service</a>
-          <a href="team.html" class="nav-item nav-link">Our Team</a>
-          <a href="contact.html" class="nav-item nav-link">Contact</a>
-        </div>
-        <button
-          id="openLoginModal"
-          class="btn btn-primary ms-lg-3 ms-0 mt-2 mt-lg-0 me-4"
-        >
-          Login
+        <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+            <h2 style="color: red; ">WIJAYA MOTOR</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
         </button>
-      </div>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
+                <a href="service.html" class="nav-item nav-link">Layanan</a>
+                <a href="contact.html" class="nav-item nav-link">Kontak</a>
+            </div>
+            <button id="openLoginModal" class="btn btn-primary ms-lg-3 ms-0 mt-2 mt-lg-0 me-4">
+            Login
+          </button>
+        </div>
     </nav>
     <!-- Navbar End -->
 
+
     <!-- Carousel Start -->
     <div class="container-fluid p-0 pb-5 wow fadeIn" data-wow-delay="0.1s">
-      <div class="owl-carousel header-carousel position-relative">
-        <div
-          class="owl-carousel-item position-relative"
-          data-dot="<img src='img/carousel-1.jpg'>"
-        >
-          <img class="img-fluid" src="img/carousel-1.jpg" alt="" />
-          <div class="owl-carousel-inner">
-            <div class="container">
-              <div class="row justify-content-start">
-                <div class="col-10 col-lg-8">
-                  <h1 class="display-2 text-white animated slideInDown">
-                    Mobil sehat, hati tenang.
-                  </h1>
-                  <p class="fs-5 fw-medium text-white mb-4 pb-3">
-                    "Perawatan Rutin, Performa Maksimal. Bengkel Terpercaya
-                    untuk Kendaraan Anda."
-                  </p>
+        <div class="owl-carousel header-carousel position-relative">
+            <div class="owl-carousel-item position-relative" data-dot="<img src='img/carousel-1.jpg'>">
+                <img class="img-fluid" src="img/carousel-1.jpg" alt="">
+                <div class="owl-carousel-inner">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-10 col-lg-8">
+                                <h1 class="display-2 text-white animated slideInDown">Mobil sehat, hati tenang.</h1>
+                                <p class="fs-5 fw-medium text-white mb-4 pb-3">"Perawatan Rutin, Performa Maksimal. Bengkel Terpercaya untuk Kendaraan Anda."</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-        <div
-          class="owl-carousel-item position-relative"
-          data-dot="<img src='img/carousel-2.jpg'>"
-        >
-          <img class="img-fluid" src="img/carousel-2.jpg" alt="" />
-          <div class="owl-carousel-inner">
-            <div class="container">
-              <div class="row justify-content-start">
-                <div class="col-10 col-lg-8">
-                  <h1 class="display-2 text-white animated slideInDown">
-                    Yuk, servis di tempat yang ngerti kamu dan mobilmu!"
-                  </h1>
-                  <p class="fs-5 fw-medium text-white mb-4 pb-3">
-                    "Karena mobil juga butuh perhatian. Kami bantu rawat dengan
-                    sepenuh hati."
-                  </p>
+            <div class="owl-carousel-item position-relative" data-dot="<img src='img/carousel-2.jpg'>">
+                <img class="img-fluid" src="img/carousel-2.jpg" alt="">
+                <div class="owl-carousel-inner">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-10 col-lg-8">
+                                <h1 class="display-2 text-white animated slideInDown">Yuk, servis di tempat yang ngerti kamu dan mobilmu!"</h1>
+                                <p class="fs-5 fw-medium text-white mb-4 pb-3">"Karena mobil juga butuh perhatian. Kami bantu rawat dengan sepenuh hati."</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-        <div
-          class="owl-carousel-item position-relative"
-          data-dot="<img src='img/carousel-3.jpg'>"
-        >
-          <img class="img-fluid" src="img/carousel-3.jpg" alt="" />
-          <div class="owl-carousel-inner">
-            <div class="container">
-              <div class="row justify-content-start">
-                <div class="col-10 col-lg-8">
-                  <h1 class="display-2 text-white animated slideInDown">
-                    Bengkel rasa sahabat. Jujur, transparan, nggak ribet!
-                  </h1>
-                  <p class="fs-5 fw-medium text-white mb-4 pb-3">
-                    "Karena mobil juga butuh perhatian. Kami bantu rawat dengan
-                    sepenuh hati."
-                  </p>
+            <div class="owl-carousel-item position-relative" data-dot="<img src='img/carousel-3.jpg'>">
+                <img class="img-fluid" src="img/carousel-3.jpg" alt="">
+                <div class="owl-carousel-inner">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-10 col-lg-8">
+                                <h1 class="display-2 text-white animated slideInDown">Bengkel rasa sahabat. Jujur, transparan, nggak ribet!</h1>
+                                <p class="fs-5 fw-medium text-white mb-4 pb-3">"Karena mobil juga butuh perhatian. Kami bantu rawat dengan sepenuh hati."</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
     <!-- Carousel End -->
 
     <!-- About Start -->
     <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
-      <div class="container about px-lg-0">
-        <div class="row g-0 mx-lg-0">
-          <div
-            class="col-lg-6 ps-lg-0 wow fadeIn"
-            data-wow-delay="0.1s"
-            style="min-height: 400px"
-          >
-            <div class="position-relative h-100">
-              <img
-                class="position-absolute img-fluid w-100 h-100"
-                src="img/about.jpg"
-                style="object-fit: cover"
-                alt=""
-              />
+        <div class="container about px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0 wow fadeIn" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="img/about.jpg" style="object-fit: cover;" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 about-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 pe-lg-0">
+                        <h6 class="text-primary">Tentang Kami</h6>
+                        <h1 class="mb-4">10+ Tahun Pengalaman dalam Dunia Otomotif</h1>
+                        <p> Wijaya Motor adalah bengkel mobil terpercaya yang berdedikasi memberikan pelayanan terbaik untuk kendaraan Anda. 
+                            Kami telah melayani berbagai kebutuhan perawatan dan perbaikan mobil dengan standar tinggi dan harga yang bersahabat.</p>
+                        <p><i class="fa fa-check-circle text-primary me-3"></i>Kejujuran</p>
+                        <p><i class="fa fa-check-circle text-primary me-3"></i>Transparansi</p>
+                        <p><i class="fa fa-check-circle text-primary me-3"></i>Kepuasan Pelanggan</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div
-            class="col-lg-6 about-text py-5 wow fadeIn"
-            data-wow-delay="0.5s"
-          >
-            <div class="p-lg-5 pe-lg-0">
-              <h6 class="text-primary">Tentang Kami</h6>
-              <h1 class="mb-4">10+ Tahun Pengalaman dalam Dunia Otomotif</h1>
-              <p>
-                Wijaya Motor adalah bengkel mobil terpercaya yang berdedikasi
-                memberikan pelayanan terbaik untuk kendaraan Anda. Kami telah
-                melayani berbagai kebutuhan perawatan dan perbaikan mobil dengan
-                standar tinggi dan harga yang bersahabat.
-              </p>
-              <p>
-                <i class="fa fa-check-circle text-primary me-3"></i>Kejujuran
-              </p>
-              <p>
-                <i class="fa fa-check-circle text-primary me-3"></i>Transparansi
-              </p>
-              <p>
-                <i class="fa fa-check-circle text-primary me-3"></i>Kepuasan
-                Pelanggan
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
     <!-- About End -->
 
+
     <!-- Service Start -->
     <div class="container-xxl py-5">
-      <div class="container">
-        <div
-          class="text-center mx-auto mb-5 wow fadeInUp"
-          data-wow-delay="0.1s"
-          style="max-width: 600px"
-        >
-          <h6 class="text-primary">Layanan Kami</h6>
-          <h2 class="mb-4">
-            Kami Siap Menutup Kekhawatiran Terhadap Kendaraan Anda
-          </h2>
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h6 class="text-primary">Layanan Kami</h6>
+                <h2 class="mb-4">Kami Siap Menutup Kekhawatiran Terhadap Kendaraan Anda</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded overflow-hidden">
+                        <img class="img-fluid" src="img/img-600x400-1.jpg" alt="">
+                        <div class="position-relative p-4 pt-0">
+                            <div class="service-icon">
+                                <i class="fa-regular fa-screwdriver-wrench fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Service Ringan</h4>
+                            <p>Menerima service ringan (Tune Up, Ganti Oli, Service Rem, dll).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded overflow-hidden">
+                        <img class="img-fluid" src="img/img-600x400-2.jpg" alt="">
+                        <div class="position-relative p-4 pt-0">
+                            <div class="service-icon">
+                                <i class="fa-regular fa-engine-warning fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Overhoul</h4>
+                            <p>Menerima overhoul Mesin, Transmisi Manual & Automatic.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded overflow-hidden">
+                        <img class="img-fluid" src="img/img-600x400-3.jpg" alt="">
+                        <div class="position-relative p-4 pt-0">
+                            <div class="service-icon">
+                                <i class="fa-regular fa-truck-tow fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Panggilan Darurat</h4>
+                            <p>Menerima Storing (Memperbaiki Mobil di luar bengkel) sepulau Jawa.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded overflow-hidden">
+                        <img class="img-fluid" src="img/img-600x400-4.jpg" alt="">
+                        <div class="position-relative p-4 pt-0">
+                            <div class="service-icon">
+                                <i class="fa-regular fa-car-battery fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Baterai/Accu</h4>
+                            <p>Menerima perbaikan dan menyediakan Baterai/Accu baru ataupun bekas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded overflow-hidden">
+                        <img class="img-fluid" src="img/img-600x400-5.jpg" alt="">
+                        <div class="position-relative p-4 pt-0">
+                            <div class="service-icon">
+                                <i class="fa-regular fa-laptop-code fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Scanning</h4>
+                            <p>Menerima perbaikan kelistrikan dengan menggunakan alat Scan Modern.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded overflow-hidden">
+                        <img class="img-fluid" src="img/img-600x400-6.jpg" alt="">
+                        <div class="position-relative p-4 pt-0">
+                            <div class="service-icon">
+                                <i class="fa-light fa-tire fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Kaki - Kaki</h4>
+                            <p>Menerima perbaikan kaki-kaki mobil Anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="service-item rounded overflow-hidden">
-              <img class="img-fluid" src="img/img-600x400-1.jpg" alt="" />
-              <div class="position-relative p-4 pt-0">
-                <div class="service-icon">
-                  <i class="fa-regular fa-screwdriver-wrench fa-3x"></i>
-                </div>
-                <h4 class="mb-3">Service Ringan</h4>
-                <p>Menerima service ringan (Tune Up, Ganti Oli, dll).</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="service-item rounded overflow-hidden">
-              <img class="img-fluid" src="img/img-600x400-2.jpg" alt="" />
-              <div class="position-relative p-4 pt-0">
-                <div class="service-icon">
-                  <i class="fa-regular fa-engine-warning fa-3x"></i>
-                </div>
-                <h4 class="mb-3">Overhoul</h4>
-                <p>Menerima overhoul Mesin, Transmisi Manual & Automatic.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="service-item rounded overflow-hidden">
-              <img class="img-fluid" src="img/img-600x400-3.jpg" alt="" />
-              <div class="position-relative p-4 pt-0">
-                <div class="service-icon">
-                  <i class="fa-regular fa-truck-tow fa-3x"></i>
-                </div>
-                <h4 class="mb-3">Panggilan Darurat</h4>
-                <p>
-                  Menerima Storing (Memperbaiki Mobil di luar bengkel) sepulau
-                  Jawa.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="service-item rounded overflow-hidden">
-              <img class="img-fluid" src="img/img-600x400-4.jpg" alt="" />
-              <div class="position-relative p-4 pt-0">
-                <div class="service-icon">
-                  <i class="fa-regular fa-car-battery fa-3x"></i>
-                </div>
-                <h4 class="mb-3">Baterai/Accu</h4>
-                <p>
-                  Menerima perbaikan dan menyediakan Baterai/Accu baru ataupun
-                  bekas.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="service-item rounded overflow-hidden">
-              <img class="img-fluid" src="img/img-600x400-5.jpg" alt="" />
-              <div class="position-relative p-4 pt-0">
-                <div class="service-icon">
-                  <i class="fa-regular fa-laptop-code fa-3x"></i>
-                </div>
-                <h4 class="mb-3">Scanning</h4>
-                <p>
-                  Menerima perbaikan kelistrikan dengan menggunakan alat Scan
-                  Modern.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="service-item rounded overflow-hidden">
-              <img class="img-fluid" src="img/img-600x400-6.jpg" alt="" />
-              <div class="position-relative p-4 pt-0">
-                <div class="service-icon">
-                  <i class="fa-light fa-tire fa-3x"></i>
-                </div>
-                <h4 class="mb-3">Kaki - Kaki</h4>
-                <p>Menerima perbaikan kaki-kaki mobil Anda.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- Service End -->
 
     <!-- Feature Start -->
-    <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
-      <div class="container feature px-lg-0">
-        <div class="row g-0 mx-lg-0">
-          <div
-            class="col-lg-6 feature-text py-5 wow fadeIn"
-            data-wow-delay="0.1s"
-          >
-            <div class="p-lg-5 ps-lg-0">
-              <h6 class="text-primary">Why Choose Us!</h6>
-              <h1 class="mb-4">
-                Complete Commercial & Residential Solar Systems
-              </h1>
-              <p class="mb-4 pb-2">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                sed stet lorem sit clita duo justo erat amet
-              </p>
-              <div class="row g-4">
-                <div class="col-6">
-                  <div class="d-flex align-items-center">
-                    <div class="btn-lg-square bg-primary rounded-circle">
-                      <i class="fa fa-check text-white"></i>
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="btn-lg-square bg-primary rounded-circle me-3">
+                            <i class="fa fa-users text-white"></i>
+                        </div>
+                        <h1 class="mb-0" data-toggle="counter-up">51</h1>
                     </div>
-                    <div class="ms-4">
-                      <p class="mb-0">Quality</p>
-                      <h5 class="mb-0">Services</h5>
-                    </div>
-                  </div>
+                    <h5 class="mb-3">Reviews</h5>
+                    <span>di Google Maps dengan Rating 5.0  <i class="fa-solid fa-star fa-bounce" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-bounce" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-bounce" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-bounce" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-bounce" style="color: #FFD43B;"></i>| 
+                        <a target="_blank" href="https://www.google.com/maps/place/WIJAYA+MOTOR/@-6.1760877,106.6045052,17.46z/data=!4m8!3m7!1s0x2e69ff1392c7c165:0x92463838076380d1!8m2!3d-6.1758297!4d106.6051959!9m1!1b1!16s%2Fg%2F11jv30pqsg?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoASAFQAw%3D%3D">
+                        Klik disini untuk mengecek</a></span>
+                    
                 </div>
-                <div class="col-6">
-                  <div class="d-flex align-items-center">
-                    <div class="btn-lg-square bg-primary rounded-circle">
-                      <i class="fa fa-user-check text-white"></i>
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="btn-lg-square bg-primary rounded-circle me-3">
+                            <i class="fa fa-check text-white"></i>
+                        </div>
+                        <h1 class="mb-0" data-toggle="counter-up">10</h1>
                     </div>
-                    <div class="ms-4">
-                      <p class="mb-0">Expert</p>
-                      <h5 class="mb-0">Workers</h5>
-                    </div>
-                  </div>
+                    <h5 class="mb-3">+ Tahun Berdiri </h5>
+                    <span>Kami akan terus konsisten untuk menjaga kepuasan pelanggan kami.</span>
                 </div>
-                <div class="col-6">
-                  <div class="d-flex align-items-center">
-                    <div class="btn-lg-square bg-primary rounded-circle">
-                      <i class="fa fa-drafting-compass text-white"></i>
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="btn-lg-square bg-primary rounded-circle me-3">
+                            <i class="fa fa-users-cog text-white"></i>
+                        </div>
+                        <h1 class="mb-0" data-toggle="counter-up">300</h1>
                     </div>
-                    <div class="ms-4">
-                      <p class="mb-0">Free</p>
-                      <h5 class="mb-0">Consultation</h5>
-                    </div>
-                  </div>
+                    <h5 class="mb-3">+ Pelanggan Berbeda</h5>
+                    <span>Telah tercatat sejak berdirinya bengkel kami.</span>
                 </div>
-                <div class="col-6">
-                  <div class="d-flex align-items-center">
-                    <div class="btn-lg-square bg-primary rounded-circle">
-                      <i class="fa fa-headphones text-white"></i>
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="btn-lg-square bg-primary rounded-circle me-3">
+                            <i class="fa-regular fa-car-side text-white"></i>
+                        </div>
+                        <h1 class="mb-0" data-toggle="counter-up">2000</h1>
                     </div>
-                    <div class="ms-4">
-                      <p class="mb-0">Customer</p>
-                      <h5 class="mb-0">Support</h5>
-                    </div>
-                  </div>
+                    <h5 class="mb-3">+ Pengerjaan</h5>
+                    <span>Mobil pelanggan, tercatat dari 5 tahun yang lalu.</span>
                 </div>
-              </div>
             </div>
-          </div>
-          <div
-            class="col-lg-6 pe-lg-0 wow fadeIn"
-            data-wow-delay="0.5s"
-            style="min-height: 400px"
-          >
-            <div class="position-relative h-100">
-              <img
-                class="position-absolute img-fluid w-100 h-100"
-                src="img/feature.jpg"
-                style="object-fit: cover"
-                alt=""
-              />
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+    <!-- Feature Start -->
+
+    <!-- Feature Start -->
+    <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+        <div class="container feature px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="p-lg-5 ps-lg-0">
+                        <h6 class="text-primary">Kenapa Memilih Kami?</h6>
+                        <h1 class="mb-4">Layanan Bengkel Mobil Lengkap untuk Kendaraan Pribadi dan Komersial</h1>
+                        <p class="mb-4 pb-2">Kami menyediakan layanan bengkel mobil lengkap, mulai dari perawatan rutin hingga perbaikan besar, untuk semua jenis kendaraan pribadi maupun kendaraan komersial seperti mobil niaga, truk ringan, dan armada perusahaan.</p>
+                        <div class="row g-4">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-lg-square bg-primary rounded-circle">
+                                        <i class="fa fa-check text-white"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="mb-0">Layanan</p>
+                                        <h5 class="mb-0">Berkualitas</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-lg-square bg-primary rounded-circle">
+                                        <i class="fa fa-user-check text-white"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="mb-0">Pekerja</p>
+                                        <h5 class="mb-0">Ahli</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-lg-square bg-primary rounded-circle">
+                                        <i class="fa-regular fa-messages-question text-white"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="mb-0">Gratis</p>
+                                        <h5 class="mb-0">Konsultasi</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-lg-square bg-primary rounded-circle">
+                                        <i class="fa-regular fa-user-headset text-white"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="mb-0">Dukungan</p>
+                                        <h5 class="mb-0">Pelanggan</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Feature End -->
 
     <!-- Quote Start -->
-    <br /><br />
+    <br><br>
     <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
-      <div class="container quote px-lg-0">
-        <div class="row g-0 mx-lg-0">
-          <div
-            class="col-lg-6 ps-lg-0 wow fadeIn"
-            data-wow-delay="0.1s"
-            style="min-height: 400px"
-          >
-            <div class="position-relative h-100">
-              <img
-                class="position-absolute img-fluid w-100 h-100"
-                src="img/quote.jpg"
-                style="object-fit: cover"
-                alt=""
-              />
-            </div>
-          </div>
-          <div
-            class="col-lg-6 quote-text py-5 wow fadeIn"
-            data-wow-delay="0.5s"
-          >
-            <div class="p-lg-5 pe-lg-0">
-              <h6 class="text-primary">Free Quote</h6>
-              <h1 class="mb-4">Get A Free Quote</h1>
-              <p class="mb-4 pb-2">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                sed stet lorem sit clita duo justo erat amet
-              </p>
-              <form>
-                <div class="row g-3">
-                  <div class="col-12 col-sm-6">
-                    <input
-                      type="text"
-                      class="form-control border-0"
-                      placeholder="Your Name"
-                      style="height: 55px"
-                    />
-                  </div>
-                  <div class="col-12 col-sm-6">
-                    <input
-                      type="email"
-                      class="form-control border-0"
-                      placeholder="Your Email"
-                      style="height: 55px"
-                    />
-                  </div>
-                  <div class="col-12 col-sm-6">
-                    <input
-                      type="text"
-                      class="form-control border-0"
-                      placeholder="Your Mobile"
-                      style="height: 55px"
-                    />
-                  </div>
-                  <div class="col-12 col-sm-6">
-                    <select class="form-select border-0" style="height: 55px">
-                      <option selected>Select A Service</option>
-                      <option value="1">Service 1</option>
-                      <option value="2">Service 2</option>
-                      <option value="3">Service 3</option>
-                    </select>
-                  </div>
-                  <div class="col-12">
-                    <textarea
-                      class="form-control border-0"
-                      placeholder="Special Note"
-                    ></textarea>
-                  </div>
-                  <div class="col-12">
-                    <button
-                      class="btn btn-primary rounded-pill py-3 px-5"
-                      type="submit"
-                    >
-                      Submit
-                    </button>
-                  </div>
+        <div class="container quote px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0 wow fadeIn" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="img/quote.jpg" style="object-fit: cover;" alt="">
+                    </div>
                 </div>
-              </form>
+                <div class="col-lg-6 quote-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 pe-lg-0">
+                        <h6 class="text-primary">Booking</h6>
+                        <h1 class="mb-4">Booking Sekarang</h1>
+                        <p class="mb-4 pb-2">Silahkan isi data diri anda sesuai dengan kolom yang tertera sekarang juga dan dapatkan promo menarik! <br>
+                            Note : <br>
+                            - Klik ikon kalender untuk mengisi tanggal booking <br>
+                            - Klik ikon jam untuk mengisi waktu booking</p>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control border-0" placeholder="Nama Anda" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="email" class="form-control border-0" placeholder="Email Anda" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control border-0" placeholder="Nomor Telepon Anda" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <select class="form-select border-0" style="height: 55px;">
+                                        <option selected>Pilih Layanan</option>
+                                        <option value="1">Service Ringan</option>
+                                        <option value="2">Overhoul</option>
+                                        <option value="3">Panggilan Darurat</option>
+                                        <option value="4">Scanning</option>
+                                        <option value="5">Kaki - Kaki</option>
+                                        <option value="6">Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type='date' class="form-control border-0" id='tanggal' name='tanggal' onchange='cetakTanggal()'/>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="time" class="form-control border-0"/>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control border-0" placeholder="Catatan: (Sertakan merk, jenis, tahun kendaraan anda | Contoh : Toyota Avanza Veloz 2023 )"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
     <!-- Quote End -->
 
+
     <!-- Team Start -->
     <div class="container-xxl py-5">
-      <div class="container">
-        <div
-          class="text-center mx-auto mb-5 wow fadeInUp"
-          data-wow-delay="0.1s"
-          style="max-width: 600px"
-        >
-          <h6 class="text-primary">Team Member</h6>
-          <h1 class="mb-4">Experienced Team Members</h1>
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h6 class="text-primary">Team Member</h6>
+                <h1 class="mb-4">Experienced Team Members</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item rounded overflow-hidden">
+                        <div class="d-flex">
+                            <img class="img-fluid w-75" src="img/team-1.jpg" alt="">
+                            <div class="team-social w-25">
+                                <a class="btn btn-lg-square btn-outline-primary rounded-circle mt-3" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg-square btn-outline-primary rounded-circle mt-3" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-lg-square btn-outline-primary rounded-circle mt-3" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h5>Full Name</h5>
+                            <span>Designation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item rounded overflow-hidden">
+                        <div class="d-flex">
+                            <img class="img-fluid w-75" src="img/team-2.jpg" alt="">
+                            <div class="team-social w-25">
+                                <a class="btn btn-lg-square btn-outline-primary rounded-circle mt-3" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg-square btn-outline-primary rounded-circle mt-3" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-lg-square btn-outline-primary rounded-circle mt-3" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h5>Full Name</h5>
+                            <span>Designation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item rounded overflow-hidden">
+                        <div class="d-flex">
+                            <img class="img-fluid w-75" src="img/team-3.jpg" alt="">
+                            <div class="team-social w-25">
+                                <a class="btn btn-lg-square btn-outline-primary rounded-circle mt-3" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg-square btn-outline-primary rounded-circle mt-3" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-lg-square btn-outline-primary rounded-circle mt-3" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h5>Full Name</h5>
+                            <span>Designation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row g-4">
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="team-item rounded overflow-hidden">
-              <div class="d-flex">
-                <img class="img-fluid w-75" src="img/team-1.jpg" alt="" />
-                <div class="team-social w-25">
-                  <a
-                    class="btn btn-lg-square btn-outline-primary rounded-circle mt-3"
-                    href=""
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-                  <a
-                    class="btn btn-lg-square btn-outline-primary rounded-circle mt-3"
-                    href=""
-                    ><i class="fab fa-twitter"></i
-                  ></a>
-                  <a
-                    class="btn btn-lg-square btn-outline-primary rounded-circle mt-3"
-                    href=""
-                    ><i class="fab fa-instagram"></i
-                  ></a>
-                </div>
-              </div>
-              <div class="p-4">
-                <h5>Full Name</h5>
-                <span>Designation</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="team-item rounded overflow-hidden">
-              <div class="d-flex">
-                <img class="img-fluid w-75" src="img/team-2.jpg" alt="" />
-                <div class="team-social w-25">
-                  <a
-                    class="btn btn-lg-square btn-outline-primary rounded-circle mt-3"
-                    href=""
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-                  <a
-                    class="btn btn-lg-square btn-outline-primary rounded-circle mt-3"
-                    href=""
-                    ><i class="fab fa-twitter"></i
-                  ></a>
-                  <a
-                    class="btn btn-lg-square btn-outline-primary rounded-circle mt-3"
-                    href=""
-                    ><i class="fab fa-instagram"></i
-                  ></a>
-                </div>
-              </div>
-              <div class="p-4">
-                <h5>Full Name</h5>
-                <span>Designation</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="team-item rounded overflow-hidden">
-              <div class="d-flex">
-                <img class="img-fluid w-75" src="img/team-3.jpg" alt="" />
-                <div class="team-social w-25">
-                  <a
-                    class="btn btn-lg-square btn-outline-primary rounded-circle mt-3"
-                    href=""
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-                  <a
-                    class="btn btn-lg-square btn-outline-primary rounded-circle mt-3"
-                    href=""
-                    ><i class="fab fa-twitter"></i
-                  ></a>
-                  <a
-                    class="btn btn-lg-square btn-outline-primary rounded-circle mt-3"
-                    href=""
-                    ><i class="fab fa-instagram"></i
-                  ></a>
-                </div>
-              </div>
-              <div class="p-4">
-                <h5>Full Name</h5>
-                <span>Designation</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- Team End -->
 
     <!-- Footer Start -->
-    <div
-      class="container-fluid bg-dark text-body footer mt-5 pt-5 wow fadeIn"
-      data-wow-delay="0.1s"
-    >
-      <div class="container py-5">
-        <div class="row g-5">
-          <div class="col-lg-3 col-md-6">
-            <h5 class="text-white mb-4">Address</h5>
-            <p class="mb-2">
-              <i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA
-            </p>
-            <p class="mb-2">
-              <i class="fa fa-phone-alt me-3"></i>+62 857-8377-08900
-            </p>
-            <p class="mb-2">
-              <i class="fa fa-envelope me-3"></i>info@example.com
-            </p>
-            <div class="d-flex pt-2">
-              <a class="btn btn-square btn-outline-light btn-social" href=""
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a class="btn btn-square btn-outline-light btn-social" href=""
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a class="btn btn-square btn-outline-light btn-social" href=""
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a class="btn btn-square btn-outline-light btn-social" href=""
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
+    <div class="container-fluid bg-dark text-body footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Alamat</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Arya Wangsakara, RT.001/001, Bugel, Kec. Karawaci, Kota Tangerang, Banten 15114</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 877-8823-6277</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>wijayamotortng@gmail.com</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Tautan Cepat</h5>
+                    <a class="btn btn-link" href="about.html">Tentang Kami</a>
+                    <a class="btn btn-link" href="contact.html">Kontak Kami</a>
+                    <a class="btn btn-link" href="service.html">Layanan Kami</a>
+                    <a class="btn btn-link" target="_blank" href="https://www.google.com/maps/place/WIJAYA+MOTOR/@-6.1758297,106.5845965,14z/data=!4m8!3m7!1s0x2e69ff1392c7c165:0x92463838076380d1!8m2!3d-6.1758297!4d106.6051959!9m1!1b1!16s%2Fg%2F11jv30pqsg?authuser=1&entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoJLDEwMjExNjQwSAFQAw%3D%3D">Dukung Kami</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Galeri Bengkel</h5>
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <img class="img-fluid rounded" src="img/gallery-1.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded" src="img/gallery-2.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded" src="img/gallery-3.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded" src="img/gallery-4.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded" src="img/gallery-5.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded" src="img/gallery-6.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded" src="img/gallery-4.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded" src="img/gallery-5.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded" src="img/gallery-6.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Jam Buka</h5>
+                    <div style="line-height: 0.8;">
+                        <p>Buka Setiap Hari Dari Mulai Jam:</p>
+                        <p>08:00 - 18:00</p>
+                        <p>08:00 AM - 08:00 PM</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5 class="text-white mb-4">Quick Links</h5>
-            <a class="btn btn-link" href="">About Us</a>
-            <a class="btn btn-link" href="">Contact Us</a>
-            <a class="btn btn-link" href="">Our Services</a>
-            <a class="btn btn-link" href="">Terms & Condition</a>
-            <a class="btn btn-link" href="">Support</a>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5 class="text-white mb-4">Project Gallery</h5>
-            <div class="row g-2">
-              <div class="col-4">
-                <img class="img-fluid rounded" src="img/gallery-1.jpg" alt="" />
-              </div>
-              <div class="col-4">
-                <img class="img-fluid rounded" src="img/gallery-2.jpg" alt="" />
-              </div>
-              <div class="col-4">
-                <img class="img-fluid rounded" src="img/gallery-3.jpg" alt="" />
-              </div>
-              <div class="col-4">
-                <img class="img-fluid rounded" src="img/gallery-4.jpg" alt="" />
-              </div>
-              <div class="col-4">
-                <img class="img-fluid rounded" src="img/gallery-5.jpg" alt="" />
-              </div>
-              <div class="col-4">
-                <img class="img-fluid rounded" src="img/gallery-6.jpg" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5 class="text-white mb-4">Newsletter</h5>
-            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-            <div class="position-relative mx-auto" style="max-width: 400px">
-              <input
-                class="form-control border-0 w-100 py-3 ps-4 pe-5"
-                type="text"
-                placeholder="Your email"
-              />
-              <button
-                type="button"
-                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
-              >
-                SignUp
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="container">
-        <div class="copyright">
-          <div class="row">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-              &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; 2025, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        Designed By <a href="https://github.com/DhaniKWP" target="_blank">DhaniKWP</a>, <a href="https://github.com/RizlH" target="_blank">RizlH</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 text-center text-md-end">
-              Designed By <a href="#">Rizal Hermawan</a>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
     <!-- Footer End -->
 
+
     <!-- Back to Top -->
-    <a
-      href="#"
-      class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"
-      ><i class="bi bi-arrow-up"></i
-    ></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -711,62 +561,63 @@
 
     <!-- Modal Login -->
     <div id="loginModal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close" id="closeLoginModal">&times;</span>
-        <h2>Login</h2>
-        <form id="loginForm">
-          <input type="email" name="email" placeholder="Email" required /><br />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-          /><br />
-          <button type="submit">Login</button>
-        </form>
-        <p>
-          Belum punya akun?
-          <a href="#" id="openRegisterFromLogin">Daftar di sini</a>
-        </p>
+        <div class="modal-content">
+          <span class="close" id="closeLoginModal">&times;</span>
+          <h2>Login</h2>
+          <form id="loginForm">
+            <input type="email" name="email" placeholder="Email" required /><br />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            /><br />
+            <button type="submit">Login</button>
+          </form>
+          <p>
+            Belum punya akun?
+            <a href="#" id="openRegisterFromLogin">Daftar di sini</a>
+          </p>
+        </div>
       </div>
-    </div>
-
-    <!-- Modal Register -->
-    <div id="registerModal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close" id="closeRegisterModal">&times;</span>
-        <h2>Register</h2>
-        <form id="registerForm">
-          <input type="text" name="name" placeholder="Nama" required /><br />
-          <input type="email" name="email" placeholder="Email" required /><br />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-          /><br />
-          <button type="submit">Register</button>
-        </form>
+  
+      <!-- Modal Register -->
+      <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close" id="closeRegisterModal">&times;</span>
+          <h2>Register</h2>
+          <form id="registerForm">
+            <input type="text" name="name" placeholder="Nama" required /><br />
+            <input type="email" name="email" placeholder="Email" required /><br />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            /><br />
+            <button type="submit">Register</button>
+          </form>
+        </div>
       </div>
-    </div>
-    <!-- Modal OTP Verification -->
-    <div id="otpModal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close" id="closeOtpModal">&times;</span>
-        <h2>Verify OTP</h2>
-        <form id="otpForm">
-          <input
-            type="text"
-            name="otp"
-            placeholder="Masukkan Kode OTP"
-            required
-          /><br />
-          <button type="submit">Verifikasi</button>
-        </form>
+      <!-- Modal OTP Verification -->
+      <div id="otpModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close" id="closeOtpModal">&times;</span>
+          <h2>Verify OTP</h2>
+          <form id="otpForm">
+            <input
+              type="text"
+              name="otp"
+              placeholder="Masukkan Kode OTP"
+              required
+            /><br />
+            <button type="submit">Verifikasi</button>
+          </form>
+        </div>
       </div>
-    </div>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-  </body>
+</body>
+
 </html>

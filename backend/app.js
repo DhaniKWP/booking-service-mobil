@@ -27,5 +27,5 @@ app.use((req, res, next) => {
 
 // Database & Server
 sequelize.sync().then(() => {
-  app.listen(8080, () => console.log('Server jalan di http://localhost:8080'));
+  app.listen(8080, () => console.log('Server berjalan di Port [http://localhost:8080]'));
 });
