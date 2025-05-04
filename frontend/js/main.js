@@ -155,6 +155,7 @@
 
       if (response.ok) {
         alert("Register sukses! Cek email kamu untuk OTP.");
+        localStorage.setItem("pending_verification_email", email);
         $("#registerModal").addClass("hidden");
         $("#otpModal").removeClass("hidden");
       } else {
@@ -172,7 +173,7 @@
   $("#otpForm").submit(async function (e) {
     e.preventDefault();
     const otp = $(this).find('input[name="otp"]').val();
-    const email = $("#registerForm").find('input[name="email"]').val(); // ambil email dari form register
+    const email = localStorage.getItem("pending_verification_email");
 
     try {
       const response = await fetch("/api/auth/verify-otp", {
@@ -185,6 +186,7 @@
 
       if (response.ok) {
         alert("Verifikasi OTP berhasil! Silahkan login.");
+        localStorage.removeItem("pending_verification_email");
         $("#otpModal").addClass("hidden");
         $("#loginModal").removeClass("hidden");
       } else {
@@ -215,15 +217,18 @@
 
       if (response.ok) {
         alert("Login berhasil!");
-
-        // Simpan ke localStorage
         localStorage.setItem("user", JSON.stringify({ email }));
-
-        // Refresh halaman (biar navbar berubah)
         location.reload();
       } else {
-        alert(result.error || "Login gagal.");
-      }
+        if (result.error.includes("belum diverifikasi")) {
+          alert("Akun belum diverifikasi. Silakan verifikasi OTP.");
+          localStorage.setItem("pending_verification_email", email); // SIMPAN EMAIL LAGI
+          $("#loginModal").addClass("hidden");
+          $("#otpModal").removeClass("hidden");
+        } else {
+          alert(result.error || "Login gagal.");
+        }
+      }      
     } catch (error) {
       console.error(error);
       alert("Terjadi kesalahan saat login.");

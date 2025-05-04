@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
     await User.create({ email, password: hashPassword, isVerified: false });
 
     const otp = generateOTP();
-    const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 10 menit expired
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 menit expired
 
     await OTP.create({ email, otp, expiresAt });
 

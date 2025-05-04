@@ -7,7 +7,7 @@ const transporter = nodemailer.createTransport({
   secure: false,
   auth: {
     user: process.env.EMAIL_USER,  // dari .env
-    pass: process.env.EMAIL_PASS   // dari .env
+    pass: process.env.EMAIL_PASS   
   }
 });
 
