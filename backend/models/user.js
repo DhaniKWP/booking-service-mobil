@@ -7,6 +7,16 @@ const User = db.define('User', {
     primaryKey: true,
     autoIncrement: true
   },
+  name: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false
+  },
+  phone: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false
+  },
   email: {
     type: DataTypes.STRING,
     unique: true,

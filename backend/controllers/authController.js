@@ -9,19 +9,25 @@ function generateOTP() {
 
 // Register
 exports.register = async (req, res) => {
-  const { email, password } = req.body;
+  const { name, phone, email, password } = req.body;
   try {
-    // Cek kalau email sudah ada
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ error: 'Email sudah terdaftar.' });
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
-    await User.create({ email, password: hashPassword, isVerified: false });
+
+    await User.create({
+      name,
+      phone,
+      email,
+      password: hashPassword,
+      isVerified: false
+    });
 
     const otp = generateOTP();
-    const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 menit expired
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
 
     await OTP.create({ email, otp, expiresAt });
 
@@ -38,6 +44,7 @@ exports.register = async (req, res) => {
     res.status(500).json({ error: 'Register gagal' });
   }
 };
+
 
 
 

@@ -14,6 +14,8 @@ router.post('/create', async (req, res) => {
 
     const booking = await Booking.create({
       userId: user.id,
+      name: user.name,
+      phone: user.phone,
       serviceType,
       date,
       time,

@@ -150,12 +150,13 @@
     const email = $(this).find('input[name="email"]').val();
     const password = $(this).find('input[name="password"]').val();
     const name = $(this).find('input[name="name"]').val();
+    const phone = $(this).find('input[name="phone"]').val();
 
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, name }),
+        body: JSON.stringify({ email, password, name, phone}),
       });
 
       const result = await response.json();
@@ -376,4 +377,7 @@
       location.reload(); // refresh halaman
     });
   });
+
+  sequelize.sync({ alter: true }); // Gunakan hanya saat pengembangan
+
 })(jQuery);
