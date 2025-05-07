@@ -379,7 +379,4 @@
       location.reload(); // refresh halaman
     });
   });
-
-  sequelize.sync({ alter: true }); // Gunakan hanya saat pengembangan
-
 })(jQuery);
