@@ -312,6 +312,8 @@
             data.map((b, i) => `
               <tr>
                 <td>${i + 1}</td>
+                <td>${b.name}</td>
+                <td>${b.phone}</td>
                 <td>${b.serviceType}</td>
                 <td>${b.date}</td>
                 <td>${b.time}</td>
