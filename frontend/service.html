@@ -100,33 +100,9 @@
                             Note : <br>
                             - Klik ikon kalender untuk mengisi tanggal booking <br>
                             - Klik ikon jam untuk mengisi waktu booking</p>
-                            <form id="bookingForm">
-                                <div class="row g-3">
-                                    <div class="col-12 col-sm-6">
-                                        <select class="form-select border-0" name="serviceType" style="height: 55px;" required>
-                                        <option value="">Pilih Layanan</option>
-                                        <option value="Service Ringan">Service Ringan</option>
-                                        <option value="Overhoul">Overhoul</option>
-                                        <option value="Panggilan Darurat">Panggilan Darurat</option>
-                                        <option value="Scanning">Scanning</option>
-                                        <option value="Kaki - Kaki">Kaki - Kaki</option>
-                                        <option value="Lainnya">Lainnya</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="date" class="form-control border-0" name="date" required />
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="time" class="form-control border-0" name="time" required />
-                                </div>
-                                <div class="col-12">
-                                    <textarea class="form-control border-0" name="notes" placeholder="Catatan: (Sertakan merk, jenis, tahun kendaraan anda | Contoh : Toyota Avanza Veloz 2023 )" required></textarea>
-                                </div>
-                                    <div class="col-12">
-                                    <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Booking</button>
-                                    </div>
-                                </div>
-                            </form>
+                            <div class="text-center my-4">
+                                <button id="openBookingModal" class="btn btn-primary rounded-pill py-3 px-5" type="submit">Booking Sekarang</button>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -434,6 +410,47 @@
           </form>
         </div>
       </div>
+
+      <!-- Modal Booking -->
+      <div id="bookingModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">Form Booking</h5>
+            <button type="button" class="btn-close" id="closeBookingModal"></button>
+            </div>
+            <div class="modal-body">
+            <form id="bookingForm">
+                <div class="mb-3">
+                <label for="serviceType" class="form-label">Pilih Layanan</label>
+                <select name="serviceType" class="form-select" required>
+                    <option value="">-- Pilih Layanan --</option>
+                    <option value="Ganti Oli">Ganti Oli</option>
+                    <option value="Service Ringan">Service Ringan</option>
+                    <option value="Overhoul">Overhoul</option>
+                    <option value="Panggilan Darurat">Panggilan Darurat</option>
+                    <option value="Scanning">Scanning</option>
+                    <option value="Kaki - Kaki">Kaki - Kaki</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+                </div>
+                <div class="mb-3">
+                <label for="date" class="form-label">Tanggal</label>
+                <input type="date" name="date" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                <label for="time" class="form-label">Waktu/Jam</label>
+                <input type="time" name="time" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                <label for="notes" class="form-label">Catatan</label>
+                <textarea name="notes" class="form-control" rows="3" placeholder="Catatan: (Sertakan merk, jenis, tahun kendaraan anda | Contoh : Toyota Avanza Veloz 2023 )"></textarea>
+                </div>
+                <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Kirim Booking</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
