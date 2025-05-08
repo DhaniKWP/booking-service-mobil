@@ -265,14 +265,15 @@
         Swal.fire({
           icon: 'success',
           title: 'Login berhasil!',
-          showConfirmButton: false,
-          timer: 1500
+          text: 'Selamat datang!',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          localStorage.setItem("user", JSON.stringify({ email }));
+          location.reload();
         });
-        localStorage.setItem("user", JSON.stringify({ email }));
-        location.reload();
       } else {
         if (result.error.includes("belum diverifikasi")) {
-          aSwal.fire({
+          Swal.fire({
             icon: 'warning',
             title: 'Belum diverifikasi!',
             text: 'Silakan verifikasi OTP terlebih dahulu.'
@@ -338,10 +339,9 @@
         Swal.fire({
           icon: 'success',
           title: 'Booking berhasil!',
-          showConfirmButton: false,
           timer: 1500
         });
-        $("#bookingForm")[0].reset();
+        $("#bookingForm")[0].reset  ();
       } else {
         Swal.fire({
           icon: 'error',
