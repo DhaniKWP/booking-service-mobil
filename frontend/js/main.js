@@ -131,6 +131,20 @@
       }
     });
 
+    // Modal Booking
+    $("#bookingModal").addClass("hidden");
+    $("#openBookingModal").on("click", function () {
+      $("#bookingModal").removeClass("hidden").show();
+    });
+    $("#closeBookingModal").on("click", function () {
+      $("#bookingModal").addClass("hidden").hide();
+    });
+    $(window).on("click", function (e) {
+      if (e.target.id === "bookingModal") {
+        $("#bookingModal").addClass("hidden").hide();
+      }
+    });
+
     // Klik luar modal untuk close
     $(window).on("click", function (e) {
       if (e.target.id === "loginModal") {
@@ -150,27 +164,40 @@
     const email = $(this).find('input[name="email"]').val();
     const password = $(this).find('input[name="password"]').val();
     const name = $(this).find('input[name="name"]').val();
+    const phone = $(this).find('input[name="phone"]').val();
 
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, name }),
+        body: JSON.stringify({ email, password, name, phone}),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        alert("Register sukses! Cek email kamu untuk OTP.");
+        Swal.fire({
+          icon: 'success',
+          title: 'Register sukses!',
+          text: 'Cek email kamu untuk OTP.'
+        });
         localStorage.setItem("pending_verification_email", email);
         $("#registerModal").addClass("hidden");
         $("#otpModal").removeClass("hidden");
       } else {
-        alert(result.error || "Register gagal.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal Register',
+          text: result.error || "Register gagal."
+        });
       }
     } catch (error) {
       console.error(error);
-      alert("Terjadi kesalahan saat register.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Gagal Register',
+        text: result.error || "Terjadi kesalahan saat register."
+      });
     }
   });
 
@@ -192,16 +219,28 @@
       const result = await response.json();
 
       if (response.ok) {
-        alert("Verifikasi OTP berhasil! Silahkan login.");
+        Swal.fire({
+          icon: 'success',
+          title: 'OTP Berhasil!',
+          text: 'Silakan login sekarang.'
+        });
         localStorage.removeItem("pending_verification_email");
         $("#otpModal").addClass("hidden");
         $("#loginModal").removeClass("hidden");
       } else {
-        alert(result.error || "Verifikasi OTP gagal.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Verifikasi Gagal',
+          text: result.error || "OTP salah atau tidak valid."
+        });
       }
     } catch (error) {
       console.error(error);
-      alert("Terjadi kesalahan saat verifikasi OTP.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Verifikasi Gagal',
+        text: result.error || "Terjadi kesalahan saat verifikasi OTP."
+      });
     }
   });
 
@@ -223,22 +262,40 @@
       const result = await response.json();
 
       if (response.ok) {
-        alert("Login berhasil!");
-        localStorage.setItem("user", JSON.stringify({ email }));
-        location.reload();
+        Swal.fire({
+          icon: 'success',
+          title: 'Login berhasil!',
+          text: 'Selamat datang!',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          localStorage.setItem("user", JSON.stringify({ email }));
+          location.reload();
+        });
       } else {
         if (result.error.includes("belum diverifikasi")) {
-          alert("Akun belum diverifikasi. Silakan verifikasi OTP.");
+          Swal.fire({
+            icon: 'warning',
+            title: 'Belum diverifikasi!',
+            text: 'Silakan verifikasi OTP terlebih dahulu.'
+          });
           localStorage.setItem("pending_verification_email", email); // SIMPAN EMAIL LAGI
           $("#loginModal").addClass("hidden");
           $("#otpModal").removeClass("hidden");
         } else {
-          alert(result.error || "Login gagal.");
+          Swal.fire({
+            icon: 'error',
+            title: 'Login gagal',
+            text: result.error || "Email atau password salah."
+          });
         }
       }      
     } catch (error) {
       console.error(error);
-      alert("Terjadi kesalahan saat login.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Login gagal',
+        text: result.error || "Terjadi kesalahan saat login."
+      });
     }
   });
 
@@ -250,7 +307,11 @@
 
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
-      alert("Silakan login terlebih dahulu untuk booking.");
+      Swal.fire({
+        icon: 'info',
+        title: 'Login diperlukan',
+        text: 'Silakan login terlebih dahulu untuk booking.'
+      });
       return;
     }
 
@@ -275,14 +336,26 @@
       const result = await response.json();
 
       if (response.ok) {
-        alert("Booking berhasil!");
-        $("#bookingForm")[0].reset();
+        Swal.fire({
+          icon: 'success',
+          title: 'Booking berhasil!',
+          timer: 1500
+        });
+        $("#bookingForm")[0].reset  ();
       } else {
-        alert(result.error || "Gagal melakukan booking.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Booking gagal',
+          text: result.error || "Gagal melakukan booking."
+        });
       }
     } catch (error) {
       console.error(error);
-      alert("Terjadi kesalahan saat proses booking.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Booking gagal',
+        text: result.error || "Terjadi kesalahan saat proses booking."
+      });
     }
   });
 
@@ -293,8 +366,13 @@
     if (window.location.pathname.includes("listbooking.html")) {
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user || !user.email) {
-        alert("Silakan login terlebih dahulu.");
+        Swal.fire({
+          icon: 'info',
+          title: 'Login diperlukan',
+          text: 'Silakan login terlebih dahulu untuk booking.'
+        }).then(() => {
         window.location.href = "index.html";
+      });
         return;
       }
 
@@ -311,6 +389,8 @@
             data.map((b, i) => `
               <tr>
                 <td>${i + 1}</td>
+                <td>${b.name}</td>
+                <td>${b.phone}</td>
                 <td>${b.serviceType}</td>
                 <td>${b.date}</td>
                 <td>${b.time}</td>
@@ -377,3 +457,17 @@
     });
   });
 })(jQuery);
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get both login buttons
+    const loginBtn = document.getElementById('openLoginModal');
+    const loginBtnMobile = document.getElementById('openLoginModalMobile');
+    const loginModal = document.getElementById('loginModal');
+    
+    // Add event listener to mobile login button
+    if (loginBtnMobile) {
+        loginBtnMobile.addEventListener('click', function() {
+            loginModal.classList.remove('hidden');
+        });
+    }
+});

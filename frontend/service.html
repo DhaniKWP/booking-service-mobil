@@ -33,6 +33,10 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </head>
 
 <body>
@@ -52,18 +56,21 @@
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-                <a href="service.html" class="nav-item nav-link active">Booking</a>
-                <a href="contact.html" class="nav-item nav-link">Kontak</a>
-                <a href="listbooking.html" class="nav-item nav-link">History Booking</a>
-            </div>
-            <button id="openLoginModal" class="btn btn-primary ms-lg-3 ms-0 mt-2 mt-lg-0 me-4">
-              Login
-            </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="index.html" class="nav-item nav-link">Home</a>
+            <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
+            <a href="service.html" class="nav-item nav-link active">Booking</a>
+            <a href="contact.html" class="nav-item nav-link">Kontak</a>
+            <a href="listbooking.html" class="nav-item nav-link">History Booking</a>
+            <!-- Login button for desktop view with responsive classes -->
+            <a id="openLoginModal" class="btn btn-primary d-none d-lg-block rounded-0 py-4 px-lg-5">LOG IN<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
+        <!-- Login button for mobile view -->
+        <div class="d-lg-none d-flex justify-content-center mt-0 mb-5">
+            <a id="openLoginModalMobile" class="btn btn-primary rounded-2 py-2 px-4">LOG IN<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </div>
     </nav>
     <!-- Navbar End -->
 
@@ -100,39 +107,9 @@
                             Note : <br>
                             - Klik ikon kalender untuk mengisi tanggal booking <br>
                             - Klik ikon jam untuk mengisi waktu booking</p>
-                            <form id="bookingForm">
-                                <div class="row g-3">
-                                    <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control border-0" name="name" placeholder="Nama Anda" style="height: 55px;" required />
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control border-0" name="phone" placeholder="Nomor Telepon Anda" style="height: 55px;" required />
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <select class="form-select border-0" name="serviceType" style="height: 55px;" required>
-                                        <option value="">Pilih Layanan</option>
-                                        <option value="Service Ringan">Service Ringan</option>
-                                        <option value="Overhoul">Overhoul</option>
-                                        <option value="Panggilan Darurat">Panggilan Darurat</option>
-                                        <option value="Scanning">Scanning</option>
-                                        <option value="Kaki - Kaki">Kaki - Kaki</option>
-                                        <option value="Lainnya">Lainnya</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="date" class="form-control border-0" name="date" required />
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="time" class="form-control border-0" name="time" required />
-                                </div>
-                                <div class="col-12">
-                                    <textarea class="form-control border-0" name="notes" placeholder="Catatan: (Sertakan merk, jenis, tahun kendaraan anda | Contoh : Toyota Avanza Veloz 2023 )" required></textarea>
-                                </div>
-                                    <div class="col-12">
-                                    <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Booking</button>
-                                    </div>
-                                </div>
-                            </form>
+                            <div class="text-center my-4">
+                                <button id="openBookingModal" class="btn btn-primary rounded-pill py-3 px-5" type="submit">Booking Sekarang</button>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -315,31 +292,31 @@
                     <h5 class="text-white mb-4">Galeri Bengkel</h5>
                     <div class="row g-2">
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-1.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-2.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-3.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-4.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-5.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-6.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-4.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-5.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-6.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                     </div>
                 </div>
@@ -412,7 +389,8 @@
           <span class="close" id="closeRegisterModal">&times;</span>
           <h2>Register</h2>
           <form id="registerForm">
-            <input type="text" name="name" placeholder="Nama" required /><br />
+            <input type="text" name="name" placeholder="Nama Lengkap" required /><br />
+            <input type="text" name="phone" placeholder="No Telepon" required>
             <input type="email" name="email" placeholder="Email" required /><br />
             <input
               type="password"
@@ -440,6 +418,47 @@
           </form>
         </div>
       </div>
+
+      <!-- Modal Booking -->
+        <div id="bookingModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Form Booking</h5>
+                <button type="button" class="btn-close" id="closeBookingModal"></button>
+                </div>
+                <div class="modal-body">
+                <form id="bookingForm">
+                    <div class="mb-3">
+                    <label for="serviceType" class="form-label">Pilih Layanan</label>
+                    <select name="serviceType" class="form-select" required>
+                        <option value="">-- Pilih Layanan --</option>
+                        <option value="Ganti Oli">Ganti Oli</option>
+                        <option value="Service Ringan">Service Ringan</option>
+                        <option value="Overhoul">Overhoul</option>
+                        <option value="Panggilan Darurat">Panggilan Darurat</option>
+                        <option value="Scanning">Scanning</option>
+                        <option value="Kaki - Kaki">Kaki - Kaki</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                    </div>
+                    <div class="mb-3">
+                    <label for="date" class="form-label">Tanggal</label>
+                    <input type="date" name="date" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="time" class="form-label">Waktu/Jam</label>
+                    <input type="time" name="time" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="notes" class="form-label">Catatan</label>
+                    <textarea name="notes" class="form-control" rows="3" placeholder="Catatan: (Sertakan merk, jenis, tahun kendaraan anda | Contoh : Toyota Avanza Veloz 2023 )"></textarea>
+                    </div>
+                    <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Kirim Booking</button>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

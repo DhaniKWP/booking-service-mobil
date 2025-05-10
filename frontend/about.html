@@ -33,6 +33,9 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -52,18 +55,21 @@
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link active">Tentang Kami</a>
-                <a href="service.html" class="nav-item nav-link">Booking</a>
-                <a href="contact.html" class="nav-item nav-link">Kontak</a>
-                <a href="listbooking.html" class="nav-item nav-link">History Booking</a>
-            </div>
-            <button id="openLoginModal" class="btn btn-primary ms-lg-3 ms-0 mt-2 mt-lg-0 me-4">
-              Login
-            </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="index.html" class="nav-item nav-link">Home</a>
+            <a href="about.html" class="nav-item nav-link active">Tentang Kami</a>
+            <a href="service.html" class="nav-item nav-link">Booking</a>
+            <a href="contact.html" class="nav-item nav-link">Kontak</a>
+            <a href="listbooking.html" class="nav-item nav-link">History Booking</a>
+            <!-- Login button for desktop view with responsive classes -->
+            <a id="openLoginModal" class="btn btn-primary d-none d-lg-block rounded-0 py-4 px-lg-5">LOG IN<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
+        <!-- Login button for mobile view -->
+        <div class="d-lg-none d-flex justify-content-center mt-0 mb-5">
+            <a id="openLoginModalMobile" class="btn btn-primary rounded-2 py-2 px-4">LOG IN<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </div>
     </nav>
     <!-- Navbar End -->
 
@@ -182,31 +188,31 @@
                     <h5 class="text-white mb-4">Galeri Bengkel</h5>
                     <div class="row g-2">
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-1.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-2.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-3.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-4.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-5.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-6.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-4.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-5.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid rounded" src="img/gallery-6.jpg" alt="">
+                            <img class="img-fluid rounded" src="#" alt="">
                         </div>
                     </div>
                 </div>
@@ -252,60 +258,61 @@
 
     <!-- Modal Login -->
     <div id="loginModal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close" id="closeLoginModal">&times;</span>
-        <h2>Login</h2>
-        <form id="loginForm">
-          <input type="email" name="email" placeholder="Email" required /><br />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-          /><br />
-          <button type="submit">Login</button>
-        </form>
-        <p>
-          Belum punya akun?
-          <a href="#" id="openRegisterFromLogin">Daftar di sini</a>
-        </p>
+        <div class="modal-content">
+          <span class="close" id="closeLoginModal">&times;</span>
+          <h2>Login</h2>
+          <form id="loginForm">
+            <input type="email" name="email" placeholder="Email" required /><br />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            /><br />
+            <button type="submit">Login</button>
+          </form>
+          <p>
+            Belum punya akun?
+            <a href="#" id="openRegisterFromLogin">Daftar di sini</a>
+          </p>
+        </div>
       </div>
-    </div>
-
-    <!-- Modal Register -->
-    <div id="registerModal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close" id="closeRegisterModal">&times;</span>
-        <h2>Register</h2>
-        <form id="registerForm">
-          <input type="text" name="name" placeholder="Nama" required /><br />
-          <input type="email" name="email" placeholder="Email" required /><br />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-          /><br />
-          <button type="submit">Register</button>
-        </form>
+  
+      <!-- Modal Register -->
+      <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close" id="closeRegisterModal">&times;</span>
+          <h2>Register</h2>
+          <form id="registerForm">
+            <input type="text" name="name" placeholder="Nama Lengkap" required /><br />
+            <input type="text" name="phone" placeholder="No Telepon" required>
+            <input type="email" name="email" placeholder="Email" required /><br />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            /><br />
+            <button type="submit">Register</button>
+          </form>
+        </div>
       </div>
-    </div>
-    <!-- Modal OTP Verification -->
-    <div id="otpModal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close" id="closeOtpModal">&times;</span>
-        <h2>Verify OTP</h2>
-        <form id="otpForm">
-          <input
-            type="text"
-            name="otp"
-            placeholder="Masukkan Kode OTP"
-            required
-          /><br />
-          <button type="submit">Verifikasi</button>
-        </form>
+      <!-- Modal OTP Verification -->
+      <div id="otpModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close" id="closeOtpModal">&times;</span>
+          <h2>Verify OTP</h2>
+          <form id="otpForm">
+            <input
+              type="text"
+              name="otp"
+              placeholder="Masukkan Kode OTP"
+              required
+            /><br />
+            <button type="submit">Verifikasi</button>
+          </form>
+        </div>
       </div>
-    </div>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
