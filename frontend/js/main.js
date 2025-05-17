@@ -176,7 +176,7 @@
       const result = await response.json();
 
       if (response.ok) {
-        Swal.fire({
+        await Swal.fire({
           icon: 'success',
           title: 'Register sukses!',
           text: 'Cek email kamu untuk OTP.'

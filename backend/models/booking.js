@@ -13,11 +13,11 @@ const Booking = db.define('Booking', {
     allowNull: false
   },
   name: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },
   phone: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },  
   serviceType: {
