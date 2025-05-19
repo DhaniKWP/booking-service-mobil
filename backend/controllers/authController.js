@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/user.js');
 const OTP = require('../models/otp.js');
+const jwt = require('jsonwebtoken'); // tambahkan ini di atas (jika belum)
 const { sendOTP } = require('../services/emailService.js');
 
 function generateOTP() {
@@ -79,35 +80,48 @@ exports.verifyOTP = async (req, res) => {
 
 
 // Login
+
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Cari user berdasarkan email
     const user = await User.findOne({ where: { email } });
 
-    // Kalau user tidak ada
     if (!user) {
       return res.status(400).json({ error: 'Email belum terdaftar.' });
     }
 
-    // Kalau user belum verifikasi
     if (!user.isVerified) {
       return res.status(400).json({ error: 'Akun belum diverifikasi. Silakan cek email untuk OTP.' });
     }
 
-    // Cek password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ error: 'Email atau password salah.' });
     }
 
-    // Kalau semua cocok
-    res.status(200).json({ message: 'Login berhasil.' });
+    // ✅ Buat token JWT
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      process.env.JWT_SECRET || 'defaultsecret', // pakai .env kalau ada
+      { expiresIn: '1d' }
+    );
+
+    // ✅ Kirim token + user info ke frontend
+    res.status(200).json({
+      message: 'Login berhasil.',
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role
+      }
+    });
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Login gagal.' });
   }
 };
-

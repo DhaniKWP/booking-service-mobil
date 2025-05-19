@@ -29,7 +29,12 @@ const User = db.define('User', {
   isVerified: {
     type: DataTypes.BOOLEAN,
     defaultValue: false
-  }
+  },
+  role: {
+  type: DataTypes.ENUM('admin', 'user'),
+  defaultValue: 'user'
+}
+
 });
 
 module.exports = User;

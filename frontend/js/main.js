@@ -3,95 +3,88 @@
 
   // Spinner
   var spinner = function () {
-      setTimeout(function () {
-          if ($('#spinner').length > 0) {
-              $('#spinner').removeClass('show');
-          }
-      }, 1);
+    setTimeout(function () {
+      if ($("#spinner").length > 0) {
+        $("#spinner").removeClass("show");
+      }
+    }, 1);
   };
   spinner();
-  
-  
+
   // Initiate the wowjs
   new WOW().init();
 
-
   // Sticky Navbar
   $(window).scroll(function () {
-      if ($(this).scrollTop() > 300) {
-          $('.sticky-top').addClass('shadow-sm').css('top', '0px');
-      } else {
-          $('.sticky-top').removeClass('shadow-sm').css('top', '-100px');
-      }
-  });
-  
-  
-  // Back to top button
-  $(window).scroll(function () {
-      if ($(this).scrollTop() > 300) {
-          $('.back-to-top').fadeIn('slow');
-      } else {
-          $('.back-to-top').fadeOut('slow');
-      }
-  });
-  $('.back-to-top').click(function () {
-      $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
-      return false;
+    if ($(this).scrollTop() > 300) {
+      $(".sticky-top").addClass("shadow-sm").css("top", "0px");
+    } else {
+      $(".sticky-top").removeClass("shadow-sm").css("top", "-100px");
+    }
   });
 
+  // Back to top button
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 300) {
+      $(".back-to-top").fadeIn("slow");
+    } else {
+      $(".back-to-top").fadeOut("slow");
+    }
+  });
+  $(".back-to-top").click(function () {
+    $("html, body").animate({ scrollTop: 0 }, 1500, "easeInOutExpo");
+    return false;
+  });
 
   // Facts counter
   $('[data-toggle="counter-up"]').counterUp({
-      delay: 10,
-      time: 2000
+    delay: 10,
+    time: 2000,
   });
-
 
   // Header carousel
   $(".header-carousel").owlCarousel({
-      autoplay: true,
-      smartSpeed: 1500,
-      loop: true,
-      nav: false,
-      dots: true,
-      items: 1,
-      dotsData: true,
+    autoplay: true,
+    smartSpeed: 1500,
+    loop: true,
+    nav: false,
+    dots: true,
+    items: 1,
+    dotsData: true,
   });
-
 
   // Testimonials carousel
   $(".testimonial-carousel").owlCarousel({
-      autoplay: true,
-      smartSpeed: 1000,
-      center: true,
-      dots: false,
-      loop: true,
-      nav : true,
-      navText : [
-          '<i class="bi bi-arrow-left"></i>',
-          '<i class="bi bi-arrow-right"></i>'
-      ],
-      responsive: {
-          0:{
-              items:1
-          },
-          768:{
-              items:2
-          }
-      }
+    autoplay: true,
+    smartSpeed: 1000,
+    center: true,
+    dots: false,
+    loop: true,
+    nav: true,
+    navText: [
+      '<i class="bi bi-arrow-left"></i>',
+      '<i class="bi bi-arrow-right"></i>',
+    ],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      768: {
+        items: 2,
+      },
+    },
   });
-
 
   // Portfolio isotope and filter
-  var portfolioIsotope = $('.portfolio-container').isotope({
-      itemSelector: '.portfolio-item',
-      layoutMode: 'fitRows'
+  var portfolioIsotope = $(".portfolio-container").isotope({
+    itemSelector: ".portfolio-item",
+    layoutMode: "fitRows",
   });
-  $('#portfolio-flters li').on('click', function () {
-      $("#portfolio-flters li").removeClass('active');
-      $(this).addClass('active');
+  $("#portfolio-flters li").on("click", function () {
+    $("#portfolio-flters li").removeClass("active");
+    $(this).addClass("active");
 
-      portfolioIsotope.isotope({filter: $(this).data('filter')});
+    portfolioIsotope.isotope({ filter: $(this).data("filter") });
   });
 
   // Modal handlers
@@ -170,33 +163,33 @@
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, name, phone}),
+        body: JSON.stringify({ email, password, name, phone }),
       });
 
       const result = await response.json();
 
       if (response.ok) {
         await Swal.fire({
-          icon: 'success',
-          title: 'Register sukses!',
-          text: 'Cek email kamu untuk OTP.'
+          icon: "success",
+          title: "Register sukses!",
+          text: "Cek email kamu untuk OTP.",
         });
         localStorage.setItem("pending_verification_email", email);
         $("#registerModal").addClass("hidden");
         $("#otpModal").removeClass("hidden");
       } else {
         Swal.fire({
-          icon: 'error',
-          title: 'Gagal Register',
-          text: result.error || "Register gagal."
+          icon: "error",
+          title: "Gagal Register",
+          text: result.error || "Register gagal.",
         });
       }
     } catch (error) {
       console.error(error);
       Swal.fire({
-        icon: 'error',
-        title: 'Gagal Register',
-        text: result.error || "Terjadi kesalahan saat register."
+        icon: "error",
+        title: "Gagal Register",
+        text: result.error || "Terjadi kesalahan saat register.",
       });
     }
   });
@@ -220,26 +213,26 @@
 
       if (response.ok) {
         Swal.fire({
-          icon: 'success',
-          title: 'OTP Berhasil!',
-          text: 'Silakan login sekarang.'
+          icon: "success",
+          title: "OTP Berhasil!",
+          text: "Silakan login sekarang.",
         });
         localStorage.removeItem("pending_verification_email");
         $("#otpModal").addClass("hidden");
         $("#loginModal").removeClass("hidden");
       } else {
         Swal.fire({
-          icon: 'error',
-          title: 'Verifikasi Gagal',
-          text: result.error || "OTP salah atau tidak valid."
+          icon: "error",
+          title: "Verifikasi Gagal",
+          text: result.error || "OTP salah atau tidak valid.",
         });
       }
     } catch (error) {
       console.error(error);
       Swal.fire({
-        icon: 'error',
-        title: 'Verifikasi Gagal',
-        text: result.error || "Terjadi kesalahan saat verifikasi OTP."
+        icon: "error",
+        title: "Verifikasi Gagal",
+        text: result.error || "Terjadi kesalahan saat verifikasi OTP.",
       });
     }
   });
@@ -263,38 +256,44 @@
 
       if (response.ok) {
         Swal.fire({
-          icon: 'success',
-          title: 'Login berhasil!',
-          text: 'Selamat datang!',
-          confirmButtonText: 'OK'
+          icon: "success",
+          title: "Login berhasil!",
+          text: "Selamat datang!",
+          confirmButtonText: "OK",
         }).then(() => {
-          localStorage.setItem("user", JSON.stringify({ email }));
-          location.reload();
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("user", JSON.stringify(result.user));
+
+          if (result.user.role === "admin") {
+            window.location.href = "admindashboard.html";
+          } else {
+            window.location.href = "index.html";
+          }
         });
       } else {
         if (result.error.includes("belum diverifikasi")) {
           Swal.fire({
-            icon: 'warning',
-            title: 'Belum diverifikasi!',
-            text: 'Silakan verifikasi OTP terlebih dahulu.'
+            icon: "warning",
+            title: "Belum diverifikasi!",
+            text: "Silakan verifikasi OTP terlebih dahulu.",
           });
           localStorage.setItem("pending_verification_email", email); // SIMPAN EMAIL LAGI
           $("#loginModal").addClass("hidden");
           $("#otpModal").removeClass("hidden");
         } else {
           Swal.fire({
-            icon: 'error',
-            title: 'Login gagal',
-            text: result.error || "Email atau password salah."
+            icon: "error",
+            title: "Login gagal",
+            text: result.error || "Email atau password salah.",
           });
         }
-      }      
+      }
     } catch (error) {
       console.error(error);
       Swal.fire({
-        icon: 'error',
-        title: 'Login gagal',
-        text: result.error || "Terjadi kesalahan saat login."
+        icon: "error",
+        title: "Login gagal",
+        text: result.error || "Terjadi kesalahan saat login.",
       });
     }
   });
@@ -308,9 +307,9 @@
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
       Swal.fire({
-        icon: 'info',
-        title: 'Login diperlukan',
-        text: 'Silakan login terlebih dahulu untuk booking.'
+        icon: "info",
+        title: "Login diperlukan",
+        text: "Silakan login terlebih dahulu untuk booking.",
       });
       return;
     }
@@ -329,7 +328,7 @@
           serviceType,
           date,
           time,
-          notes
+          notes,
         }),
       });
 
@@ -337,24 +336,24 @@
 
       if (response.ok) {
         Swal.fire({
-          icon: 'success',
-          title: 'Booking berhasil!',
-          timer: 1500
+          icon: "success",
+          title: "Booking berhasil!",
+          timer: 1500,
         });
-        $("#bookingForm")[0].reset  ();
+        $("#bookingForm")[0].reset();
       } else {
         Swal.fire({
-          icon: 'error',
-          title: 'Booking gagal',
-          text: result.error || "Gagal melakukan booking."
+          icon: "error",
+          title: "Booking gagal",
+          text: result.error || "Gagal melakukan booking.",
         });
       }
     } catch (error) {
       console.error(error);
       Swal.fire({
-        icon: 'error',
-        title: 'Booking gagal',
-        text: result.error || "Terjadi kesalahan saat proses booking."
+        icon: "error",
+        title: "Booking gagal",
+        text: result.error || "Terjadi kesalahan saat proses booking.",
       });
     }
   });
@@ -367,12 +366,12 @@
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user || !user.email) {
         Swal.fire({
-          icon: 'info',
-          title: 'Login diperlukan',
-          text: 'Silakan login terlebih dahulu untuk booking.'
+          icon: "info",
+          title: "Login diperlukan",
+          text: "Silakan login terlebih dahulu untuk booking.",
         }).then(() => {
-        window.location.href = "index.html";
-      });
+          window.location.href = "index.html";
+        });
         return;
       }
 
@@ -383,10 +382,14 @@
         if (!res.ok) throw new Error(data.error || "Gagal ambil data");
 
         if (data.length === 0) {
-          $("#bookingTableBody").html("<tr><td colspan='5'>Belum ada data booking.</td></tr>");
+          $("#bookingTableBody").html(
+            "<tr><td colspan='5'>Belum ada data booking.</td></tr>"
+          );
         } else {
           $("#bookingTableBody").html(
-            data.map((b, i) => `
+            data
+              .map(
+                (b, i) => `
               <tr>
                 <td>${i + 1}</td>
                 <td>${b.name}</td>
@@ -396,27 +399,118 @@
                 <td>${b.time}</td>
                 <td>${b.notes}</td>
               </tr>
-            `).join("")
+            `
+              )
+              .join("")
           );
         }
       } catch (err) {
         console.error(err);
-        $("#bookingTableBody").html("<tr><td colspan='5'>Terjadi kesalahan saat mengambil data.</td></tr>");
+        $("#bookingTableBody").html(
+          "<tr><td colspan='5'>Terjadi kesalahan saat mengambil data.</td></tr>"
+        );
       }
     }
   });
 
+  // ===========================
+  // Tampilkan Data Booking User Untuk admin dom
+  // ===========================
+  document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const res = await fetch("http://localhost:8080/api/admin/bookings", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const bookings = await res.json();
+      const listContainer = document.getElementById("booking-list");
+
+      if (!Array.isArray(bookings)) {
+        listContainer.innerHTML = "<p>Data booking tidak tersedia.</p>";
+        return;
+      }
+
+      listContainer.innerHTML = bookings
+        .map((b) => {
+          return `
+          <div class="col-md-6 col-lg-4">
+            <div class="booking-card p-4 shadow rounded bg-white">
+              <h5 class="text-primary">${b.name}</h5>
+              <p><strong>No. HP:</strong> ${b.phone}</p>
+              <p><strong>Layanan:</strong> ${b.serviceType}</p>
+              <p><strong>Tanggal:</strong> ${b.date}</p>
+              <p><strong>Jam:</strong> ${b.time}</p>
+              <p><strong>Catatan:</strong> ${b.notes || "-"}</p>
+              <div class="d-flex gap-2 mt-3">
+                <button class="btn btn-success btn-sm" onclick="updateStatus(${
+                  b.id
+                }, 'accepted')">
+                  <i class="fas fa-check"></i> Terima
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="updateStatus(${
+                  b.id
+                }, 'rejected')">
+                  <i class="fas fa-times"></i> Tolak
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        })
+        .join("");
+    } catch (error) {
+      console.error("Gagal memuat data booking:", error);
+    }
+  });
+
+  async function updateStatus(id, status) {
+    const token = localStorage.getItem("token");
+
+    try {
+      const res = await fetch(
+        `http://localhost:8080/api/admin/bookings/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ status }),
+        }
+      );
+
+      if (res.ok) {
+        Swal.fire(
+          "Berhasil!",
+          `Booking ${status === "accepted" ? "diterima" : "ditolak"}.`,
+          "success"
+        ).then(() => {
+          location.reload();
+        });
+      } else {
+        const data = await res.json();
+        Swal.fire("Gagal", data.message || "Terjadi kesalahan.", "error");
+      }
+    } catch (error) {
+      console.error("Gagal update status:", error);
+      Swal.fire("Gagal", "Terjadi kesalahan saat menghubungi server.", "error");
+    }
+  }
 
   // ===========================
   // Setup navbar login/logout
   // ===========================
   function updateNavbar() {
-    const user = JSON.parse(localStorage.getItem('user'));
-  
+    const user = JSON.parse(localStorage.getItem("user"));
+
     if (user) {
       // Hilangin tombol login
       $("#openLoginModal").remove();
-  
+
       // Bikin dropdown profile
       const profileHTML = `
         <div class="dropdown ms-3" id="userDropdown">
@@ -431,10 +525,9 @@
           </ul>
         </div>
       `;
-  
+
       // Taruh dropdown setelah navbar menu
       $(".navbar-collapse .navbar-nav").after(profileHTML);
-      
     } else {
       // Kalau logout
       if ($("#userDropdown").length) {
@@ -443,8 +536,6 @@
       $("#openLoginModal").show();
     }
   }
-  
-  
 
   // Cek saat halaman load
   $(document).ready(function () {

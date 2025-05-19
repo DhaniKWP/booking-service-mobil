@@ -4,6 +4,7 @@ const app = express();
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Middleware
 app.use(express.json());
@@ -15,6 +16,8 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 // API routes
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
+
 
 // Fallback route: selain API dan file yang ada, balikin index.html
 app.use((req, res, next) => {
