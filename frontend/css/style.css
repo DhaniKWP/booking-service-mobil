@@ -713,3 +713,29 @@
 body.protected {
   display: none;
 }
+
+/* Kartu Booking User */
+.booking-user-card {
+  background-color: #fff;
+  border-left: 5px solid var(--primary);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.booking-user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.booking-user-card h5 {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.booking-user-card p {
+  margin: 4px 0;
+  font-size: 14px;
+}

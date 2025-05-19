@@ -378,37 +378,33 @@
       try {
         const res = await fetch(`/api/bookings/user?email=${user.email}`);
         const data = await res.json();
+        const container = document.getElementById("booking-card-container");
 
-        if (!res.ok) throw new Error(data.error || "Gagal ambil data");
-
-        if (data.length === 0) {
-          $("#bookingTableBody").html(
-            "<tr><td colspan='5'>Belum ada data booking.</td></tr>"
-          );
-        } else {
-          $("#bookingTableBody").html(
-            data
-              .map(
-                (b, i) => `
-              <tr>
-                <td>${i + 1}</td>
-                <td>${b.name}</td>
-                <td>${b.phone}</td>
-                <td>${b.serviceType}</td>
-                <td>${b.date}</td>
-                <td>${b.time}</td>
-                <td>${b.notes}</td>
-              </tr>
-            `
-              )
-              .join("")
-          );
+        if (!Array.isArray(data) || data.length === 0) {
+          container.innerHTML = `<p class="text-center">Belum ada data booking.</p>`;
+          return;
         }
+
+        container.innerHTML = data
+          .map(
+            (b, i) => `
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="booking-user-card">
+          <h5>${b.name}</h5>
+          <p><strong>No. Telepon:</strong> ${b.phone}</p>
+          <p><strong>Layanan:</strong> ${b.serviceType}</p>
+          <p><strong>Tanggal:</strong> ${b.date}</p>
+          <p><strong>Jam:</strong> ${b.time}</p>
+          <p><strong>Catatan:</strong> ${b.notes || "-"}</p>
+        </div>
+      </div>
+    `
+          )
+          .join("");
       } catch (err) {
         console.error(err);
-        $("#bookingTableBody").html(
-          "<tr><td colspan='5'>Terjadi kesalahan saat mengambil data.</td></tr>"
-        );
+        document.getElementById("booking-card-container").innerHTML =
+          "<p class='text-center text-danger'>Gagal memuat data booking.</p>";
       }
     }
   });
