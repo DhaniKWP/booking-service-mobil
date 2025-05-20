@@ -3,6 +3,7 @@ const router = express.Router();
 const Booking = require('../models/booking');
 const User = require('../models/user');
 
+// Booking baru
 router.post('/create', async (req, res) => {
   const {
     email,
@@ -52,6 +53,23 @@ router.post('/create', async (req, res) => {
   }
 });
 
+// Ambil semua booking berdasarkan email user
+router.get('/user', async (req, res) => {
+  const { email } = req.query;
 
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(404).json({ error: 'User tidak ditemukan' });
+    }
+
+    const bookings = await Booking.findAll({ where: { userId: user.id } });
+
+    res.json(bookings);
+  } catch (error) {
+    console.error("Gagal mengambil booking:", error);
+    res.status(500).json({ error: 'Terjadi kesalahan saat mengambil data booking' });
+  }
+});
 
 module.exports = router;

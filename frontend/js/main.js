@@ -395,57 +395,64 @@
 
 
   // ===========================
-  // Tampilkan Data Booking User
+  // Tampilkan Data Booking User (fix dengan token dan pengecekan DOM)
   // ===========================
   $(document).ready(async function () {
-    if (window.location.pathname.includes("listbooking.html")) {
-      const user = JSON.parse(localStorage.getItem("user"));
-      if (!user || !user.email) {
-        Swal.fire({
-          icon: "info",
-          title: "Login diperlukan",
-          text: "Silakan login terlebih dahulu untuk booking.",
-        }).then(() => {
-          window.location.href = "index.html";
-        });
+    const container = document.getElementById("booking-card-container");
+    if (!container) return; // Kalau tidak di halaman listbooking.html, skip
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+
+    if (!user || !user.email || !token) {
+      Swal.fire({
+        icon: "info",
+        title: "Login diperlukan",
+        text: "Silakan login terlebih dahulu untuk melihat daftar booking.",
+      }).then(() => {
+        window.location.href = "index.html";
+      });
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/bookings/user?email=${user.email}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      const data = await res.json();
+
+      if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = `<p class="text-center">Belum ada data booking.</p>`;
         return;
       }
 
-      try {
-        const res = await fetch(`/api/bookings/user?email=${user.email}`);
-        const data = await res.json();
-        const container = document.getElementById("booking-card-container");
-
-        if (!Array.isArray(data) || data.length === 0) {
-          container.innerHTML = `<p class="text-center">Belum ada data booking.</p>`;
-          return;
-        }
-
-        container.innerHTML = data
-          .map(
-            (b, i) => `
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="booking-user-card">
-          <h5>${b.workshopName} - ${b.serviceNumber}</h5>
-          <p><strong>Nama:</strong> ${b.name}</p>
-          <p><strong>No HP:</strong> ${b.phone}</p>
-          <p><strong>Mobil:</strong> ${b.vehicleType} (${b.vehicleYear})</p>
-          <p><strong>Plat Nomor:</strong> ${b.licensePlate}</p>
-          <p><strong>Layanan:</strong> ${b.serviceType}</p>
-          <p><strong>Tanggal:</strong> ${b.date}</p>
-          <p><strong>Jam:</strong> ${b.time}</p>
-          <p><strong>Catatan:</strong> ${b.notes}</p>
-          <p><strong>Harga Estimasi:</strong> ${b.estimatedPrice}</p>
+      container.innerHTML = data
+        .map(
+          (b) => `
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="booking-user-card p-4 shadow bg-light rounded">
+            <h5>${b.workshopName} - ${b.serviceNumber}</h5>
+            <p><strong>Nama:</strong> ${b.name}</p>
+            <p><strong>No HP:</strong> ${b.phone}</p>
+            <p><strong>Mobil:</strong> ${b.vehicleType} (${b.vehicleYear})</p>
+            <p><strong>Plat Nomor:</strong> ${b.licensePlate}</p>
+            <p><strong>Layanan:</strong> ${b.serviceType}</p>
+            <p><strong>Tanggal:</strong> ${b.date}</p>
+            <p><strong>Jam:</strong> ${b.time}</p>
+            <p><strong>Catatan:</strong> ${b.notes}</p>
+            <p><strong>Harga Estimasi:</strong> ${b.estimatedPrice}</p>
+          </div>
         </div>
-      </div>
-    `
-          )
-          .join("");
-      } catch (err) {
-        console.error(err);
-        document.getElementById("booking-card-container").innerHTML =
-          "<p class='text-center text-danger'>Gagal memuat data booking.</p>";
-      }
+      `
+        )
+        .join("");
+    } catch (err) {
+      console.error("Gagal memuat data booking:", err);
+      container.innerHTML =
+        "<p class='text-center text-danger'>Gagal memuat data booking.</p>";
     }
   });
 
@@ -453,55 +460,49 @@
   // Tampilkan Data Booking User Untuk admin dom
   // ===========================
   document.addEventListener("DOMContentLoaded", async () => {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user || user.role !== "admin") return; // ⛔ skip kalau bukan admin
 
-    try {
-      const res = await fetch("http://localhost:8080/api/admin/bookings", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  try {
+    const res = await fetch("http://localhost:8080/api/admin/bookings", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-      const bookings = await res.json();
-      const listContainer = document.getElementById("booking-list");
+    const bookings = await res.json();
+    const listContainer = document.getElementById("booking-list");
 
-      if (!Array.isArray(bookings)) {
-        listContainer.innerHTML = "<p>Data booking tidak tersedia.</p>";
-        return;
-      }
-
-      listContainer.innerHTML = bookings
-        .map((b) => {
-          return `
-          <div class="col-md-6 col-lg-4">
-            <div class="booking-card p-4 shadow rounded bg-white">
-              <h5 class="text-primary">${b.name}</h5>
-              <p><strong>No. HP:</strong> ${b.phone}</p>
-              <p><strong>Layanan:</strong> ${b.serviceType}</p>
-              <p><strong>Tanggal:</strong> ${b.date}</p>
-              <p><strong>Jam:</strong> ${b.time}</p>
-              <p><strong>Catatan:</strong> ${b.notes || "-"}</p>
-              <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-success btn-sm" onclick="updateStatus(${
-                  b.id
-                }, 'accepted')">
-                  <i class="fas fa-check"></i> Terima
-                </button>
-                <button class="btn btn-danger btn-sm" onclick="updateStatus(${
-                  b.id
-                }, 'rejected')">
-                  <i class="fas fa-times"></i> Tolak
-                </button>
-              </div>
-            </div>
-          </div>
-        `;
-        })
-        .join("");
-    } catch (error) {
-      console.error("Gagal memuat data booking:", error);
+    if (!Array.isArray(bookings)) {
+      listContainer.innerHTML = "<p>Data booking tidak tersedia.</p>";
+      return;
     }
-  });
+
+    listContainer.innerHTML = bookings.map((b) => `
+      <div class="col-md-6 col-lg-4">
+        <div class="booking-card p-4 shadow rounded bg-white">
+          <h5 class="text-primary">${b.name}</h5>
+          <p><strong>No. HP:</strong> ${b.phone}</p>
+          <p><strong>Layanan:</strong> ${b.serviceType}</p>
+          <p><strong>Tanggal:</strong> ${b.date}</p>
+          <p><strong>Jam:</strong> ${b.time}</p>
+          <p><strong>Catatan:</strong> ${b.notes || "-"}</p>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn btn-success btn-sm" onclick="updateStatus(${b.id}, 'accepted')">
+              <i class="fas fa-check"></i> Terima
+            </button>
+            <button class="btn btn-danger btn-sm" onclick="updateStatus(${b.id}, 'rejected')">
+              <i class="fas fa-times"></i> Tolak
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join("");
+  } catch (error) {
+    console.error("Gagal memuat data booking:", error);
+  }
+});
 
   async function updateStatus(id, status) {
     const token = localStorage.getItem("token");
