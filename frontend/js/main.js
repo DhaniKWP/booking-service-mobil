@@ -302,61 +302,97 @@
   // Submit Form Booking
   // ===========================
   $("#bookingForm").submit(async function (e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user) {
+    Swal.fire({
+      icon: "info",
+      title: "Login diperlukan",
+      text: "Silakan login terlebih dahulu untuk booking.",
+    });
+    return;
+  }
+
+  const serviceType = $(this).find('[name="serviceType"]').val();
+  const date = $(this).find('[name="date"]').val();
+  const time = $(this).find('[name="time"]').val();
+  const notes = $(this).find('[name="notes"]').val();
+  const vehicleType = $(this).find('[name="vehicleType"]').val();
+  const vehicleYear = $(this).find('[name="vehicleYear"]').val();
+  const licensePlate = $(this).find('[name="licensePlate"]').val();
+
+  console.log("DEBUG:", { vehicleType, vehicleYear, licensePlate });
+
+  const estimatedPrice = getEstimatedPrice(vehicleType, serviceType);
+  const workshopName = "Wijaya Motor";
+  const serviceNumber = `SRV-${Date.now()}`;
+
+  try {
+    const response = await fetch("/api/bookings/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: user.id,
+        name: user.name,
+        phone: user.phone,
+        email: user.email,
+        serviceType,
+        date,
+        time,
+        notes,
+        vehicleType,
+        vehicleYear,
+        licensePlate,
+        estimatedPrice,
+        workshopName,
+        serviceNumber
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
       Swal.fire({
-        icon: "info",
-        title: "Login diperlukan",
-        text: "Silakan login terlebih dahulu untuk booking.",
+        icon: "success",
+        title: "Booking berhasil!",
+        timer: 1500,
       });
-      return;
-    }
-
-    const serviceType = $(this).find('select[name="serviceType"]').val();
-    const date = $(this).find('input[name="date"]').val();
-    const time = $(this).find('input[name="time"]').val();
-    const notes = $(this).find('textarea[name="notes"]').val();
-
-    try {
-      const response = await fetch("/api/bookings/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: user.email,
-          serviceType,
-          date,
-          time,
-          notes,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        Swal.fire({
-          icon: "success",
-          title: "Booking berhasil!",
-          timer: 1500,
-        });
-        $("#bookingForm")[0].reset();
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Booking gagal",
-          text: result.error || "Gagal melakukan booking.",
-        });
-      }
-    } catch (error) {
-      console.error(error);
+      $("#bookingForm")[0].reset();
+    } else {
       Swal.fire({
         icon: "error",
         title: "Booking gagal",
-        text: result.error || "Terjadi kesalahan saat proses booking.",
+        text: result.error || "Gagal melakukan booking.",
       });
     }
-  });
+  } catch (error) {
+    console.error(error);
+    Swal.fire({
+      icon: "error",
+      title: "Booking gagal",
+      text: "Terjadi kesalahan saat proses booking.",
+    });
+  }
+});
+
+
+  function getEstimatedPrice(vehicle, service) {
+  const priceMap = {
+    "Toyota Avanza": {
+      "Ganti Oli": "Rp400.000 - Rp600.000",
+      "Service Ringan": "Rp500.000 - Rp1.200.000",
+      "Overhoul": "Rp5.000.000 - Rp8.000.000",
+      "Panggilan Darurat": "Rp200.000 - Rp500.000",
+      "Scanning": "Rp150.000 - Rp350.000",
+      "Kaki - Kaki": "Rp500.000 - Rp6.000.000"
+    },
+    // Tambahkan semua lainnya
+  };
+
+  return priceMap[vehicle]?.[service] || "Rp -";
+}
+
 
   // ===========================
   // Tampilkan Data Booking User
@@ -390,12 +426,16 @@
             (b, i) => `
       <div class="col-md-6 col-lg-4 mb-4">
         <div class="booking-user-card">
-          <h5>${b.name}</h5>
-          <p><strong>No. Telepon:</strong> ${b.phone}</p>
+          <h5>${b.workshopName} - ${b.serviceNumber}</h5>
+          <p><strong>Nama:</strong> ${b.name}</p>
+          <p><strong>No HP:</strong> ${b.phone}</p>
+          <p><strong>Mobil:</strong> ${b.vehicleType} (${b.vehicleYear})</p>
+          <p><strong>Plat Nomor:</strong> ${b.licensePlate}</p>
           <p><strong>Layanan:</strong> ${b.serviceType}</p>
           <p><strong>Tanggal:</strong> ${b.date}</p>
           <p><strong>Jam:</strong> ${b.time}</p>
-          <p><strong>Catatan:</strong> ${b.notes || "-"}</p>
+          <p><strong>Catatan:</strong> ${b.notes}</p>
+          <p><strong>Harga Estimasi:</strong> ${b.estimatedPrice}</p>
         </div>
       </div>
     `

@@ -5,6 +5,7 @@ const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const { text } = require('body-parser');
 
 // Middleware
 app.use(express.json());

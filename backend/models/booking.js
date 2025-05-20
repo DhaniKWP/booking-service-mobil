@@ -1,4 +1,5 @@
-const { DataTypes } = require('sequelize');
+const Sequelize = require('sequelize');
+const { DataTypes } = Sequelize;
 const db = require('../config/database.js');
 const User = require('./user.js');
 
@@ -34,6 +35,33 @@ const Booking = db.define('Booking', {
   },
   notes: {
     type: DataTypes.STRING
+  },vehicleType: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  vehicleYear: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  licensePlate: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  estimatedPrice: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 0
+  },
+  workshopName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "Wijaya Motor"
+  },
+  serviceNumber: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: false,
+    defaultValue: Sequelize.UUIDV4
   }
 });
 
