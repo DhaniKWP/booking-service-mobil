@@ -6,11 +6,15 @@ const authRoutes = require('./routes/authRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const { text } = require('body-parser');
+const invoiceController = require('./controllers/invoiceController');
+
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/api/bookings', bookingRoutes);
+
+// Perbaikan path bookingRoutes (ini penting!)
+app.use('/api', bookingRoutes);
 
 // Serve static files dari frontend
 app.use(express.static(path.join(__dirname, '../frontend')));
@@ -18,6 +22,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api', invoiceController);
 
 
 // Fallback route: selain API dan file yang ada, balikin index.html

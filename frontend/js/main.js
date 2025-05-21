@@ -415,7 +415,7 @@
     }
 
     try {
-      const res = await fetch(`/api/bookings/user?email=${user.email}`, {
+      const res = await fetch(`/api/user?email=${user.email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -445,9 +445,20 @@
             <p><strong>Harga Estimasi:</strong> ${b.estimatedPrice}</p>
             <p><strong>Status:</strong> 
               <span class="${b.status === 'accepted' ? 'text-success' : b.status === 'rejected' ? 'text-danger' : 'text-warning'}">
-              ${b.status === 'accepted' ? 'Diterima' : b.status === 'rejected' ? 'Ditolak' : 'Menunggu Konfirmasi'}
+              ${b.status === 'accepted'
+              ? 'Diterima'
+              : b.status === 'rejected'
+              ? 'Ditolak'
+              : b.status === 'completed'
+              ? 'Selesai'
+              : 'Menunggu Konfirmasi'}
               </span>
             </p>
+            ${b.status === 'completed' ? `
+            <a href="/api/bookings/${b.id}/invoice" class="btn btn-outline-primary btn-sm mt-2" target="_blank">
+              <i class="fas fa-file-pdf"></i> Download Invoice
+            </a>
+          ` : ''}
           </div>
         </div>
       `
@@ -487,6 +498,31 @@
       Swal.fire("Gagal", "Terjadi kesalahan saat menghubungi server.", "error");
     }
   };
+
+    window.markAsCompleted = async function (id) {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch(`/api/admin/bookings/${id}/complete`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        Swal.fire("Berhasil!", "Booking ditandai selesai.", "success")
+          .then(() => location.reload());
+      } else {
+        Swal.fire("Gagal", result.message || "Gagal tandai selesai", "error");
+      }
+    } catch (err) {
+      console.error(err);
+      Swal.fire("Error", "Terjadi kesalahan.", "error");
+    }
+  };
+
 
 
   document.addEventListener("DOMContentLoaded", async () => {
@@ -544,6 +580,10 @@
               <button class="btn btn-danger btn-sm" onclick="updateStatus(${b.id}, 'rejected')">
                 <i class="fas fa-times"></i> Tolak
               </button>
+              <button class="btn btn-primary btn-sm" onclick="markAsCompleted(${b.id})">
+                <i class="fas fa-flag-checkered"></i> Selesai
+              </button>
+
             </div>
           </div>
         </div>
