@@ -16,7 +16,8 @@ router.post('/create', async (req, res) => {
     licensePlate,
     estimatedPrice,
     workshopName,
-    serviceNumber
+    serviceNumber,
+    status
   } = req.body;
 
   try {
@@ -43,7 +44,8 @@ router.post('/create', async (req, res) => {
       licensePlate,
       estimatedPrice,
       workshopName,
-      serviceNumber
+      serviceNumber,
+      status
     });
 
     res.json({ message: 'Booking berhasil', booking });
@@ -71,5 +73,26 @@ router.get('/user', async (req, res) => {
     res.status(500).json({ error: 'Terjadi kesalahan saat mengambil data booking' });
   }
 });
+
+router.put('/admin/bookings/:id', async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    const booking = await Booking.findByPk(id);
+    if (!booking) {
+      return res.status(404).json({ message: 'Booking tidak ditemukan' });
+    }
+
+    booking.status = status;
+    await booking.save();
+
+    res.json({ message: 'Status booking diperbarui', booking });
+  } catch (error) {
+    console.error('Update status gagal:', error);
+    res.status(500).json({ message: 'Terjadi kesalahan saat update status' });
+  }
+});
+
 
 module.exports = router;

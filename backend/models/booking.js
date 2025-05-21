@@ -62,6 +62,10 @@ const Booking = db.define('Booking', {
     allowNull: false,
     unique: false,
     defaultValue: Sequelize.UUIDV4
+  },
+  status: {
+  type: DataTypes.STRING,
+  defaultValue: "pending",
   }
 });
 

@@ -302,97 +302,95 @@
   // Submit Form Booking
   // ===========================
   $("#bookingForm").submit(async function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (!user) {
-    Swal.fire({
-      icon: "info",
-      title: "Login diperlukan",
-      text: "Silakan login terlebih dahulu untuk booking.",
-    });
-    return;
-  }
-
-  const serviceType = $(this).find('[name="serviceType"]').val();
-  const date = $(this).find('[name="date"]').val();
-  const time = $(this).find('[name="time"]').val();
-  const notes = $(this).find('[name="notes"]').val();
-  const vehicleType = $(this).find('[name="vehicleType"]').val();
-  const vehicleYear = $(this).find('[name="vehicleYear"]').val();
-  const licensePlate = $(this).find('[name="licensePlate"]').val();
-
-  console.log("DEBUG:", { vehicleType, vehicleYear, licensePlate });
-
-  const estimatedPrice = getEstimatedPrice(vehicleType, serviceType);
-  const workshopName = "Wijaya Motor";
-  const serviceNumber = `SRV-${Date.now()}`;
-
-  try {
-    const response = await fetch("/api/bookings/create", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: user.id,
-        name: user.name,
-        phone: user.phone,
-        email: user.email,
-        serviceType,
-        date,
-        time,
-        notes,
-        vehicleType,
-        vehicleYear,
-        licensePlate,
-        estimatedPrice,
-        workshopName,
-        serviceNumber
-      }),
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
       Swal.fire({
-        icon: "success",
-        title: "Booking berhasil!",
-        timer: 1500,
+        icon: "info",
+        title: "Login diperlukan",
+        text: "Silakan login terlebih dahulu untuk booking.",
       });
-      $("#bookingForm")[0].reset();
-    } else {
+      return;
+    }
+
+    const serviceType = $(this).find('[name="serviceType"]').val();
+    const date = $(this).find('[name="date"]').val();
+    const time = $(this).find('[name="time"]').val();
+    const notes = $(this).find('[name="notes"]').val();
+    const vehicleType = $(this).find('[name="vehicleType"]').val();
+    const vehicleYear = $(this).find('[name="vehicleYear"]').val();
+    const licensePlate = $(this).find('[name="licensePlate"]').val();
+
+    console.log("DEBUG:", { vehicleType, vehicleYear, licensePlate });
+
+    const estimatedPrice = getEstimatedPrice(vehicleType, serviceType);
+    const workshopName = "Wijaya Motor";
+    const serviceNumber = `SRV-${Date.now()}`;
+
+    try {
+      const response = await fetch("/api/bookings/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: user.id,
+          name: user.name,
+          phone: user.phone,
+          email: user.email,
+          serviceType,
+          date,
+          time,
+          notes,
+          vehicleType,
+          vehicleYear,
+          licensePlate,
+          estimatedPrice,
+          workshopName,
+          serviceNumber,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Booking berhasil!",
+          timer: 1500,
+        });
+        $("#bookingForm")[0].reset();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Booking gagal",
+          text: result.error || "Gagal melakukan booking.",
+        });
+      }
+    } catch (error) {
+      console.error(error);
       Swal.fire({
         icon: "error",
         title: "Booking gagal",
-        text: result.error || "Gagal melakukan booking.",
+        text: "Terjadi kesalahan saat proses booking.",
       });
     }
-  } catch (error) {
-    console.error(error);
-    Swal.fire({
-      icon: "error",
-      title: "Booking gagal",
-      text: "Terjadi kesalahan saat proses booking.",
-    });
-  }
-});
-
+  });
 
   function getEstimatedPrice(vehicle, service) {
-  const priceMap = {
-    "Toyota Avanza": {
-      "Ganti Oli": "Rp400.000 - Rp600.000",
-      "Service Ringan": "Rp500.000 - Rp1.200.000",
-      "Overhoul": "Rp5.000.000 - Rp8.000.000",
-      "Panggilan Darurat": "Rp200.000 - Rp500.000",
-      "Scanning": "Rp150.000 - Rp350.000",
-      "Kaki - Kaki": "Rp500.000 - Rp6.000.000"
-    },
-    // Tambahkan semua lainnya
-  };
+    const priceMap = {
+      "Toyota Avanza": {
+        "Ganti Oli": "Rp400.000 - Rp600.000",
+        "Service Ringan": "Rp500.000 - Rp1.200.000",
+        Overhoul: "Rp5.000.000 - Rp8.000.000",
+        "Panggilan Darurat": "Rp200.000 - Rp500.000",
+        Scanning: "Rp150.000 - Rp350.000",
+        "Kaki - Kaki": "Rp500.000 - Rp6.000.000",
+      },
+      // Tambahkan semua lainnya
+    };
 
-  return priceMap[vehicle]?.[service] || "Rp -";
-}
-
+    return priceMap[vehicle]?.[service] || "Rp -";
+  }
 
   // ===========================
   // Tampilkan Data Booking User (fix dengan token dan pengecekan DOM)
@@ -418,8 +416,8 @@
     try {
       const res = await fetch(`/api/bookings/user?email=${user.email}`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       const data = await res.json();
@@ -444,6 +442,11 @@
             <p><strong>Jam:</strong> ${b.time}</p>
             <p><strong>Catatan:</strong> ${b.notes}</p>
             <p><strong>Harga Estimasi:</strong> ${b.estimatedPrice}</p>
+            <p><strong>Status:</strong> 
+              <span class="${b.status === 'accepted' ? 'text-success' : b.status === 'rejected' ? 'text-danger' : 'text-warning'}">
+              ${b.status === 'accepted' ? 'Diterima' : b.status === 'rejected' ? 'Ditolak' : 'Menunggu Konfirmasi'}
+              </span>
+            </p>
           </div>
         </div>
       `
@@ -459,75 +462,21 @@
   // ===========================
   // Tampilkan Data Booking User Untuk admin dom
   // ===========================
-  document.addEventListener("DOMContentLoaded", async () => {
-  const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (!user || user.role !== "admin") return; // ⛔ skip kalau bukan admin
-
-  try {
-    const res = await fetch("http://localhost:8080/api/admin/bookings", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const bookings = await res.json();
-    const listContainer = document.getElementById("booking-list");
-
-    if (!Array.isArray(bookings)) {
-      listContainer.innerHTML = "<p>Data booking tidak tersedia.</p>";
-      return;
-    }
-
-    listContainer.innerHTML = bookings.map((b) => `
-      <div class="col-md-6 col-lg-4">
-        <div class="booking-card p-4 shadow rounded bg-white">
-          <h5 class="text-primary">${b.name}</h5>
-          <p><strong>No. HP:</strong> ${b.phone}</p>
-          <p><strong>Layanan:</strong> ${b.serviceType}</p>
-          <p><strong>Tanggal:</strong> ${b.date}</p>
-          <p><strong>Jam:</strong> ${b.time}</p>
-          <p><strong>Catatan:</strong> ${b.notes || "-"}</p>
-          <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-success btn-sm" onclick="updateStatus(${b.id}, 'accepted')">
-              <i class="fas fa-check"></i> Terima
-            </button>
-            <button class="btn btn-danger btn-sm" onclick="updateStatus(${b.id}, 'rejected')">
-              <i class="fas fa-times"></i> Tolak
-            </button>
-          </div>
-        </div>
-      </div>
-    `).join("");
-  } catch (error) {
-    console.error("Gagal memuat data booking:", error);
-  }
-});
-
   async function updateStatus(id, status) {
     const token = localStorage.getItem("token");
-
     try {
-      const res = await fetch(
-        `http://localhost:8080/api/admin/bookings/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ status }),
-        }
-      );
+      const res = await fetch(`/api/admin/bookings/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ status }),
+      });
 
       if (res.ok) {
-        Swal.fire(
-          "Berhasil!",
-          `Booking ${status === "accepted" ? "diterima" : "ditolak"}.`,
-          "success"
-        ).then(() => {
-          location.reload();
-        });
+        Swal.fire("Berhasil!", `Booking ${status === "accepted" ? "diterima" : "ditolak"}.`, "success")
+          .then(() => location.reload());
       } else {
         const data = await res.json();
         Swal.fire("Gagal", data.message || "Terjadi kesalahan.", "error");
@@ -537,6 +486,72 @@
       Swal.fire("Gagal", "Terjadi kesalahan saat menghubungi server.", "error");
     }
   }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (window.location.pathname.includes("admindashboard.html")) {
+        if (!token || !user || user.role !== "admin") {
+            Swal.fire({
+                icon: "warning",
+                title: "Akses ditolak!",
+                text: "Kamu tidak punya izin membuka halaman ini.",
+            }).then(() => {
+                if (!window.location.pathname.includes("index.html")) {
+                    window.location.href = "index.html";
+                }
+            });
+            return;
+        }
+
+        document.body.classList.remove("protected");
+
+        try {
+            const res = await fetch("/api/admin/bookings", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const bookings = await res.json();
+            const listContainer = document.getElementById("booking-list");
+
+            if (!Array.isArray(bookings) || bookings.length === 0) {
+                listContainer.innerHTML = "<p class='text-center'>Belum ada booking masuk.</p>";
+                return;
+            }
+
+      listContainer.innerHTML = bookings.map(b => `
+        <div class="col-md-6 col-lg-4">
+          <div class="booking-card p-4 shadow rounded bg-light">
+            <h5 class="text-primary">${b.workshopName} - ${b.serviceNumber}</h5>
+            <p><strong>Nama:</strong> ${b.name}</p>
+            <p><strong>No HP:</strong> ${b.phone}</p>
+            <p><strong>Mobil:</strong> ${b.vehicleType} (${b.vehicleYear})</p>
+            <p><strong>Plat Nomor:</strong> ${b.licensePlate}</p>
+            <p><strong>Layanan:</strong> ${b.serviceType}</p>
+            <p><strong>Tanggal:</strong> ${b.date}</p>
+            <p><strong>Jam:</strong> ${b.time}</p>
+            <p><strong>Catatan:</strong> ${b.notes || '-'}</p>
+            <p><strong>Harga Estimasi:</strong> ${b.estimatedPrice}</p>
+            <div class="d-flex gap-2 mt-3">
+              <button class="btn btn-success btn-sm" onclick="updateStatus(${b.id}, 'accepted')">
+                <i class="fas fa-check"></i> Terima
+              </button>
+              <button class="btn btn-danger btn-sm" onclick="updateStatus(${b.id}, 'rejected')">
+                <i class="fas fa-times"></i> Tolak
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    } catch (error) {
+            console.error("Gagal memuat data booking:", error);
+            document.getElementById("booking-list").innerHTML = "<p class='text-danger'>Terjadi kesalahan saat memuat data.</p>";
+        }
+    }
+});
 
   // ===========================
   // Setup navbar login/logout
@@ -584,4 +599,4 @@
       location.reload(); // refresh halaman
     });
   });
-})(jQuery);
+})(jQuery); 
