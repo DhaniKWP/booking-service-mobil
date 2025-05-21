@@ -347,6 +347,7 @@
           estimatedPrice,
           workshopName,
           serviceNumber,
+          status: "pending"
         }),
       });
 
@@ -462,7 +463,7 @@
   // ===========================
   // Tampilkan Data Booking User Untuk admin dom
   // ===========================
-  async function updateStatus(id, status) {
+    window.updateStatus = async function (id, status) {
     const token = localStorage.getItem("token");
     try {
       const res = await fetch(`/api/admin/bookings/${id}`, {
@@ -485,7 +486,8 @@
       console.error("Gagal update status:", error);
       Swal.fire("Gagal", "Terjadi kesalahan saat menghubungi server.", "error");
     }
-  }
+  };
+
 
   document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
