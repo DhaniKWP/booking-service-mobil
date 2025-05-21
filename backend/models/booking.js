@@ -67,16 +67,17 @@ const Booking = db.define("Booking", {
   status: {
     type: DataTypes.STRING,
     defaultValue: "pending",
-    completedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    invoiceNumber: {
-      type: DataTypes.STRING,
-      allowNull: true,
+  },
+  completedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  invoiceNumber: {
+    type: DataTypes.STRING,
+    allowNull: true,
     },
   },
-});
+);
 
 User.hasMany(Booking, { foreignKey: "userId" });
 Booking.belongsTo(User, { foreignKey: "userId" });
