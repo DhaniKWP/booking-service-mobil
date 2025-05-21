@@ -1,75 +1,84 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 const { DataTypes } = Sequelize;
-const db = require('../config/database.js');
-const User = require('./user.js');
+const db = require("../config/database.js");
+const User = require("./user.js");
 
-const Booking = db.define('Booking', {
+const Booking = db.define("Booking", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   userId: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   phone: {
     type: DataTypes.STRING,
-    allowNull: false
-  },  
+    allowNull: false,
+  },
   serviceType: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   date: {
     type: DataTypes.DATEONLY,
-    allowNull: false
+    allowNull: false,
   },
   time: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   notes: {
-    type: DataTypes.STRING
-  },vehicleType: {
     type: DataTypes.STRING,
-    allowNull: false
+  },
+  vehicleType: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   vehicleYear: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   licensePlate: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   estimatedPrice: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: 0
+    defaultValue: 0,
   },
   workshopName: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: "Wijaya Motor"
+    defaultValue: "Wijaya Motor",
   },
   serviceNumber: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: false,
-    defaultValue: Sequelize.UUIDV4
+    defaultValue: Sequelize.UUIDV4,
   },
   status: {
-  type: DataTypes.STRING,
-  defaultValue: "pending",
-  }
+    type: DataTypes.STRING,
+    defaultValue: "pending",
+    completedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    invoiceNumber: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  },
 });
 
-User.hasMany(Booking, { foreignKey: 'userId' });
-Booking.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(Booking, { foreignKey: "userId" });
+Booking.belongsTo(User, { foreignKey: "userId" });
 
 module.exports = Booking;
