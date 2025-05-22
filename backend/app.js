@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Perbaikan path bookingRoutes (ini penting!)
-app.use('/api', bookingRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 // Serve static files dari frontend
 app.use(express.static(path.join(__dirname, '../frontend')));

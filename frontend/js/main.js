@@ -415,7 +415,7 @@
     }
 
     try {
-      const res = await fetch(`/api/user?email=${user.email}`, {
+      const res = await fetch(`/api/bookings/user?email=${user.email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
