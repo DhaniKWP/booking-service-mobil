@@ -181,7 +181,7 @@
         Swal.fire({
           icon: "error",
           title: "Gagal Register",
-          text: result.error || "Register gagal.",
+          text: "Register gagal.",
         });
       }
     } catch (error) {
@@ -189,7 +189,7 @@
       Swal.fire({
         icon: "error",
         title: "Gagal Register",
-        text: result.error || "Terjadi kesalahan saat register.",
+        text: "Terjadi kesalahan saat register.",
       });
     }
   });
@@ -224,7 +224,7 @@
         Swal.fire({
           icon: "error",
           title: "Verifikasi Gagal",
-          text: result.error || "OTP salah atau tidak valid.",
+          text: "OTP salah atau tidak valid.",
         });
       }
     } catch (error) {
@@ -232,7 +232,7 @@
       Swal.fire({
         icon: "error",
         title: "Verifikasi Gagal",
-        text: result.error || "Terjadi kesalahan saat verifikasi OTP.",
+        text: "Terjadi kesalahan saat verifikasi OTP.",
       });
     }
   });
@@ -284,7 +284,7 @@
           Swal.fire({
             icon: "error",
             title: "Login gagal",
-            text: result.error || "Email atau password salah.",
+            text: "Email atau password salah.",
           });
         }
       }
@@ -293,7 +293,7 @@
       Swal.fire({
         icon: "error",
         title: "Login gagal",
-        text: result.error || "Terjadi kesalahan saat login.",
+        text: "Terjadi kesalahan saat login.",
       });
     }
   });
