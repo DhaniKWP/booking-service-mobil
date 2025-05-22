@@ -13,22 +13,19 @@ const invoiceController = require('./controllers/invoiceController');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Perbaikan path bookingRoutes (ini penting!)
-app.use('/api/bookings', bookingRoutes);
-
-// Serve static files dari frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
-
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/bookings', bookingRoutes);
 app.use('/api', invoiceController);
+
+// Serve static files dari frontend
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 
 // Fallback route: selain API dan file yang ada, balikin index.html
 app.use((req, res, next) => {
   const accept = req.headers.accept || '';
-  
   if (accept.includes('html')) {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
   } else {
