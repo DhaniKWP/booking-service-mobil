@@ -789,3 +789,21 @@ body.protected {
   border-radius: 5px;
 }
 
+.booking-inline-form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+.booking-inline-form label {
+  font-weight: 500;
+}
+.booking-inline-form .btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+.booking-inline-form .btn-primary:hover {
+  background-color: #c00000;
+}
+

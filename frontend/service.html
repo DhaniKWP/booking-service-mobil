@@ -86,8 +86,7 @@
     </div>
     <!-- Page Header End -->
 
-    <!-- Quote Start -->
-    </h3><br></h3><br>
+    <!-- bagian booking section -->
     <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
         <div class="container quote px-lg-0">
             <div class="row g-0 mx-lg-0">
@@ -100,20 +99,77 @@
                     <div class="p-lg-5 pe-lg-0">
                         <h6 class="text-primary">Booking</h6>
                         <h1 class="mb-4">Booking Sekarang</h1>
-                        <p class="mb-4 pb-2">Silahkan isi data diri anda sesuai dengan kolom yang tertera sekarang juga dan dapatkan promo menarik! </h3><br>
-                            Note : </h3><br>
-                            - Klik ikon kalender untuk mengisi tanggal booking </h3><br>
-                            - Klik ikon jam untuk mengisi waktu booking</p>
-                            <div class="text-center my-4">
-                                <button id="openBookingModal" class="btn btn-primary rounded-pill py-3 px-5" type="submit">Booking Sekarang</button>
+                        <p class="mb-4 pb-2">Silahkan isi data diri anda sesuai dengan kolom yang tertera sekarang juga dan dapatkan promo menarik!</p>
+                        <form id="bookingForm" class="booking-inline-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Pilih Layanan</label>
+                                    <select name="serviceType" class="form-select" required>
+                                        <option value="">-- Pilih Layanan --</option>
+                                        <option value="Ganti Oli">Ganti Oli</option>
+                                        <option value="Service Ringan">Service Ringan</option>
+                                        <option value="Overhoul">Overhoul</option>
+                                        <option value="Panggilan Darurat">Panggilan Darurat</option>
+                                        <option value="Scanning">Scanning</option>
+                                        <option value="Kaki - Kaki">Kaki - Kaki</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Jenis Mobil</label>
+                                    <select name="vehicleType" class="form-select" required>
+                                        <option value="">-- Pilih Jenis Mobil --</option>
+                                        <option value="Daihatsu Ayla">Daihatsu Ayla</option>
+                                        <option value="Daihatsu Terios">Daihatsu Terios</option>
+                                        <option value="Daihatsu Xenia">Daihatsu Xenia</option>
+                                        <option value="Datsun Go/Go+">Datsun Go/Go+</option>
+                                        <option value="Honda Brio Satya">Honda Brio Satya</option>
+                                        <option value="Honda Civic">Honda Civic</option>
+                                        <option value="Honda CR-V">Honda CR-V</option>
+                                        <option value="Honda Jazz">Honda Jazz</option>
+                                        <option value="Mitsubishi Xpander">Mitsubishi Xpander</option>
+                                        <option value="Suzuki Ertiga">Suzuki Ertiga</option>
+                                        <option value="Suzuki Swift">Suzuki Swift</option>
+                                        <option value="Toyota Agya">Toyota Agya</option>
+                                        <option value="Toyota Avanza">Toyota Avanza</option>
+                                        <option value="Toyota Corolla Altis">Toyota Corolla Altis</option>
+                                        <option value="Toyota Fortuner">Toyota Fortuner</option>
+                                        <option value="Toyota Kijang Innova">Toyota Kijang Innova</option>
+                                        <option value="Toyota Rush">Toyota Rush</option>
+                                        <option value="Toyota Vios">Toyota Vios</option>
+                                        <option value="Toyota Yaris">Toyota Yaris</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Tanggal</label>
+                                    <input type="date" name="date" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Waktu</label>
+                                    <input type="time" name="time" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Tahun Kendaraan</label>
+                                    <input type="number" name="vehicleYear" class="form-control" placeholder="Contoh: 2023" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Plat Nomor</label>
+                                    <input type="text" name="licensePlate" class="form-control" placeholder="Contoh: B 1234 CD" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Catatan</label>
+                                    <textarea name="notes" class="form-control" rows="2" placeholder="Catatan tambahan"></textarea>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary rounded-pill px-5 py-2">Kirim Booking</button>
+                                </div>
                             </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Quote End -->
-    
 
     <!-- Service Start -->
     <div class="container-xxl py-5">
@@ -415,85 +471,6 @@
           </form>
         </div>
       </div>
-
-      <!-- Modal Booking -->
-        <div id="bookingModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">Form Booking</h5>
-            <button type="button" class="btn-close" id="closeBookingModal"></button>
-            </div>
-            <div class="modal-body">
-            <form id="bookingForm">
-                <div class="mb-3">
-                <label for="serviceType" class="form-label">Pilih Layanan</label>
-                <select name="serviceType" class="form-select" required>
-                    <option value="">-- Pilih Layanan --</option>
-                    <option value="Ganti Oli">Ganti Oli</option>
-                    <option value="Service Ringan">Service Ringan</option>
-                    <option value="Overhoul">Overhoul</option>
-                    <option value="Panggilan Darurat">Panggilan Darurat</option>
-                    <option value="Scanning">Scanning</option>
-                    <option value="Kaki - Kaki">Kaki - Kaki</option>
-                    <option value="Lainnya">Lainnya</option>
-                </select>
-                </div>
-
-                <div class="mb-3">
-                <label for="date" class="form-label">Tanggal</label>
-                <input type="date" name="date" class="form-control" required>
-                </div>
-
-                <div class="mb-3">
-                <label for="time" class="form-label">Waktu/Jam</label>
-                <input type="time" name="time" class="form-control" required>
-                </div>
-
-                <div class="mb-3">
-                <label for="notes" class="form-label">Catatan</label>
-                <textarea name="notes" class="form-control" rows="3" placeholder="Catatan: (Sertakan merk, jenis, tahun kendaraan anda | Contoh : Toyota Avanza Veloz 2023 )"></textarea>
-                </div>
-
-                <div class="mb-3">
-                <label class="form-label">Jenis Mobil</label>
-                <select name="vehicleType" class="form-select" required>
-                    <option value="Daihatsu Ayla">Daihatsu Ayla</option>
-                    <option value="Daihatsu Terios">Daihatsu Terios</option>
-                    <option value="Daihatsu Xenia">Daihatsu Xenia</option>
-                    <option value="Datsun Go/Go+">Datsun Go/Go+</option>
-                    <option value="Honda Brio Satya">Honda Brio Satya</option>
-                    <option value="Honda Civic">Honda Civic</option>
-                    <option value="Honda CR-V">Honda CR-V</option>
-                    <option value="Honda Jazz">Honda Jazz</option>
-                    <option value="Mitsubishi Xpander">Mitsubishi Xpander</option>
-                    <option value="Suzuki Ertiga">Suzuki Ertiga</option>
-                    <option value="Suzuki Swift">Suzuki Swift</option>
-                    <option value="Toyota Agya">Toyota Agya</option>
-                    <option value="Toyota Avanza">Toyota Avanza</option>
-                    <option value="Toyota Corolla Altis">Toyota Corolla Altis</option>
-                    <option value="Toyota Fortuner">Toyota Fortuner</option>
-                    <option value="Toyota Kijang Innova">Toyota Kijang Innova</option>
-                    <option value="Toyota Rush">Toyota Rush</option>
-                    <option value="Toyota Vios">Toyota Vios</option>
-                    <option value="Toyota Yaris">Toyota Yaris</option>
-                </select>
-                </div>
-
-                <div class="mb-3">
-                <label class="form-label">Tahun Mobil</label>
-                <input type="text" name="vehicleYear" class="form-control" placeholder="Contoh: 2020" required>
-                </div>
-
-                <div class="mb-3">
-                <label class="form-label">Nomor Kendaraan</label>
-                <input type="text" name="licensePlate" class="form-control" placeholder="Contoh: B 1234 CD" required>
-                </div>
-
-                <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Kirim Booking</button>
-            </form>
-            </div>
-        </div>
-        </div>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>

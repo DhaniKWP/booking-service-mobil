@@ -124,20 +124,6 @@
       }
     });
 
-    // Modal Booking
-    $("#bookingModal").addClass("hidden");
-    $("#openBookingModal").on("click", function () {
-      $("#bookingModal").removeClass("hidden").show();
-    });
-    $("#closeBookingModal").on("click", function () {
-      $("#bookingModal").addClass("hidden").hide();
-    });
-    $(window).on("click", function (e) {
-      if (e.target.id === "bookingModal") {
-        $("#bookingModal").addClass("hidden").hide();
-      }
-    });
-
     // Klik luar modal untuk close
     $(window).on("click", function (e) {
       if (e.target.id === "loginModal") {
