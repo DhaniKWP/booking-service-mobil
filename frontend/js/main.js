@@ -333,7 +333,7 @@
           estimatedPrice,
           workshopName,
           serviceNumber,
-          status: "pending"
+          status: "pending",
         }),
       });
 
@@ -368,155 +368,155 @@
       "Toyota Avanza": {
         "Ganti Oli": "Rp400.000 - Rp600.000",
         "Service Ringan": "Rp500.000 - Rp1.200.000",
-        "Overhoul": "Rp5.000.000 - Rp8.000.000",
+        Overhoul: "Rp5.000.000 - Rp8.000.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp350.000",
+        Scanning: "Rp150.000 - Rp350.000",
         "Kaki - Kaki": "Rp500.000 - Rp6.000.000",
       },
       "Daihatsu Xenia": {
         "Ganti Oli": "Rp400.000 - Rp600.000",
         "Service Ringan": "Rp500.000 - Rp1.200.000",
-        "Overhoul": "Rp5.000.000 - Rp8.000.000",
+        Overhoul: "Rp5.000.000 - Rp8.000.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp350.000",
-        "Kaki - Kaki": "Rp500.000 - Rp6.000.000"
-       },
+        Scanning: "Rp150.000 - Rp350.000",
+        "Kaki - Kaki": "Rp500.000 - Rp6.000.000",
+      },
       "Toyota Kijang Innova": {
         "Ganti Oli": "Rp600.000 - Rp1.000.000",
         "Service Ringan": "Rp800.000 - Rp1.500.000",
-        "Overhoul": "Rp6.000.000 - Rp10.000.000",
+        Overhoul: "Rp6.000.000 - Rp10.000.000",
         "Panggilan Darurat": "Rp250.000 - Rp600.000",
-        "Scanning": "Rp200.000 - Rp500.000",
-        "Kaki - Kaki": "Rp1.000.000 - Rp7.000.000"
-       },
+        Scanning: "Rp200.000 - Rp500.000",
+        "Kaki - Kaki": "Rp1.000.000 - Rp7.000.000",
+      },
       "Mitsubishi Xpander": {
         "Ganti Oli": "Rp450.000 - Rp650.000",
         "Service Ringan": "Rp600.000 - Rp1.300.000",
-        "Overhoul": "Rp5.500.000 - Rp8.500.000",
+        Overhoul: "Rp5.500.000 - Rp8.500.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp400.000",
-        "Kaki - Kaki": "Rp600.000 - Rp6.500.000"
+        Scanning: "Rp150.000 - Rp400.000",
+        "Kaki - Kaki": "Rp600.000 - Rp6.500.000",
       },
       "Suzuki Ertiga": {
         "Ganti Oli": "Rp450.000 - Rp650.000",
         "Service Ringan": "Rp600.000 - Rp1.300.000",
-        "Overhoul": "Rp5.500.000 - Rp8.500.000",
+        Overhoul: "Rp5.500.000 - Rp8.500.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp400.000",
-        "Kaki - Kaki": "Rp600.000 - Rp6.500.000"
+        Scanning: "Rp150.000 - Rp400.000",
+        "Kaki - Kaki": "Rp600.000 - Rp6.500.000",
       },
       "Toyota Agya": {
         "Ganti Oli": "Rp350.000 - Rp550.000",
         "Service Ringan": "Rp400.000 - Rp1.000.000",
-        "Overhoul": "Rp4.500.000 - Rp7.000.000",
+        Overhoul: "Rp4.500.000 - Rp7.000.000",
         "Panggilan Darurat": "Rp200.000 - Rp450.000",
-        "Scanning": "Rp150.000 - Rp300.000",
-        "Kaki - Kaki": "Rp500.000 - Rp5.000.000"
+        Scanning: "Rp150.000 - Rp300.000",
+        "Kaki - Kaki": "Rp500.000 - Rp5.000.000",
       },
       "Daihatsu Ayla": {
         "Ganti Oli": "Rp350.000 - Rp550.000",
         "Service Ringan": "Rp400.000 - Rp1.000.000",
-        "Overhoul": "Rp4.500.000 - Rp7.000.000",
+        Overhoul: "Rp4.500.000 - Rp7.000.000",
         "Panggilan Darurat": "Rp200.000 - Rp450.000",
-        "Scanning": "Rp150.000 - Rp300.000",
-        "Kaki - Kaki": "Rp500.000 - Rp5.000.000"
+        Scanning: "Rp150.000 - Rp300.000",
+        "Kaki - Kaki": "Rp500.000 - Rp5.000.000",
       },
       "Honda Brio Satya": {
         "Ganti Oli": "Rp400.000 - Rp600.000",
         "Service Ringan": "Rp500.000 - Rp1.200.000",
-        "Overhoul": "Rp5.000.000 - Rp7.500.000",
+        Overhoul: "Rp5.000.000 - Rp7.500.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp350.000",
-        "Kaki - Kaki": "Rp600.000 - Rp5.500.000"
+        Scanning: "Rp150.000 - Rp350.000",
+        "Kaki - Kaki": "Rp600.000 - Rp5.500.000",
       },
       "Datsun Go/Go+": {
         "Ganti Oli": "Rp350.000 - Rp550.000",
         "Service Ringan": "Rp400.000 - Rp1.000.000",
-        "Overhoul": "Rp4.500.000 - Rp7.000.000",
+        Overhoul: "Rp4.500.000 - Rp7.000.000",
         "Panggilan Darurat": "Rp200.000 - Rp450.000",
-        "Scanning": "Rp150.000 - Rp300.000",
-        "Kaki - Kaki": "Rp500.000 - Rp5.000.000"
+        Scanning: "Rp150.000 - Rp300.000",
+        "Kaki - Kaki": "Rp500.000 - Rp5.000.000",
       },
       "Toyota Rush": {
         "Ganti Oli": "Rp450.000 - Rp650.000",
         "Service Ringan": "Rp600.000 - Rp1.300.000",
-        "Overhoul": "Rp5.500.000 - Rp8.500.000",
+        Overhoul: "Rp5.500.000 - Rp8.500.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp400.000",
-        "Kaki - Kaki": "Rp600.000 - Rp6.500.000"
+        Scanning: "Rp150.000 - Rp400.000",
+        "Kaki - Kaki": "Rp600.000 - Rp6.500.000",
       },
       "Daihatsu Terios": {
         "Ganti Oli": "Rp450.000 - Rp650.000",
         "Service Ringan": "Rp600.000 - Rp1.300.000",
-        "Overhoul": "Rp5.500.000 - Rp8.500.000",
+        Overhoul: "Rp5.500.000 - Rp8.500.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp400.000",
-        "Kaki - Kaki": "Rp600.000 - Rp6.500.000"
+        Scanning: "Rp150.000 - Rp400.000",
+        "Kaki - Kaki": "Rp600.000 - Rp6.500.000",
       },
       "Honda CR-V": {
         "Ganti Oli": "Rp600.000 - Rp1.000.000",
         "Service Ringan": "Rp800.000 - Rp1.800.000",
-        "Overhoul": "Rp6.500.000 - Rp10.000.000",
+        Overhoul: "Rp6.500.000 - Rp10.000.000",
         "Panggilan Darurat": "Rp250.000 - Rp600.000",
-        "Scanning": "Rp200.000 - Rp500.000",
-        "Kaki - Kaki": "Rp1.000.000 - Rp8.000.000"
+        Scanning: "Rp200.000 - Rp500.000",
+        "Kaki - Kaki": "Rp1.000.000 - Rp8.000.000",
       },
       "Toyota Fortuner": {
         "Ganti Oli": "Rp700.000 - Rp1.200.000",
         "Service Ringan": "Rp1.000.000 - Rp2.000.000",
-        "Overhoul": "Rp7.000.000 - Rp12.000.000",
+        Overhoul: "Rp7.000.000 - Rp12.000.000",
         "Panggilan Darurat": "Rp300.000 - Rp700.000",
-        "Scanning": "Rp250.000 - Rp600.000",
-        "Kaki - Kaki": "Rp1.500.000 - Rp9.000.000"
+        Scanning: "Rp250.000 - Rp600.000",
+        "Kaki - Kaki": "Rp1.500.000 - Rp9.000.000",
       },
       "Honda Jazz": {
         "Ganti Oli": "Rp450.000 - Rp650.000",
         "Service Ringan": "Rp600.000 - Rp1.300.000",
-        "Overhoul": "Rp5.500.000 - Rp8.500.000",
+        Overhoul: "Rp5.500.000 - Rp8.500.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp400.000",
-        "Kaki - Kaki": "Rp600.000 - Rp6.500.000"
+        Scanning: "Rp150.000 - Rp400.000",
+        "Kaki - Kaki": "Rp600.000 - Rp6.500.000",
       },
       "Toyota Yaris": {
         "Ganti Oli": "Rp450.000 - Rp650.000",
         "Service Ringan": "Rp600.000 - Rp1.300.000",
-        "Overhoul": "Rp5.500.000 - Rp8.500.000",
+        Overhoul: "Rp5.500.000 - Rp8.500.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp400.000",
-        "Kaki - Kaki": "Rp600.000 - Rp6.500.000"
+        Scanning: "Rp150.000 - Rp400.000",
+        "Kaki - Kaki": "Rp600.000 - Rp6.500.000",
       },
       "Suzuki Swift": {
         "Ganti Oli": "Rp450.000 - Rp650.000",
         "Service Ringan": "Rp600.000 - Rp1.300.000",
-        "Overhoul": "Rp5.500.000 - Rp8.500.000",
+        Overhoul: "Rp5.500.000 - Rp8.500.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp400.000",
-        "Kaki - Kaki": "Rp600.000 - Rp6.500.000"
+        Scanning: "Rp150.000 - Rp400.000",
+        "Kaki - Kaki": "Rp600.000 - Rp6.500.000",
       },
       "Toyota Vios": {
         "Ganti Oli": "Rp400.000 - Rp600.000",
         "Service Ringan": "Rp500.000 - Rp1.200.000",
-        "Overhoul": "Rp5.000.000 - Rp8.000.000",
+        Overhoul: "Rp5.000.000 - Rp8.000.000",
         "Panggilan Darurat": "Rp200.000 - Rp500.000",
-        "Scanning": "Rp150.000 - Rp350.000",
-        "Kaki - Kaki": "Rp600.000 - Rp6.500.000"
+        Scanning: "Rp150.000 - Rp350.000",
+        "Kaki - Kaki": "Rp600.000 - Rp6.500.000",
       },
       "Honda Civic": {
         "Ganti Oli": "Rp500.000 - Rp800.000",
         "Service Ringan": "Rp700.000 - Rp1.500.000",
-        "Overhoul": "Rp6.000.000 - Rp9.000.000",
+        Overhoul: "Rp6.000.000 - Rp9.000.000",
         "Panggilan Darurat": "Rp250.000 - Rp600.000",
-        "Scanning": "Rp200.000 - Rp500.000",
-        "Kaki - Kaki": "Rp800.000 - Rp7.500.000"
+        Scanning: "Rp200.000 - Rp500.000",
+        "Kaki - Kaki": "Rp800.000 - Rp7.500.000",
       },
       "Toyota Corolla Altis": {
         "Ganti Oli": "Rp500.000 - Rp800.000",
         "Service Ringan": "Rp700.000 - Rp1.500.000",
-        "Overhoul": "Rp6.000.000 - Rp9.000.000",
+        Overhoul: "Rp6.000.000 - Rp9.000.000",
         "Panggilan Darurat": "Rp250.000 - Rp600.000",
-        "Scanning": "Rp200.000 - Rp500.000",
-        "Kaki - Kaki": "Rp800.000 - Rp7.500.000"
-      }
+        Scanning: "Rp200.000 - Rp500.000",
+        "Kaki - Kaki": "Rp800.000 - Rp7.500.000",
+      },
     };
 
     return priceMap[vehicle]?.[service] || "Rp -";
@@ -573,21 +573,33 @@
             <p><strong>Catatan:</strong> ${b.notes}</p>
             <p><strong>Harga Estimasi:</strong> ${b.estimatedPrice}</p>
             <p><strong>Status:</strong> 
-              <span class="${b.status === 'accepted' ? 'text-success' : b.status === 'rejected' ? 'text-danger' : 'text-warning'}">
-              ${b.status === 'accepted'
-              ? 'Diterima'
-              : b.status === 'rejected'
-              ? 'Ditolak'
-              : b.status === 'completed'
-              ? 'Selesai'
-              : 'Menunggu Konfirmasi'}
+              <span class="${
+                b.status === "accepted"
+                  ? "text-success"
+                  : b.status === "rejected"
+                  ? "text-danger"
+                  : "text-warning"
+              }">
+              ${
+                b.status === "accepted"
+                  ? "Diterima"
+                  : b.status === "rejected"
+                  ? "Ditolak"
+                  : b.status === "completed"
+                  ? "Selesai"
+                  : "Menunggu Konfirmasi"
+              }
               </span>
             </p>
-            ${b.status === 'completed' ? `
+            ${
+              b.status === "completed"
+                ? `
             <a href="/api/bookings/${b.id}/invoice" class="btn btn-outline-primary btn-sm mt-2" target="_blank">
               <i class="fas fa-file-pdf"></i> Download Invoice
             </a>
-          ` : ''}
+          `
+                : ""
+            }
           </div>
         </div>
       `
@@ -603,7 +615,7 @@
   // ===========================
   // Tampilkan Data Booking User Untuk admin dom
   // ===========================
-    window.updateStatus = async function (id, status) {
+  window.updateStatus = async function (id, status) {
     const token = localStorage.getItem("token");
     try {
       const res = await fetch(`/api/admin/bookings/${id}`, {
@@ -616,8 +628,11 @@
       });
 
       if (res.ok) {
-        Swal.fire("Berhasil!", `Booking ${status === "accepted" ? "diterima" : "ditolak"}.`, "success")
-          .then(() => location.reload());
+        Swal.fire(
+          "Berhasil!",
+          `Booking ${status === "accepted" ? "diterima" : "ditolak"}.`,
+          "success"
+        ).then(() => location.reload());
       } else {
         const data = await res.json();
         Swal.fire("Gagal", data.message || "Terjadi kesalahan.", "error");
@@ -628,7 +643,7 @@
     }
   };
 
-    window.markAsCompleted = async function (id) {
+  window.markAsCompleted = async function (id) {
     const token = localStorage.getItem("token");
     try {
       const res = await fetch(`/api/admin/bookings/${id}/complete`, {
@@ -641,8 +656,9 @@
 
       const result = await res.json();
       if (res.ok) {
-        Swal.fire("Berhasil!", "Booking ditandai selesai.", "success")
-          .then(() => location.reload());
+        Swal.fire("Berhasil!", "Booking ditandai selesai.", "success").then(
+          () => location.reload()
+        );
       } else {
         Swal.fire("Gagal", result.message || "Gagal tandai selesai", "error");
       }
@@ -652,44 +668,37 @@
     }
   };
 
-
-
   document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (window.location.pathname.includes("admindashboard.html")) {
-        if (!token || !user || user.role !== "admin") {
-            Swal.fire({
-                icon: "warning",
-                title: "Akses ditolak!",
-                text: "Kamu tidak punya izin membuka halaman ini.",
-            }).then(() => {
-                if (!window.location.pathname.includes("index.html")) {
-                    window.location.href = "index.html";
-                }
-            });
-            return;
+      if (!token || !user || user.role !== "admin") {
+        window.location.replace("index.html");
+        return;
+      }
+
+      document.body.classList.remove("protected");
+
+      try {
+        const res = await fetch("/api/admin/bookings", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const bookings = await res.json();
+        const listContainer = document.getElementById("booking-list");
+
+        if (!Array.isArray(bookings) || bookings.length === 0) {
+          listContainer.innerHTML =
+            "<p class='text-center'>Belum ada booking masuk.</p>";
+          return;
         }
 
-        document.body.classList.remove("protected");
-
-        try {
-            const res = await fetch("/api/admin/bookings", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            const bookings = await res.json();
-            const listContainer = document.getElementById("booking-list");
-
-            if (!Array.isArray(bookings) || bookings.length === 0) {
-                listContainer.innerHTML = "<p class='text-center'>Belum ada booking masuk.</p>";
-                return;
-            }
-
-      listContainer.innerHTML = bookings.map(b => `
+        listContainer.innerHTML = bookings
+          .map(
+            (b) => `
         <div class="col-md-6 col-lg-4">
           <div class="booking-card p-4 shadow rounded bg-light">
             <h5 class="text-primary">${b.workshopName} - ${b.serviceNumber}</h5>
@@ -700,29 +709,38 @@
             <p><strong>Layanan:</strong> ${b.serviceType}</p>
             <p><strong>Tanggal:</strong> ${b.date}</p>
             <p><strong>Jam:</strong> ${b.time}</p>
-            <p><strong>Catatan:</strong> ${b.notes || '-'}</p>
+            <p><strong>Catatan:</strong> ${b.notes || "-"}</p>
             <p><strong>Harga Estimasi:</strong> ${b.estimatedPrice}</p>
             <div class="d-flex gap-2 mt-3">
-              <button class="btn btn-success btn-sm" onclick="updateStatus(${b.id}, 'accepted')">
+              <button class="btn btn-success btn-sm" onclick="updateStatus(${
+                b.id
+              }, 'accepted')">
                 <i class="fas fa-check"></i> Terima
               </button>
-              <button class="btn btn-danger btn-sm" onclick="updateStatus(${b.id}, 'rejected')">
+              <button class="btn btn-danger btn-sm" onclick="updateStatus(${
+                b.id
+              }, 'rejected')">
                 <i class="fas fa-times"></i> Tolak
               </button>
-              <button class="btn btn-primary btn-sm" onclick="markAsCompleted(${b.id})">
+              <button class="btn btn-primary btn-sm" onclick="markAsCompleted(${
+                b.id
+              })">
                 <i class="fas fa-flag-checkered"></i> Selesai
               </button>
 
             </div>
           </div>
         </div>
-      `).join("");
-    } catch (error) {
-            console.error("Gagal memuat data booking:", error);
-            document.getElementById("booking-list").innerHTML = "<p class='text-danger'>Terjadi kesalahan saat memuat data.</p>";
-        }
+      `
+          )
+          .join("");
+      } catch (error) {
+        console.error("Gagal memuat data booking:", error);
+        document.getElementById("booking-list").innerHTML =
+          "<p class='text-danger'>Terjadi kesalahan saat memuat data.</p>";
+      }
     }
-});
+  });
 
   // ===========================
   // Setup navbar login/logout
@@ -765,9 +783,11 @@
     updateNavbar();
 
     // Event logout
-    $(document).on("click", "#logoutBtn", function () {
+    $(document).on("click", "#logoutBtn", function (e) {
+      e.preventDefault();
+      localStorage.removeItem("token");
       localStorage.removeItem("user");
-      location.reload(); // refresh halaman
+      window.location.href = "index.html";
     });
   });
-})(jQuery); 
+})(jQuery);

@@ -35,7 +35,7 @@
         <div class="list-group list-group-flush">
           <a
             href="admindashboard.html"
-            class="list-group-item list-group-item-action list-group-item-light p-3"
+            class="list-group-item list-group-item-action list-group-item-light p-3 bg-secondary text-white"
           >
             <i class="fas fa-list-alt me-2"></i> Booking Masuk
           </a>
@@ -94,24 +94,5 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const token = localStorage.getItem("token");
-        const user = JSON.parse(localStorage.getItem("user"));
-
-        if (!token || !user || user.role !== "admin") {
-          Swal.fire({
-            icon: "warning",
-            title: "Akses ditolak!",
-            text: "Kamu tidak punya izin membuka halaman ini.",
-          }).then(() => {
-            window.location.href = "index.html";
-          });
-        } else {
-          // Jika admin, tampilkan isi body
-          document.body.classList.remove("protected");
-        }
-      });
-    </script>
   </body>
 </html>
