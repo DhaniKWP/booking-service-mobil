@@ -87,6 +87,67 @@
     portfolioIsotope.isotope({ filter: $(this).data("filter") });
   });
 
+// Fungsi decode JWT dan cek expired
+function parseJwt(token) {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch {
+    return null;
+  }
+}
+
+function isTokenExpired(token) {
+  const decoded = parseJwt(token);
+  if (!decoded || !decoded.exp) return true;
+  const now = Date.now() / 1000;
+  return decoded.exp < now;
+}
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  window.location.href = 'login.html';  // Ganti dengan path halaman login kamu
+}
+
+// Fungsi cek token saat halaman dimuat
+function checkAuth() {
+  const token = localStorage.getItem('token');
+  if (!token) return; // belum login, biarkan
+
+  if (isTokenExpired(token)) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Sesi Habis',
+      text: 'Sesi Anda sudah habis, silakan login ulang.',
+      confirmButtonText: 'OK'
+    }).then(() => {
+      logout();
+    });
+  }
+}
+
+// Panggil cek token saat halaman siap
+$(document).ready(function () {
+  const token = localStorage.getItem('token');
+  const decoded = parseJwt(token);
+  if (decoded) {
+    const expiredDate = new Date(decoded.exp * 1000);
+    console.log("Token akan expired pada:", expiredDate.toLocaleString());
+  }
+  checkAuth();
+
+  // Bisa juga tambahkan interceptor fetch di sini,
+  // misal cek response 401/403 lalu logout otomatis.
+});
+
   // Modal handlers
   $(document).ready(function () {
     // Pastikan modal tersembunyi saat halaman dimuat
