@@ -76,6 +76,11 @@ const Booking = db.define("Booking", {
     type: DataTypes.STRING,
     allowNull: true,
     },
+  finalPrice: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+    },
   },
 );
 

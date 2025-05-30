@@ -8,6 +8,10 @@ const adminRoutes = require('./routes/adminRoutes');
 const { text } = require('body-parser');
 const invoiceController = require('./controllers/invoiceController');
 
+require('./models/user');
+require('./models/booking');
+require('./models/additionalService'); 
+
 
 // Middleware
 app.use(express.json());
@@ -34,6 +38,6 @@ app.use((req, res, next) => {
 });
 
 // Database & Server
-sequelize.sync().then(() => {
+sequelize.sync({alter : true}).then(() => {
   app.listen(8080, () => console.log('Server berjalan di Port [http://localhost:8080]'));
 });
