@@ -81,6 +81,36 @@
       </div>
     </div>
 
+    <!-- Modal Tambah Service Tambahan -->
+    <div class="modal fade" id="additionalServiceModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="additionalServiceForm">
+            <div class="modal-header">
+              <h5 class="modal-title">Tambah Layanan Tambahan</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <div id="serviceFieldsContainer">
+                <div class="service-row mb-3">
+                  <input type="text" class="form-control mb-2" name="serviceName[]" placeholder="Nama Layanan">
+                  <input type="number" class="form-control" name="price[]" placeholder="Harga">
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="addServiceRow">
+                + Tambah Layanan
+              </button>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" id="bookingIdForModal" />
+              <button type="submit" class="btn btn-primary">Simpan & Selesaikan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

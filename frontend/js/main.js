@@ -704,30 +704,45 @@ $(document).ready(function () {
     }
   };
 
-  window.markAsCompleted = async function (id) {
-    const token = localStorage.getItem("token");
-    try {
-      const res = await fetch(`/api/admin/bookings/${id}/complete`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  window.openAdditionalServiceModal = function (bookingId) {
+  $('#bookingIdForModal').val(bookingId);
+  const modalElement = document.getElementById('additionalServiceModal');
+  const modal = new bootstrap.Modal(modalElement);
+  modal.show();
+};
 
-      const result = await res.json();
-      if (res.ok) {
-        Swal.fire("Berhasil!", "Booking ditandai selesai.", "success").then(
-          () => location.reload()
-        );
-      } else {
-        Swal.fire("Gagal", result.message || "Gagal tandai selesai", "error");
-      }
-    } catch (err) {
-      console.error(err);
-      Swal.fire("Error", "Terjadi kesalahan.", "error");
+$('#additionalServiceForm').on('submit', async function (e) {
+  e.preventDefault();
+
+  const bookingId = $('#bookingIdForModal').val();
+  const serviceNames = $('input[name="serviceName[]"]').map((_, el) => el.value).get();
+  const prices = $('input[name="price[]"]').map((_, el) => parseInt(el.value) || 0).get();
+
+  const items = serviceNames.map((name, i) => ({ serviceName: name, price: prices[i] }));
+
+  const token = localStorage.getItem('token');
+
+  try {
+    const res = await fetch(`/api/admin/bookings/${bookingId}/complete`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ additionalServices: items })
+    });
+
+    const result = await res.json();
+    if (res.ok) {
+      Swal.fire("Sukses", "Booking selesai & layanan tambahan disimpan.", "success").then(() => location.reload());
+    } else {
+      Swal.fire("Gagal", result.message || "Terjadi kesalahan", "error");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    Swal.fire("Error", "Terjadi kesalahan saat mengirim data.", "error");
+  }
+});
 
   document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
@@ -783,12 +798,9 @@ $(document).ready(function () {
               }, 'rejected')">
                 <i class="fas fa-times"></i> Tolak
               </button>
-              <button class="btn btn-primary btn-sm" onclick="markAsCompleted(${
-                b.id
-              })">
+              <button class="btn btn-primary btn-sm" onclick="openAdditionalServiceModal(${b.id})">
                 <i class="fas fa-flag-checkered"></i> Selesai
               </button>
-
             </div>
           </div>
         </div>
@@ -850,5 +862,102 @@ $(document).ready(function () {
       localStorage.removeItem("user");
       window.location.href = "index.html";
     });
+  });
+
+$('#addServiceRow').on('click', function () {
+  $('#serviceFieldsContainer').append(`
+    <div class="service-row mb-3">
+      <input type="text" class="form-control mb-2" name="serviceName[]" placeholder="Nama Layanan">
+      <input type="number" class="form-control mb-2" name="price[]" placeholder="Harga">
+      <button type="button" class="btn btn-danger btn-sm remove-service-row">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  `);
+});
+
+$('#serviceFieldsContainer').on('click', '.remove-service-row', function () {
+  $(this).closest('.service-row').remove();
+});
+
+
+  // Render Booking Card Admin dengan Status dan Tombol Dinamis
+  document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (window.location.pathname.includes("admindashboard.html")) {
+      if (!token || !user || user.role !== "admin") {
+        window.location.replace("index.html");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/admin/bookings", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const bookings = await res.json();
+        const listContainer = document.getElementById("booking-list");
+
+        if (!Array.isArray(bookings) || bookings.length === 0) {
+          listContainer.innerHTML = "<p class='text-center'>Belum ada booking masuk.</p>";
+          return;
+        }
+
+        listContainer.innerHTML = bookings
+          .filter((b) => b.status !== "rejected")
+          .map((b) => {
+            const statusLabel =
+              b.status === "accepted"
+                ? "<span class='badge bg-success'>Diterima</span>"
+                : b.status === "rejected"
+                ? "<span class='badge bg-danger'>Ditolak</span>"
+                : b.status === "completed"
+                ? "<span class='badge bg-primary'>Selesai</span>"
+                : "<span class='badge bg-warning text-dark'>Menunggu</span>";
+
+            let buttons = "";
+            if (b.status === "pending") {
+              buttons += `
+                <button class="btn btn-success btn-sm" onclick="updateStatus(${b.id}, 'accepted')">
+                  <i class="fas fa-check"></i> Terima
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="updateStatus(${b.id}, 'rejected')">
+                  <i class="fas fa-times"></i> Tolak
+                </button>
+              `;
+            } else if (b.status === "accepted") {
+              buttons += `
+                <button class="btn btn-primary btn-sm" onclick="openAdditionalServiceModal(${b.id})">
+                  <i class="fas fa-flag-checkered"></i> Selesai
+                </button>
+              `;
+            }
+
+            return `
+              <div class="col-md-6 col-lg-4">
+                <div class="booking-card p-4 shadow rounded bg-light">
+                  <h5 class="text-primary">${b.workshopName} - ${b.serviceNumber}</h5>
+                  <p><strong>Nama:</strong> ${b.name}</p>
+                  <p><strong>No HP:</strong> ${b.phone}</p>
+                  <p><strong>Mobil:</strong> ${b.vehicleType} (${b.vehicleYear})</p>
+                  <p><strong>Plat Nomor:</strong> ${b.licensePlate}</p>
+                  <p><strong>Layanan:</strong> ${b.serviceType}</p>
+                  <p><strong>Tanggal:</strong> ${b.date}</p>
+                  <p><strong>Jam:</strong> ${b.time}</p>
+                  <p><strong>Status:</strong> ${statusLabel}</p>
+                  <div class="d-flex gap-2 mt-3 flex-wrap">${buttons}</div>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+      } catch (error) {
+        console.error("Gagal memuat data booking:", error);
+        document.getElementById("booking-list").innerHTML =
+          "<p class='text-danger'>Terjadi kesalahan saat memuat data.</p>";
+      }
+    }
   });
 })(jQuery);

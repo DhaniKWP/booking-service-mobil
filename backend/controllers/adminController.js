@@ -1,4 +1,5 @@
 const Booking = require('../models/booking');
+const AdditionalService = require('../models/additionalService');
 
 const getAllBookings = async (req, res) => {
   try {
@@ -25,8 +26,9 @@ const updateBookingStatus = async (req, res) => {
   }
 };
 
-const markBookingAsCompleted = async (req, res) => {
+const completeBookingWithServices = async (req, res) => {
   const { id } = req.params;
+  const { additionalServices } = req.body;
 
   try {
     const booking = await Booking.findByPk(id);
@@ -34,16 +36,30 @@ const markBookingAsCompleted = async (req, res) => {
       return res.status(404).json({ message: 'Booking tidak ditemukan' });
     }
 
+    let totalAdditional = 0;
+    for (const svc of additionalServices) {
+      await AdditionalService.create({
+        bookingId: id,
+        serviceName: svc.serviceName,
+        price: svc.price
+      });
+      totalAdditional += svc.price;
+    }
+
+    const finalPrice = parseInt(booking.estimatedPrice) + totalAdditional;
+
     booking.status = 'completed';
+    booking.finalPrice = finalPrice;
     booking.completedAt = new Date();
     booking.invoiceNumber = `INV-${new Date().toISOString().slice(0,10).replace(/-/g, '')}-${booking.id}`;
+
     await booking.save();
 
-    res.json({ message: 'Booking ditandai selesai', booking });
+    res.json({ message: 'Booking selesai dan layanan tambahan disimpan.', booking });
   } catch (error) {
-    console.error('Gagal update ke selesai:', error);
-    res.status(500).json({ message: 'Gagal update ke selesai' });
+    console.error('Gagal menyelesaikan booking:', error);
+    res.status(500).json({ message: 'Terjadi kesalahan saat menyimpan data.' });
   }
 };
 
-module.exports = { getAllBookings, updateBookingStatus, markBookingAsCompleted };
+module.exports = { getAllBookings, updateBookingStatus, completeBookingWithServices };
