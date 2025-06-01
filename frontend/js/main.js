@@ -617,61 +617,135 @@ $(document).ready(function () {
         container.innerHTML = `<p class="text-center">Belum ada data booking.</p>`;
         return;
       }
+      
+
+      window._bookingData = {}; // global penyimpan data booking
+        data.forEach(b => {
+          window._bookingData[b.id] = b;
+        });
 
       container.innerHTML = data
-        .map(
-          (b) => `
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="booking-user-card p-4 shadow bg-light rounded">
-            <h5>${b.workshopName} - ${b.serviceNumber}</h5>
-            <p><strong>Nama:</strong> ${b.name}</p>
-            <p><strong>No HP:</strong> ${b.phone}</p>
-            <p><strong>Mobil:</strong> ${b.vehicleType} (${b.vehicleYear})</p>
-            <p><strong>Plat Nomor:</strong> ${b.licensePlate}</p>
-            <p><strong>Layanan:</strong> ${b.serviceType}</p>
-            <p><strong>Tanggal:</strong> ${b.date}</p>
-            <p><strong>Jam:</strong> ${b.time}</p>
-            <p><strong>Catatan:</strong> ${b.notes}</p>
-            <p><strong>Harga Estimasi:</strong> Rp${Number(b.estimatedPrice).toLocaleString('id-ID')}</p>
-            <p><strong>Status:</strong> 
-              <span class="${
-                b.status === "accepted"
-                  ? "text-success"
-                  : b.status === "rejected"
-                  ? "text-danger"
-                  : "text-warning"
-              }">
-              ${
-                b.status === "accepted"
-                  ? "Diterima"
-                  : b.status === "rejected"
-                  ? "Ditolak"
-                  : b.status === "completed"
-                  ? "Selesai"
-                  : "Menunggu Konfirmasi"
-              }
-              </span>
-            </p>
+  .map((b) => `
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="booking-user-card p-4 shadow bg-light rounded">
+        <h5>${b.workshopName} - ${b.serviceNumber}</h5>
+        <p><strong>Nama:</strong> ${b.name}</p>
+        <p><strong>No HP:</strong> ${b.phone}</p>
+        <p><strong>Mobil:</strong> ${b.vehicleType} (${b.vehicleYear})</p>
+        <p><strong>Plat Nomor:</strong> ${b.licensePlate}</p>
+        <p><strong>Layanan:</strong> ${b.serviceType}</p>
+        <p><strong>Tanggal:</strong> ${b.date}</p>
+        <p><strong>Jam:</strong> ${b.time}</p>
+        <p><strong>Catatan:</strong> ${b.notes || '-'}</p>
+        <p><strong>Harga Estimasi:</strong> ${isNaN(Number(b.estimatedPrice)) ? 'Rp -' : 'Rp' + Number(b.estimatedPrice).toLocaleString('id-ID')}</p>
+        <p><strong>Status:</strong> 
+          <span class="${
+            b.status === "accepted"
+              ? "text-success"
+              : b.status === "rejected"
+              ? "text-danger"
+              : b.status === "completed"
+              ? "text-primary"
+              : "text-warning"
+          }">
             ${
-              b.status === "completed"
-                ? `
-            <a href="/api/bookings/${b.id}/invoice" class="btn btn-outline-primary btn-sm mt-2" target="_blank">
-              <i class="fas fa-file-pdf"></i> Download Invoice
-            </a>
-          `
-                : ""
+              b.status === "accepted"
+                ? "Diterima"
+                : b.status === "rejected"
+                ? "Ditolak"
+                : b.status === "completed"
+                ? "Selesai"
+                : "Menunggu Konfirmasi"
             }
-          </div>
+          </span>
+        </p>
+
+        <div class="text-center mt-3">
+          ${
+            b.status === "pending"
+              ? `<button class="btn btn-warning btn-sm me-2" onclick="openEditBookingModal(${b.id})">
+                  <i class="fas fa-edit"></i> Edit Booking
+                </button>`
+              : ""
+          }
+          ${
+            b.status === "completed"
+              ? `<a href="/api/bookings/${b.id}/invoice" class="btn btn-outline-primary btn-sm" target="_blank">
+                  <i class="fas fa-file-pdf"></i> Download Invoice
+                </a>`
+              : ""
+          }
         </div>
-      `
-        )
-        .join("");
+      </div>
+    </div>
+  `)
+  .join("");
+
     } catch (err) {
       console.error("Gagal memuat data booking:", err);
       container.innerHTML =
         "<p class='text-center text-danger'>Gagal memuat data booking.</p>";
     }
   });
+
+  window.openEditBookingModal = function (id) {
+  const data = window._bookingData[id];
+  if (!data) return;
+
+  $('#editBookingId').val(id);
+  $('#editBookingForm [name="vehicleType"]').val(data.vehicleType);
+  $('#editBookingForm [name="vehicleYear"]').val(data.vehicleYear);
+  $('#editBookingForm [name="licensePlate"]').val(data.licensePlate);
+  $('#editBookingForm [name="serviceType"]').val(data.serviceType);
+  $('#editBookingForm [name="date"]').val(data.date);
+  $('#editBookingForm [name="time"]').val(data.time);
+  $('#editBookingForm [name="notes"]').val(data.notes);
+
+  $('#editBookingModal').removeClass('hidden');
+};
+
+
+$('#closeEditBookingModal').on('click', function () {
+  $('#editBookingModal').addClass('hidden');
+});
+
+$('#editBookingForm').on('submit', async function (e) {
+  e.preventDefault();
+
+  const id = $('#editBookingId').val();
+  const formData = {
+    vehicleType: $('#editBookingForm [name="vehicleType"]').val(),
+    vehicleYear: $('#editBookingForm [name="vehicleYear"]').val(),
+    licensePlate: $('#editBookingForm [name="licensePlate"]').val(),
+    serviceType: $('#editBookingForm [name="serviceType"]').val(),
+    date: $('#editBookingForm [name="date"]').val(),
+    time: $('#editBookingForm [name="time"]').val(),
+    notes: $('#editBookingForm [name="notes"]').val()
+  };
+
+  try {
+    const token = localStorage.getItem('token');
+    const res = await fetch(`/api/bookings/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const result = await res.json();
+    if (res.ok) {
+      Swal.fire("Sukses", "Booking berhasil diupdate.", "success").then(() => location.reload());
+    } else {
+      Swal.fire("Gagal", result.message || "Terjadi kesalahan", "error");
+    }
+  } catch (err) {
+    console.error(err);
+    Swal.fire("Error", "Gagal mengirim data ke server.", "error");
+  }
+});
+
 
   // ===========================
   // Tampilkan Data Booking User Untuk admin dom

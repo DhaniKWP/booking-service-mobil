@@ -37,16 +37,22 @@ const completeBookingWithServices = async (req, res) => {
     }
 
     let totalAdditional = 0;
-    for (const svc of additionalServices) {
-      await AdditionalService.create({
-        bookingId: id,
-        serviceName: svc.serviceName,
-        price: svc.price
-      });
-      totalAdditional += svc.price;
+
+    if (Array.isArray(additionalServices) && additionalServices.length > 0) {
+      for (const svc of additionalServices) {
+        if (!svc.serviceName || svc.price === 0) continue;
+
+        await AdditionalService.create({
+          bookingId: id,
+          serviceName: svc.serviceName,
+          price: svc.price
+        });
+        totalAdditional += svc.price;
+      }
     }
 
-    const finalPrice = parseInt(booking.estimatedPrice) + totalAdditional;
+    const basePrice = Number(booking.estimatedPrice) || 0;
+    const finalPrice = basePrice + totalAdditional;
 
     booking.status = 'completed';
     booking.finalPrice = finalPrice;

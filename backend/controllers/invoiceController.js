@@ -104,18 +104,29 @@ router.get('/bookings/:id/invoice', async (req, res) => {
   doc.font('Helvetica');
 
   // Item utama
-  doc.text('Estimasi Servis Awal', itemX);
-  doc.text(formatRp(booking.estimatedPrice), priceX, doc.y - 15, { width: 90, align: 'right' });
+  let yPos = doc.y;
+  doc.text('Estimasi Servis Awal', itemX, yPos);
+
+  const estPrice = Number(booking.estimatedPrice);
+  const estDisplay = isNaN(estPrice) ? 'Rp -' : formatRp(estPrice);
+
+  doc.text(estDisplay, priceX, yPos, { width: 90, align: 'right' });
+
+  doc.moveDown(1);
 
   // Tambahan
   if (additionalServices.length > 0) {
     additionalServices.forEach(s => {
-      doc.text(s.serviceName, itemX);
-      doc.text(formatRp(s.price), priceX, doc.y - 15, { width: 90, align: 'right' });
+      let yAdd = doc.y;
+      doc.text(s.serviceName, itemX, yAdd);
+      doc.text(formatRp(s.price), priceX, yAdd, { width: 90, align: 'right' });
+      doc.moveDown();
     });
   } else {
-    doc.text('Tidak ada layanan tambahan', itemX);
-    doc.text('-', priceX, doc.y - 15, { width: 90, align: 'right' });
+    let yAdd = doc.y;
+    doc.text('Tidak ada layanan tambahan', itemX, yAdd);
+    doc.text('-', priceX, yAdd, { width: 90, align: 'right' });
+    doc.moveDown();
   }
 
   // Garis pembatas

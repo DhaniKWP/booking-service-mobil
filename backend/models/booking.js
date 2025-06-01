@@ -50,7 +50,7 @@ const Booking = db.define("Booking", {
   },
   estimatedPrice: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
     defaultValue: 0,
   },
   workshopName: {

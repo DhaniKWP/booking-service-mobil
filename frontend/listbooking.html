@@ -302,6 +302,55 @@
       </div>
     </div>
 
+    <!-- Modal Edit Booking -->
+    <div id="editBookingModal" class="custom-modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeEditBookingModal">&times;</span>
+        <h2>Edit Booking</h2>
+        <form id="editBookingForm">
+          <input type="hidden" name="bookingId" id="editBookingId" />
+            <select name="vehicleType" required>
+              <option value="">-- Pilih Jenis Mobil --</option>
+              <option value="Daihatsu Ayla">Daihatsu Ayla</option>
+              <option value="Daihatsu Terios">Daihatsu Terios</option>
+              <option value="Daihatsu Xenia">Daihatsu Xenia</option>
+              <option value="Datsun Go/Go+">Datsun Go/Go+</option>
+              <option value="Honda Brio Satya">Honda Brio Satya</option>
+              <option value="Honda Civic">Honda Civic</option>
+              <option value="Honda CR-V">Honda CR-V</option>
+              <option value="Honda Jazz">Honda Jazz</option>
+              <option value="Mitsubishi Xpander">Mitsubishi Xpander</option>
+              <option value="Suzuki Ertiga">Suzuki Ertiga</option>
+              <option value="Suzuki Swift">Suzuki Swift</option>
+              <option value="Toyota Agya">Toyota Agya</option>
+              <option value="Toyota Avanza">Toyota Avanza</option>
+              <option value="Toyota Corolla Altis">Toyota Corolla Altis</option>
+              <option value="Toyota Fortuner">Toyota Fortuner</option>
+              <option value="Toyota Kijang Innova">Toyota Kijang Innova</option>
+              <option value="Toyota Rush">Toyota Rush</option>
+              <option value="Toyota Vios">Toyota Vios</option>
+              <option value="Toyota Yaris">Toyota Yaris</option>
+          </select>
+          <input type="text" name="vehicleYear" placeholder="Tahun Mobil" required><br />
+          <input type="text" name="licensePlate" placeholder="Plat Nomor" required><br />
+          <select name="serviceType" class="form-select" required>
+            <option value="">-- Pilih Layanan --</option>
+            <option value="Ganti Oli">Ganti Oli</option>
+            <option value="Service Ringan">Service Ringan</option>
+            <option value="Overhoul">Overhoul</option>
+            <option value="Panggilan Darurat">Panggilan Darurat</option>
+            <option value="Scanning">Scanning</option>
+            <option value="Kaki - Kaki">Kaki - Kaki</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+          <input type="date" name="date" required><br />
+          <input type="time" name="time" required><br />
+          <textarea name="notes" placeholder="Catatan"></textarea><br />
+          <button type="submit">Simpan Perubahan</button>
+        </form>
+      </div>
+    </div>
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
   </body>
