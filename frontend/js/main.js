@@ -632,7 +632,7 @@ $(document).ready(function () {
             <p><strong>Tanggal:</strong> ${b.date}</p>
             <p><strong>Jam:</strong> ${b.time}</p>
             <p><strong>Catatan:</strong> ${b.notes}</p>
-            <p><strong>Harga Estimasi:</strong> ${b.estimatedPrice}</p>
+            <p><strong>Harga Estimasi:</strong> Rp${Number(b.estimatedPrice).toLocaleString('id-ID')}</p>
             <p><strong>Status:</strong> 
               <span class="${
                 b.status === "accepted"
