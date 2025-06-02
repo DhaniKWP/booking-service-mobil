@@ -695,11 +695,6 @@
   margin-bottom: 0.3rem;
   font-size: 0.95rem;
 }
-
-body.protected {
-  display: none;
-}
-
 /* Kartu Booking User */
 .booking-user-card {
   background-color: #fff;
@@ -952,3 +947,4 @@ body.protected {
   font-size: 20px;
   cursor: pointer;
 }
+
