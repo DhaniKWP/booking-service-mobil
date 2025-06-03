@@ -847,6 +847,7 @@ $('#additionalServiceForm').on('submit', async function (e) {
         }
 
         listContainer.innerHTML = bookings
+          .filter((b) => b.status !== "completed")
           .map(
             (b) => `
         <div class="col-md-6 col-lg-4">
@@ -980,7 +981,7 @@ $('#serviceFieldsContainer').on('click', '.remove-service-row', function () {
         }
 
         listContainer.innerHTML = bookings
-          .filter((b) => b.status !== "rejected")
+          .filter((b) => b.status !== "rejected" && b.status !== "completed")
           .map((b) => {
             const statusLabel =
               b.status === "accepted"
