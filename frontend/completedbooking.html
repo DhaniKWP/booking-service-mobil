@@ -81,10 +81,8 @@
                 <th>Mobil</th>
                 <th>Layanan</th>
                 <th>Tanggal</th>
-                <th>Workshop</th>
                 <th>No Servis</th>
                 <th>Status</th>
-                <th>Harga Final</th>
               </tr>
             </thead>
             <tbody id="completed-booking-list">
@@ -157,10 +155,8 @@
             <td>${b.vehicleType} (${b.vehicleYear})</td>
             <td>${b.serviceType}</td>
             <td>${b.date}</td>
-            <td>${b.workshopName}</td>
             <td>${b.serviceNumber}</td>
             <td><span class="badge bg-success">Selesai</span></td>
-            <td>Rp${Number(b.finalPrice).toLocaleString('id-ID')}</td>
           </tr>
         `).join("");
       }
