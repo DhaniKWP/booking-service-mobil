@@ -21,7 +21,7 @@ router.get('/bookings/:id/invoice', async (req, res) => {
 
   // Logo
   try {
-    const logoPath = path.join(__dirname, '../../frontend/img/WJM2.png');
+    const logoPath = path.join(__dirname, '../../frontend/img/WJM2.jpg');
     doc.image(logoPath, doc.page.margins.left, 40, { width: 80 });
   } catch (err) {
     console.warn("Logo gagal dimuat:", err.message);
