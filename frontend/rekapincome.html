@@ -61,6 +61,7 @@
           <div class="col-md-3 d-flex align-items-end">
             <button id="btnFilter" class="btn btn-primary me-2"><i class="fas fa-filter"></i> Filter</button>
             <button id="btnExport" class="btn btn-success"><i class="fas fa-file-export"></i> Export Excel</button>
+            <button id="btnExportPdf" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Export PDF</button>
           </div>
         </div>
 
@@ -126,6 +127,7 @@
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
       const token = localStorage.getItem("token");
@@ -279,31 +281,40 @@
       }
 
       // Export CSV sederhana
-      function exportCSV() {
-        if(filteredBookings.length === 0) {
-          Swal.fire("Info", "Tidak ada data untuk diexport.", "info");
-          return;
-        }
+      function exportExcel() {
+  if (filteredBookings.length === 0) {
+    Swal.fire("Info", "Tidak ada data untuk diekspor.", "info");
+    return;
+  }
 
-        const header = ['No', 'Nama', 'Mobil', 'Layanan', 'Tanggal', 'No Servis', 'Harga Final'];
-        const rows = filteredBookings.map((b, i) => [
-          i + 1,
-          `"${b.name}"`,
-          `"${b.vehicleType} (${b.vehicleYear})"`,
-          `"${b.serviceType}"`,
-          b.date,
-          `"${b.serviceNumber}"`,
-          Number(b.finalPrice)
-        ]);
+  const wsData = [
+    ["No", "Nama", "Mobil", "Layanan", "Tanggal", "No Servis", "Harga Final"]
+  ];
 
-        let csvContent = header.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
-        let blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        let link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = `rekap_pendapatan_${new Date().toISOString().slice(0,10)}.csv`;
-        link.click();
-        URL.revokeObjectURL(link.href);
-      }
+  filteredBookings.forEach((b, i) => {
+    wsData.push([
+      i + 1,
+      b.name,
+      `${b.vehicleType} (${b.vehicleYear})`,
+      b.serviceType,
+      b.date,
+      b.serviceNumber,
+      Number(b.finalPrice)
+    ]);
+  });
+
+  wsData.push([]);
+  wsData.push(["", "", "", "", "", "TOTAL", filteredBookings.reduce((sum, b) => sum + Number(b.finalPrice), 0)]);
+
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+  XLSX.utils.book_append_sheet(wb, ws, "Rekap Income");
+
+  XLSX.writeFile(wb, `Rekap_Income_${new Date().toISOString().slice(0,10)}.xlsx`);
+}
+
+document.getElementById("btnExport").addEventListener("click", exportExcel);
+
 
       // Event listeners
       btnFilter.addEventListener('click', () => {
@@ -312,7 +323,7 @@
         renderTable();
       });
 
-      btnExport.addEventListener('click', exportCSV);
+      btnExport.addEventListener('click', exportExcel);
 
       paginationEl.addEventListener('click', (e) => {
         if(e.target.tagName === 'A') {
