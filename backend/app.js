@@ -7,6 +7,7 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const { text } = require('body-parser');
 const invoiceController = require('./controllers/invoiceController');
+const rekapController = require('./controllers/rekapController');
 
 //requiring modules
 require('./models/user');
@@ -23,6 +24,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api', invoiceController);
+app.use('/api/admin/rekap', rekapController);
 
 // Serve static files dari frontend
 app.use(express.static(path.join(__dirname, '../frontend')));

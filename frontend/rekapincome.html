@@ -58,11 +58,16 @@
               <!-- Dinamis via JS -->
             </select>
           </div>
-          <div class="col-md-3 d-flex align-items-end">
-            <button id="btnFilter" class="btn btn-primary me-2"><i class="fas fa-filter"></i> Filter</button>
-            <button id="btnExport" class="btn btn-success"><i class="fas fa-file-export"></i> Export Excel</button>
-            <button id="btnExportPdf" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Export PDF</button>
-          </div>
+            <div class="col-md-3">
+              <label class="form-label d-block invisible">Aksi</label>
+              <div class="d-grid gap-2 mb-2">
+                <button id="btnFilter" class="btn btn-primary"><i class="fas fa-filter"></i> Filter</button>
+              </div>
+              <div class="d-flex gap-2">
+                <button id="btnExport" class="btn btn-success flex-fill"><i class="fas fa-file-excel"></i> Export Excel</button>
+                <button id="btnExportPdf" class="btn btn-danger flex-fill"><i class="fas fa-file-pdf"></i> Export PDF</button>
+              </div>
+            </div>
         </div>
 
         <div class="row g-4 mb-4">
@@ -280,18 +285,36 @@
         renderPagination();
       }
 
-      // Export CSV sederhana
-      function exportExcel() {
+      // Export Excel
+function exportExcel() {
   if (filteredBookings.length === 0) {
     Swal.fire("Info", "Tidak ada data untuk diekspor.", "info");
     return;
   }
 
-  const wsData = [
-    ["No", "Nama", "Mobil", "Layanan", "Tanggal", "No Servis", "Harga Final"]
-  ];
+  const wb = XLSX.utils.book_new();
+  const wsData = [];
 
+  const start = filterStart.value;
+  const end = filterEnd.value;
+  const periode = start && end ? `Periode: ${start} s.d. ${end}` : "Periode: Semua Tanggal";
+
+  // Header Info
+  wsData.push(["WIJAYA MOTOR"]);
+  wsData.push(["Jl. Arya Wangsakara, RT.001/001, Bugel, Kec. Karawaci"]);
+  wsData.push(["Kota Tangerang, Banten 15114 | Telp: +62 877-8823-6277"]);
+  wsData.push([]);
+  wsData.push(["REKAPITULASI PENDAPATAN"]);
+  wsData.push([periode]);
+  wsData.push([]);
+
+  // Table header
+  wsData.push(["No", "Nama", "Mobil", "Layanan", "Tanggal", "No Servis", "Harga Final"]);
+
+  let total = 0;
   filteredBookings.forEach((b, i) => {
+    const harga = Number(b.finalPrice);
+    total += harga;
     wsData.push([
       i + 1,
       b.name,
@@ -299,22 +322,148 @@
       b.serviceType,
       b.date,
       b.serviceNumber,
-      Number(b.finalPrice)
+      harga
     ]);
   });
 
   wsData.push([]);
-  wsData.push(["", "", "", "", "", "TOTAL", filteredBookings.reduce((sum, b) => sum + Number(b.finalPrice), 0)]);
+  wsData.push(["", "", "", "", "", "TOTAL", total]);
 
-  const wb = XLSX.utils.book_new();
   const ws = XLSX.utils.aoa_to_sheet(wsData);
-  XLSX.utils.book_append_sheet(wb, ws, "Rekap Income");
+
+  // Styling
+  const range = XLSX.utils.decode_range(ws['!ref']);
+
+  // Style untuk header utama dan subjudul
+  const headerStyle = {
+    font: { bold: true, sz: 14 },
+    alignment: { horizontal: "center" }
+  };
+
+  const subHeaderStyle = {
+    font: { bold: true, sz: 12 },
+    alignment: { horizontal: "center" }
+  };
+
+  // Style untuk header tabel
+  const tableHeaderStyle = {
+    font: { bold: true },
+    alignment: { horizontal: "center", vertical: "center" },
+    border: {
+      top: { style: "thin", color: { auto: 1 } },
+      bottom: { style: "thin", color: { auto: 1 } },
+      left: { style: "thin", color: { auto: 1 } },
+      right: { style: "thin", color: { auto: 1 } }
+    }
+  };
+
+  // Style untuk baris data (teks rata kiri kecuali kolom harga rata kanan)
+  const dataStyleLeft = {
+    alignment: { horizontal: "left" },
+    border: {
+      top: { style: "thin", color: { auto: 1 } },
+      bottom: { style: "thin", color: { auto: 1 } },
+      left: { style: "thin", color: { auto: 1 } },
+      right: { style: "thin", color: { auto: 1 } }
+    }
+  };
+
+  const dataStyleRight = {
+    alignment: { horizontal: "right" },
+    border: {
+      top: { style: "thin", color: { auto: 1 } },
+      bottom: { style: "thin", color: { auto: 1 } },
+      left: { style: "thin", color: { auto: 1 } },
+      right: { style: "thin", color: { auto: 1 } }
+    }
+  };
+
+  // Terapkan style header utama (judul & alamat)
+  ['A1','A2','A3','A5','A6'].forEach(cell => {
+    if(ws[cell]) ws[cell].s = headerStyle;
+  });
+
+  // Header tabel style
+  for(let C = range.s.c; C <= range.e.c; ++C) {
+    const cell_address = XLSX.utils.encode_cell({r:7, c:C}); // baris ke-8 (index 7) = header tabel
+    if(ws[cell_address]) ws[cell_address].s = tableHeaderStyle;
+  }
+
+  // Style data rows
+  for(let R = 8; R < range.e.r; ++R) {
+    for(let C = range.s.c; C <= range.e.c; ++C) {
+      const cell_address = XLSX.utils.encode_cell({r:R, c:C});
+      if(ws[cell_address]) {
+        if(C === 6) { // kolom harga final (index 6)
+          ws[cell_address].s = dataStyleRight;
+        } else {
+          ws[cell_address].s = dataStyleLeft;
+        }
+      }
+    }
+  }
+
+  // Style total baris (baris terakhir)
+  const totalRow = range.e.r;
+  // Kolom TOTAL di kolom ke-6 (F), dan total nilai di G
+  ['F','G'].forEach(col => {
+    const cell_address = col + (totalRow+1);
+    if(ws[cell_address]) {
+      ws[cell_address].s = {
+        font: { bold: true },
+        alignment: { horizontal: col === 'G' ? "right" : "center" },
+        border: {
+          top: { style: "thin", color: { auto: 1 } },
+          bottom: { style: "double", color: { auto: 1 } },
+          left: { style: "thin", color: { auto: 1 } },
+          right: { style: "thin", color: { auto: 1 } }
+        }
+      };
+    }
+  });
+
+  // Set lebar kolom otomatis
+  ws['!cols'] = [
+    {wch:5},  // No
+    {wch:20}, // Nama
+    {wch:20}, // Mobil
+    {wch:15}, // Layanan
+    {wch:12}, // Tanggal
+    {wch:15}, // No Servis
+    {wch:15}, // Harga Final
+  ];
+
+  XLSX.utils.book_append_sheet(wb, ws, "Rekap Pendapatan");
 
   XLSX.writeFile(wb, `Rekap_Income_${new Date().toISOString().slice(0,10)}.xlsx`);
 }
 
-document.getElementById("btnExport").addEventListener("click", exportExcel);
 
+      document.getElementById("btnExport").addEventListener("click", exportExcel);
+
+      document.getElementById("btnExportPdf").addEventListener("click", async () => {
+      const startDate = filterStart.value;
+      const endDate = filterEnd.value;
+
+      const res = await fetch("/api/admin/rekap/pdf", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ startDate, endDate }),
+      });
+
+      if (!res.ok) return Swal.fire("Gagal", "Gagal generate PDF", "error");
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "rekap_income.pdf";
+      link.click();
+      URL.revokeObjectURL(url);
+    });
 
       // Event listeners
       btnFilter.addEventListener('click', () => {
