@@ -1021,6 +1021,7 @@ $('#serviceFieldsContainer').on('click', '.remove-service-row', function () {
                   <p><strong>Layanan:</strong> ${b.serviceType}</p>
                   <p><strong>Tanggal:</strong> ${b.date}</p>
                   <p><strong>Jam:</strong> ${b.time}</p>
+                  <p><strong>Catatan:</strong> ${b.notes}</p>
                   <p><strong>Status:</strong> ${statusLabel}</p>
                   <div class="d-flex gap-2 mt-3 flex-wrap">${buttons}</div>
                 </div>
