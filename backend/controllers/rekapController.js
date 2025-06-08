@@ -249,6 +249,7 @@ router.post('/excel', async (req, res) => {
       });
     });
 
+    ws.addRow([]);
     // Baris Total
 const totalRowNumber = ws.lastRow.number;
 ws.mergeCells(`A${totalRowNumber}:F${totalRowNumber}`); // Merge A-F
