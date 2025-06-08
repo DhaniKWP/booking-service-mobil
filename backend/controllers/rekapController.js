@@ -1,5 +1,6 @@
 const express = require('express');
 const PDFDocument = require('pdfkit');
+const ExcelJS = require('exceljs');
 const { Op } = require('sequelize');
 const path = require('path');
 const router = express.Router();
@@ -135,6 +136,60 @@ router.post('/pdf', async (req, res) => {
   } catch (err) {
     console.error("PDF Export Error:", err);
     res.status(500).json({ message: 'Gagal generate PDF' });
+  }
+});
+
+router.post('/excel', async (req, res) => {
+  const { startDate, endDate } = req.body;
+  const { Op } = require('sequelize');
+
+  const whereClause = { status: 'completed' };
+  if (startDate && endDate) {
+    whereClause.date = { [Op.between]: [startDate, endDate] };
+  }
+
+  try {
+    const bookings = await Booking.findAll({ where: whereClause });
+
+    const wb = new ExcelJS.Workbook();
+    const ws = wb.addWorksheet("Rekap Pendapatan");
+
+    ws.addRow(["WIJAYA MOTOR"]);
+    ws.addRow(["Jl. Arya Wangsakara, RT.001/001, Bugel, Kec. Karawaci"]);
+    ws.addRow(["Kota Tangerang, Banten 15114 | Telp: +62 877-8823-6277"]);
+    ws.addRow([]);
+    ws.addRow(["REKAPITULASI PENDAPATAN"]);
+    ws.addRow([startDate && endDate ? `Periode: ${startDate} s.d. ${endDate}` : "Periode: Semua Tanggal"]);
+    ws.addRow([]);
+
+    ws.addRow(["No", "Nama", "Mobil", "Layanan", "Tanggal", "No Servis", "Harga Final"]);
+
+    let total = 0;
+    bookings.forEach((b, i) => {
+      const harga = Number(b.finalPrice);
+      total += harga;
+      ws.addRow([
+        i + 1,
+        b.name,
+        `${b.vehicleType} (${b.vehicleYear})`,
+        b.serviceType,
+        b.date,
+        b.serviceNumber,
+        harga
+      ]);
+    });
+
+    ws.addRow([]);
+    ws.addRow(["", "", "", "", "", "TOTAL", total]);
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=rekap_income.xlsx');
+
+    await wb.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    console.error("Excel Export Error:", err);
+    res.status(500).json({ message: "Gagal generate Excel" });
   }
 });
 
