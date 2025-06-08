@@ -10,6 +10,13 @@ router.post('/pdf', async (req, res) => {
   const { startDate, endDate } = req.body;
   const doc = new PDFDocument({ margin: 50 });
   const formatRp = val => 'Rp' + Number(val).toLocaleString('id-ID');
+  const formatDate = (val) => {
+    const d = new Date(val);
+    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    return `${dd}-${mm}-${yyyy}`;
+  };
 
   try {
     const whereClause = { status: 'completed' };
@@ -23,7 +30,6 @@ router.post('/pdf', async (req, res) => {
     res.setHeader('Content-Disposition', 'attachment; filename=rekap_income.pdf');
     doc.pipe(res);
 
-    // === HEADER ===
     try {
       const logoPath = path.join(__dirname, '../../frontend/img/WJM2.jpg');
       doc.image(logoPath, 50, 30, { width: 60 });
@@ -45,29 +51,30 @@ router.post('/pdf', async (req, res) => {
       .text("REKAPITULASI PENDAPATAN", { align: 'center' });
 
     const periode = startDate && endDate
-      ? `Periode: ${startDate} s.d. ${endDate}`
+      ? `Periode: ${formatDate(startDate)} s.d. ${formatDate(endDate)}`
       : "Periode: Semua Tanggal";
 
     doc.fontSize(10).font('Helvetica').text(periode, { align: 'center' });
     doc.y += 20;
 
-    // === TABLE ===
     const headers = ["No", "Nama", "Mobil", "Layanan", "Tanggal", "No. Servis", "Harga Final"];
-    const colWidths = [25, 70, 100, 70, 65, 90, 75];
-    const rowHeight = 18;
+    const colWidths = [25, 70, 100, 70, 65, 90, 110];
+    const rowHeight = 30;
 
     const drawTableHeader = () => {
       let x = 50;
       const y = doc.y;
       doc.font('Helvetica-Bold').fontSize(9);
+
       headers.forEach((h, i) => {
-        doc.text(h, x, y, {
-          width: colWidths[i],
-          align: i === headers.length - 1 ? 'right' : 'left',
+        doc.rect(x, y, colWidths[i], rowHeight).fillAndStroke('#eeeeee', 'black');
+        doc.fillColor('black').text(h, x + 2, y + 6, {
+          width: colWidths[i] - 4,
+          align: 'center'
         });
         x += colWidths[i];
       });
-      doc.moveTo(50, y + rowHeight - 5).lineTo(545, y + rowHeight - 5).stroke();
+
       doc.y = y + rowHeight;
     };
 
@@ -80,7 +87,7 @@ router.post('/pdf', async (req, res) => {
       doc.text("Tidak ada data booking yang ditemukan.", 50, doc.y);
     } else {
       bookings.forEach(b => {
-        if (doc.y + rowHeight > doc.page.height - 60) {
+        if (doc.y + rowHeight + 60 > doc.page.height - doc.page.margins.bottom) {
           doc.addPage();
           drawTableHeader();
         }
@@ -88,21 +95,22 @@ router.post('/pdf', async (req, res) => {
         const row = [
           no,
           b.name,
-          `${b.vehicleType.split(' ')[1]} (${b.vehicleYear})`,  // Pendekin nama mobil
+          `${b.vehicleType.split(' ')[1]} (${b.vehicleYear})`,
           b.serviceType,
-          b.date,
+          formatDate(b.date),
           b.serviceNumber,
           formatRp(b.finalPrice)
         ];
 
-        let x = 50;
         const y = doc.y;
+        let x = 50;
         doc.font('Helvetica').fontSize(9);
+
         row.forEach((val, i) => {
-          doc.text(String(val), x, y, {
-            width: colWidths[i],
-            align: i === row.length - 1 ? 'right' : 'left',
-            ellipsis: true,
+          doc.rect(x, y, colWidths[i], rowHeight).stroke();
+          doc.text(String(val), x + 2, y + 6, {
+            width: colWidths[i] - 4,
+            align: i === row.length - 1 ? 'right' : 'center',
             lineBreak: false
           });
           x += colWidths[i];
@@ -113,18 +121,36 @@ router.post('/pdf', async (req, res) => {
         no++;
       });
 
-      // === GARIS TOTAL ===
-      doc.moveTo(50, doc.y).lineTo(545, doc.y).stroke();
-      doc.y += 6;
+      if (doc.y + rowHeight + 40 > doc.page.height - doc.page.margins.bottom) {
+        doc.addPage();
+        drawTableHeader();
+      }
 
-      // === TOTAL ===
       const yTotal = doc.y;
-      doc.font('Helvetica-Bold').fontSize(10);
-      doc.text("TOTAL", 400, yTotal, { width: 100, align: 'left' });
-      doc.text(formatRp(total), 470, yTotal, { width: 75, align: 'right' });
+      const totalLabelWidth = colWidths.slice(0, 6).reduce((a, b) => a + b, 0);
+      const xStart = 50;
+
+      doc.rect(xStart, yTotal, totalLabelWidth, rowHeight)
+        .fillAndStroke('#f2f2f2', 'black');
+      doc.fillColor('black')
+        .font('Helvetica-Bold')
+        .text('TOTAL', xStart + 4, yTotal + 6, {
+          width: totalLabelWidth - 8,
+          align: 'center'
+        });
+
+      const xTotalVal = xStart + totalLabelWidth;
+      doc.rect(xTotalVal, yTotal, colWidths[6], rowHeight)
+        .fillAndStroke('#f2f2f2', 'black');
+        doc.fillColor('black');
+      doc.text(formatRp(total), xTotalVal + 2, yTotal + 6, {
+        width: colWidths[6] - 4,
+        align: 'right'
+      });
+
+      doc.y = yTotal + rowHeight;
     }
 
-    // === FOOTER ===
     doc.y += 40;
     doc
       .fontSize(9)
@@ -141,12 +167,19 @@ router.post('/pdf', async (req, res) => {
 
 router.post('/excel', async (req, res) => {
   const { startDate, endDate } = req.body;
-  const { Op } = require('sequelize');
 
   const whereClause = { status: 'completed' };
   if (startDate && endDate) {
     whereClause.date = { [Op.between]: [startDate, endDate] };
   }
+
+  const formatDate = (dateStr) => {
+    const d = new Date(dateStr);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
 
   try {
     const bookings = await Booking.findAll({ where: whereClause });
@@ -154,33 +187,89 @@ router.post('/excel', async (req, res) => {
     const wb = new ExcelJS.Workbook();
     const ws = wb.addWorksheet("Rekap Pendapatan");
 
+    // Header informasi
     ws.addRow(["WIJAYA MOTOR"]);
     ws.addRow(["Jl. Arya Wangsakara, RT.001/001, Bugel, Kec. Karawaci"]);
     ws.addRow(["Kota Tangerang, Banten 15114 | Telp: +62 877-8823-6277"]);
     ws.addRow([]);
     ws.addRow(["REKAPITULASI PENDAPATAN"]);
-    ws.addRow([startDate && endDate ? `Periode: ${startDate} s.d. ${endDate}` : "Periode: Semua Tanggal"]);
+    const periodeText = (startDate && endDate)
+      ? `Periode: ${formatDate(startDate)} s.d. ${formatDate(endDate)}`
+      : "Periode: Semua Tanggal";
+    ws.addRow([periodeText]);
     ws.addRow([]);
 
-    ws.addRow(["No", "Nama", "Mobil", "Layanan", "Tanggal", "No Servis", "Harga Final"]);
+    // Header tabel
+    const headerRow = ws.addRow(["No", "Nama", "Mobil", "Layanan", "Tanggal", "No Servis", "Harga Final"]);
+    headerRow.eachCell((cell) => {
+      cell.font = { bold: true };
+      cell.alignment = { horizontal: 'center' };
+      cell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'FFD9D9D9' }
+      };
+      cell.border = {
+        top: { style: 'thin' },
+        bottom: { style: 'thin' },
+        left: { style: 'thin' },
+        right: { style: 'thin' }
+      };
+    });
 
     let total = 0;
     bookings.forEach((b, i) => {
       const harga = Number(b.finalPrice);
       total += harga;
-      ws.addRow([
+
+      const row = ws.addRow([
         i + 1,
         b.name,
         `${b.vehicleType} (${b.vehicleYear})`,
         b.serviceType,
-        b.date,
+        formatDate(b.date),
         b.serviceNumber,
-        harga
+        `Rp ${harga.toLocaleString('id-ID')}`
       ]);
+
+      row.eachCell((cell, colNumber) => {
+        cell.border = {
+          top: { style: 'thin' },
+          bottom: { style: 'thin' },
+          left: { style: 'thin' },
+          right: { style: 'thin' }
+        };
+
+        // Harga Final rata kanan, sisanya rata tengah
+        if (colNumber === 7) {
+          cell.alignment = { horizontal: 'right' };
+        } else {
+          cell.alignment = { horizontal: 'center' };
+        }
+      });
     });
 
-    ws.addRow([]);
-    ws.addRow(["", "", "", "", "", "TOTAL", total]);
+    // Baris Total
+const totalRowNumber = ws.lastRow.number;
+ws.mergeCells(`A${totalRowNumber}:F${totalRowNumber}`); // Merge A-F
+const totalRow = ws.getRow(totalRowNumber);
+totalRow.getCell(1).value = 'TOTAL';
+totalRow.getCell(1).font = { bold: true };
+totalRow.getCell(1).alignment = { horizontal: 'center' };
+totalRow.getCell(7).value = `Rp ${total.toLocaleString('id-ID')}`;
+totalRow.getCell(7).font = { bold: true };
+totalRow.getCell(7).alignment = { horizontal: 'right' };
+
+// Tambahkan border ke semua sel dalam baris total
+totalRow.eachCell((cell) => {
+  cell.border = {
+    top: { style: 'thin' },
+    bottom: { style: 'thin' },
+    left: { style: 'thin' },
+    right: { style: 'thin' }
+  };
+});
+
 
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     res.setHeader('Content-Disposition', 'attachment; filename=rekap_income.xlsx');
@@ -192,7 +281,6 @@ router.post('/excel', async (req, res) => {
     res.status(500).json({ message: "Gagal generate Excel" });
   }
 });
-
 
 
 module.exports = router;
