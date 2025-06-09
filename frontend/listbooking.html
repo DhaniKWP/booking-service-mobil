@@ -49,7 +49,6 @@
 
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
   </head>
 
   <body>
@@ -124,16 +123,15 @@
 
     <!-- Booking List -->
     <div class="container my-5">
-  <div class="text-center mb-4">
-    <h2>Daftar Booking Anda</h2>
-    <p>Berikut adalah daftar booking yang telah Anda buat:</p>
-  </div>
+      <div class="text-center mb-4">
+        <h2>Daftar Booking Anda</h2>
+        <p>Berikut adalah daftar booking yang telah Anda buat:</p>
+      </div>
 
-  <div class="row" id="booking-card-container">
-    <!-- Kartu booking akan dimuat via JavaScript -->
-  </div>
-</div>
-
+      <div class="row" id="booking-card-container">
+        <!-- Kartu booking akan dimuat via JavaScript -->
+      </div>
+    </div>
 
     <!-- Footer Start -->
     <div
@@ -171,31 +169,67 @@
             <h5 class="text-white mb-4">Galeri Bengkel</h5>
             <div class="row g-2">
               <div class="col-4">
-                  <img class="img-fluid rounded" src="img/img-600x400-1.jpg" alt="">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-1.webp"
+                  alt=""
+                />
               </div>
               <div class="col-4">
-                  <img class="img-fluid rounded" src="img/img-600x400-2.jpg" alt="">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-2.webp"
+                  alt=""
+                />
               </div>
               <div class="col-4">
-                  <img class="img-fluid rounded" src="img/img-600x400-3.jpg" alt="">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-3.webp"
+                  alt=""
+                />
               </div>
               <div class="col-4">
-                  <img class="img-fluid rounded" src="img/img-600x400-4.jpg" alt="">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-4.webp"
+                  alt=""
+                />
               </div>
               <div class="col-4">
-                  <img class="img-fluid rounded" src="img/img-600x400-5.jpg" alt="">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-5.webp"
+                  alt=""
+                />
               </div>
               <div class="col-4">
-                  <img class="img-fluid rounded" src="img/img-600x400-6.jpg" alt="">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-6.webp"
+                  alt=""
+                />
               </div>
               <div class="col-4">
-                  <img class="img-fluid rounded" src="img/carousel-1.jpg" alt="">
+                <img
+                  class="img-fluid rounded"
+                  src="img/carousel-1.webp"
+                  alt=""
+                />
               </div>
               <div class="col-4">
-                  <img class="img-fluid rounded" src="img/carousel-2.jpg" alt="">
+                <img
+                  class="img-fluid rounded"
+                  src="img/carousel-2.webp"
+                  alt=""
+                />
               </div>
               <div class="col-4">
-                  <img class="img-fluid rounded" src="img/carousel-3.jpg" alt="">
+                <img
+                  class="img-fluid rounded"
+                  src="img/carousel-3.webp"
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -273,7 +307,7 @@
         <h2>Register</h2>
         <form id="registerForm">
           <input type="text" name="name" placeholder="Nama" required /><br />
-          <input type="text" name="phone" placeholder="No Telepon" required>
+          <input type="text" name="phone" placeholder="No Telepon" required />
           <input type="email" name="email" placeholder="Email" required /><br />
           <input
             type="password"
@@ -309,30 +343,40 @@
         <h2>Edit Booking</h2>
         <form id="editBookingForm">
           <input type="hidden" name="bookingId" id="editBookingId" />
-            <select name="vehicleType" required>
-              <option value="">-- Pilih Jenis Mobil --</option>
-              <option value="Daihatsu Ayla">Daihatsu Ayla</option>
-              <option value="Daihatsu Terios">Daihatsu Terios</option>
-              <option value="Daihatsu Xenia">Daihatsu Xenia</option>
-              <option value="Datsun Go/Go+">Datsun Go/Go+</option>
-              <option value="Honda Brio Satya">Honda Brio Satya</option>
-              <option value="Honda Civic">Honda Civic</option>
-              <option value="Honda CR-V">Honda CR-V</option>
-              <option value="Honda Jazz">Honda Jazz</option>
-              <option value="Mitsubishi Xpander">Mitsubishi Xpander</option>
-              <option value="Suzuki Ertiga">Suzuki Ertiga</option>
-              <option value="Suzuki Swift">Suzuki Swift</option>
-              <option value="Toyota Agya">Toyota Agya</option>
-              <option value="Toyota Avanza">Toyota Avanza</option>
-              <option value="Toyota Corolla Altis">Toyota Corolla Altis</option>
-              <option value="Toyota Fortuner">Toyota Fortuner</option>
-              <option value="Toyota Kijang Innova">Toyota Kijang Innova</option>
-              <option value="Toyota Rush">Toyota Rush</option>
-              <option value="Toyota Vios">Toyota Vios</option>
-              <option value="Toyota Yaris">Toyota Yaris</option>
+          <select name="vehicleType" required>
+            <option value="">-- Pilih Jenis Mobil --</option>
+            <option value="Daihatsu Ayla">Daihatsu Ayla</option>
+            <option value="Daihatsu Terios">Daihatsu Terios</option>
+            <option value="Daihatsu Xenia">Daihatsu Xenia</option>
+            <option value="Datsun Go/Go+">Datsun Go/Go+</option>
+            <option value="Honda Brio Satya">Honda Brio Satya</option>
+            <option value="Honda Civic">Honda Civic</option>
+            <option value="Honda CR-V">Honda CR-V</option>
+            <option value="Honda Jazz">Honda Jazz</option>
+            <option value="Mitsubishi Xpander">Mitsubishi Xpander</option>
+            <option value="Suzuki Ertiga">Suzuki Ertiga</option>
+            <option value="Suzuki Swift">Suzuki Swift</option>
+            <option value="Toyota Agya">Toyota Agya</option>
+            <option value="Toyota Avanza">Toyota Avanza</option>
+            <option value="Toyota Corolla Altis">Toyota Corolla Altis</option>
+            <option value="Toyota Fortuner">Toyota Fortuner</option>
+            <option value="Toyota Kijang Innova">Toyota Kijang Innova</option>
+            <option value="Toyota Rush">Toyota Rush</option>
+            <option value="Toyota Vios">Toyota Vios</option>
+            <option value="Toyota Yaris">Toyota Yaris</option>
           </select>
-          <input type="text" name="vehicleYear" placeholder="Tahun Mobil" required><br />
-          <input type="text" name="licensePlate" placeholder="Plat Nomor" required><br />
+          <input
+            type="text"
+            name="vehicleYear"
+            placeholder="Tahun Mobil"
+            required
+          /><br />
+          <input
+            type="text"
+            name="licensePlate"
+            placeholder="Plat Nomor"
+            required
+          /><br />
           <select name="serviceType" class="form-select" required>
             <option value="">-- Pilih Layanan --</option>
             <option value="Ganti Oli">Ganti Oli</option>
@@ -343,8 +387,8 @@
             <option value="Kaki - Kaki">Kaki - Kaki</option>
             <option value="Lainnya">Lainnya</option>
           </select>
-          <input type="date" name="date" required><br />
-          <input type="time" name="time" required><br />
+          <input type="date" name="date" required /><br />
+          <input type="time" name="time" required /><br />
           <textarea name="notes" placeholder="Catatan"></textarea><br />
           <button type="submit">Simpan Perubahan</button>
         </form>

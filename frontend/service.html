@@ -1,407 +1,590 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Wijaya Motor (Bengkel Mobil)</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
 
     <!-- Favicon -->
-    <link href="img/favicon.jpg" rel="icon">
+    <link href="img/favicon.jpg" rel="icon" />
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
-
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
+    />
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
 
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+    <div
+      id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <div
+        class="spinner-border text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
     <!-- Spinner End -->
 
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5" style="color: red;">             
-            <h2 style="color: red;">WIJAYA MOTOR</h2></a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-                <a href="service.html" class="nav-item nav-link active">Booking</a>
-                <a href="contact.html" class="nav-item nav-link">Kontak</a>
-                <a href="listbooking.html" class="nav-item nav-link">History Booking</a>
-            </div>
-            <button id="openLoginModal" class="btn btn-primary ms-lg-3 ms-0 mt-2 mt-lg-0 me-4">
-              Login
-            </button>
+      <a
+        href="index.html"
+        class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5"
+        style="color: red"
+      >
+        <h2 style="color: red">WIJAYA MOTOR</h2></a
+      >
+      <button
+        type="button"
+        class="navbar-toggler me-4"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+          <a href="index.html" class="nav-item nav-link">Home</a>
+          <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
+          <a href="service.html" class="nav-item nav-link active">Booking</a>
+          <a href="contact.html" class="nav-item nav-link">Kontak</a>
+          <a href="listbooking.html" class="nav-item nav-link"
+            >History Booking</a
+          >
         </div>
+        <button
+          id="openLoginModal"
+          class="btn btn-primary ms-lg-3 ms-0 mt-2 mt-lg-0 me-4"
+        >
+          Login
+        </button>
+      </div>
     </nav>
     <!-- Navbar End -->
 
-    
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5">
-        <div class="container py-5">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">Services</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a class="text-white" href="index.html">Home</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page"><a class="text-white" href="service.html">Booking</a></li>
-                </ol>
-            </nav>
-        </div>
+      <div class="container py-5">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Services</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a class="text-white" href="index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item text-white active" aria-current="page">
+              <a class="text-white" href="service.html">Booking</a>
+            </li>
+          </ol>
+        </nav>
+      </div>
     </div>
     <!-- Page Header End -->
 
     <!-- bagian booking section -->
     <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
-        <div class="container quote px-lg-0">
-            <div class="row g-0 mx-lg-0">
-                <div class="col-lg-6 ps-lg-0 wow fadeIn" data-wow-delay="0.1s" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/quote.jpg" style="object-fit: cover;" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 quote-text py-5 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="p-lg-5 pe-lg-0">
-                        <h6 class="text-primary">Booking</h6>
-                        <h1 class="mb-4">Booking Sekarang</h1>
-                        <p class="mb-4 pb-2">Silahkan isi data diri anda sesuai dengan kolom yang tertera sekarang juga dan dapatkan promo menarik!</p>
-                        <form id="bookingForm" class="booking-inline-form">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label">Pilih Layanan</label>
-                                    <select name="serviceType" class="form-select" required>
-                                        <option value="">-- Pilih Layanan --</option>
-                                        <option value="Ganti Oli">Ganti Oli</option>
-                                        <option value="Service Ringan">Service Ringan</option>
-                                        <option value="Overhoul">Overhoul</option>
-                                        <option value="Panggilan Darurat">Panggilan Darurat</option>
-                                        <option value="Scanning">Scanning</option>
-                                        <option value="Kaki - Kaki">Kaki - Kaki</option>
-                                        <option value="Lainnya">Lainnya</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Jenis Mobil</label>
-                                    <select name="vehicleType" class="form-select" required>
-                                        <option value="">-- Pilih Jenis Mobil --</option>
-                                        <option value="Daihatsu Ayla">Daihatsu Ayla</option>
-                                        <option value="Daihatsu Terios">Daihatsu Terios</option>
-                                        <option value="Daihatsu Xenia">Daihatsu Xenia</option>
-                                        <option value="Datsun Go/Go+">Datsun Go/Go+</option>
-                                        <option value="Honda Brio Satya">Honda Brio Satya</option>
-                                        <option value="Honda Civic">Honda Civic</option>
-                                        <option value="Honda CR-V">Honda CR-V</option>
-                                        <option value="Honda Jazz">Honda Jazz</option>
-                                        <option value="Mitsubishi Xpander">Mitsubishi Xpander</option>
-                                        <option value="Suzuki Ertiga">Suzuki Ertiga</option>
-                                        <option value="Suzuki Swift">Suzuki Swift</option>
-                                        <option value="Toyota Agya">Toyota Agya</option>
-                                        <option value="Toyota Avanza">Toyota Avanza</option>
-                                        <option value="Toyota Corolla Altis">Toyota Corolla Altis</option>
-                                        <option value="Toyota Fortuner">Toyota Fortuner</option>
-                                        <option value="Toyota Kijang Innova">Toyota Kijang Innova</option>
-                                        <option value="Toyota Rush">Toyota Rush</option>
-                                        <option value="Toyota Vios">Toyota Vios</option>
-                                        <option value="Toyota Yaris">Toyota Yaris</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Tanggal</label>
-                                    <input type="date" name="date" class="form-control" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Waktu</label>
-                                    <input type="time" name="time" class="form-control" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Tahun Kendaraan</label>
-                                    <input type="number" name="vehicleYear" class="form-control" placeholder="Contoh: 2023" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Plat Nomor</label>
-                                    <input type="text" name="licensePlate" class="form-control" placeholder="Contoh: B 1234 CD" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Catatan</label>
-                                    <textarea name="notes" class="form-control" rows="2" placeholder="Catatan tambahan"></textarea>
-                                </div>
-                                <div class="col-12 text-center">
-                                    <button type="submit" class="btn btn-primary rounded-pill px-5 py-2">Kirim Booking</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+      <div class="container quote px-lg-0">
+        <div class="row g-0 mx-lg-0">
+          <div
+            class="col-lg-6 ps-lg-0 wow fadeIn"
+            data-wow-delay="0.1s"
+            style="min-height: 400px"
+          >
+            <div class="position-relative h-100">
+              <img
+                class="position-absolute img-fluid w-100 h-100"
+                src="img/quote.webp"
+                style="object-fit: cover"
+                alt=""
+              />
             </div>
+          </div>
+          <div
+            class="col-lg-6 quote-text py-5 wow fadeIn"
+            data-wow-delay="0.5s"
+          >
+            <div class="p-lg-5 pe-lg-0">
+              <h6 class="text-primary">Booking</h6>
+              <h1 class="mb-4">Booking Sekarang</h1>
+              <p class="mb-4 pb-2">
+                Silahkan isi data diri anda sesuai dengan kolom yang tertera
+                sekarang juga dan dapatkan promo menarik!
+              </p>
+              <form id="bookingForm" class="booking-inline-form">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Pilih Layanan</label>
+                    <select name="serviceType" class="form-select" required>
+                      <option value="">-- Pilih Layanan --</option>
+                      <option value="Ganti Oli">Ganti Oli</option>
+                      <option value="Service Ringan">Service Ringan</option>
+                      <option value="Overhoul">Overhoul</option>
+                      <option value="Panggilan Darurat">
+                        Panggilan Darurat
+                      </option>
+                      <option value="Scanning">Scanning</option>
+                      <option value="Kaki - Kaki">Kaki - Kaki</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Jenis Mobil</label>
+                    <select name="vehicleType" class="form-select" required>
+                      <option value="">-- Pilih Jenis Mobil --</option>
+                      <option value="Daihatsu Ayla">Daihatsu Ayla</option>
+                      <option value="Daihatsu Terios">Daihatsu Terios</option>
+                      <option value="Daihatsu Xenia">Daihatsu Xenia</option>
+                      <option value="Datsun Go/Go+">Datsun Go/Go+</option>
+                      <option value="Honda Brio Satya">Honda Brio Satya</option>
+                      <option value="Honda Civic">Honda Civic</option>
+                      <option value="Honda CR-V">Honda CR-V</option>
+                      <option value="Honda Jazz">Honda Jazz</option>
+                      <option value="Mitsubishi Xpander">
+                        Mitsubishi Xpander
+                      </option>
+                      <option value="Suzuki Ertiga">Suzuki Ertiga</option>
+                      <option value="Suzuki Swift">Suzuki Swift</option>
+                      <option value="Toyota Agya">Toyota Agya</option>
+                      <option value="Toyota Avanza">Toyota Avanza</option>
+                      <option value="Toyota Corolla Altis">
+                        Toyota Corolla Altis
+                      </option>
+                      <option value="Toyota Fortuner">Toyota Fortuner</option>
+                      <option value="Toyota Kijang Innova">
+                        Toyota Kijang Innova
+                      </option>
+                      <option value="Toyota Rush">Toyota Rush</option>
+                      <option value="Toyota Vios">Toyota Vios</option>
+                      <option value="Toyota Yaris">Toyota Yaris</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Tanggal</label>
+                    <input
+                      type="date"
+                      name="date"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Waktu</label>
+                    <input
+                      type="time"
+                      name="time"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Tahun Kendaraan</label>
+                    <input
+                      type="number"
+                      name="vehicleYear"
+                      class="form-control"
+                      placeholder="Contoh: 2023"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Plat Nomor</label>
+                    <input
+                      type="text"
+                      name="licensePlate"
+                      class="form-control"
+                      placeholder="Contoh: B 1234 CD"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Catatan</label>
+                    <textarea
+                      name="notes"
+                      class="form-control"
+                      rows="2"
+                      placeholder="Catatan tambahan"
+                    ></textarea>
+                  </div>
+                  <div class="col-12 text-center">
+                    <button
+                      type="submit"
+                      class="btn btn-primary rounded-pill px-5 py-2"
+                    >
+                      Kirim Booking
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Service Start -->
     <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h6 class="text-primary">Layanan Kami</h6>
-                <h2 class="mb-4">Kami Siap Menutup Kekhawatiran Terhadap Kendaraan Anda</h2>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded overflow-hidden">
-                        <img class="img-fluid" src="img/img-600x400-1.jpg" alt="">
-                        <div class="position-relative p-4 pt-0">
-                            <div class="service-icon">
-                                <i class="fa-regular fa-screwdriver-wrench fa-3x"></i>
-                            </div>
-                            <h4 class="mb-3">Service Ringan</h4>
-                            <p>Menerima service ringan (Tune Up, Ganti Oli, Service Rem, dll).</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded overflow-hidden">
-                        <img class="img-fluid" src="img/img-600x400-2.jpg" alt="">
-                        <div class="position-relative p-4 pt-0">
-                            <div class="service-icon">
-                                <i class="fa-regular fa-engine-warning fa-3x"></i>
-                            </div>
-                            <h4 class="mb-3">Overhoul</h4>
-                            <p>Menerima overhoul Mesin, Transmisi Manual & Automatic.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded overflow-hidden">
-                        <img class="img-fluid" src="img/img-600x400-3.jpg" alt="">
-                        <div class="position-relative p-4 pt-0">
-                            <div class="service-icon">
-                                <i class="fa-regular fa-truck-tow fa-3x"></i>
-                            </div>
-                            <h4 class="mb-3">Panggilan Darurat</h4>
-                            <p>Menerima Storing (Memperbaiki Mobil di luar bengkel) sepulau Jawa.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded overflow-hidden">
-                        <img class="img-fluid" src="img/img-600x400-4.jpg" alt="">
-                        <div class="position-relative p-4 pt-0">
-                            <div class="service-icon">
-                                <i class="fa-regular fa-car-battery fa-3x"></i>
-                            </div>
-                            <h4 class="mb-3">Baterai/Accu</h4>
-                            <p>Menerima perbaikan dan menyediakan Baterai/Accu baru ataupun bekas.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item rounded overflow-hidden">
-                        <img class="img-fluid" src="img/img-600x400-5.jpg" alt="">
-                        <div class="position-relative p-4 pt-0">
-                            <div class="service-icon">
-                                <i class="fa-regular fa-laptop-code fa-3x"></i>
-                            </div>
-                            <h4 class="mb-3">Scanning</h4>
-                            <p>Menerima perbaikan kelistrikan dengan menggunakan alat Scan Modern.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item rounded overflow-hidden">
-                        <img class="img-fluid" src="img/img-600x400-6.jpg" alt="">
-                        <div class="position-relative p-4 pt-0">
-                            <div class="service-icon">
-                                <i class="fa-light fa-tire fa-3x"></i>
-                            </div>
-                            <h4 class="mb-3">Kaki - Kaki</h4>
-                            <p>Menerima perbaikan kaki-kaki mobil Anda.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div
+          class="text-center mx-auto mb-5 wow fadeInUp"
+          data-wow-delay="0.1s"
+          style="max-width: 600px"
+        >
+          <h6 class="text-primary">Layanan Kami</h6>
+          <h2 class="mb-4">
+            Kami Siap Menutup Kekhawatiran Terhadap Kendaraan Anda
+          </h2>
         </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded overflow-hidden">
+              <img class="img-fluid" src="img/img-600x400-1.webp" alt="" />
+              <div class="position-relative p-4 pt-0">
+                <div class="service-icon">
+                  <i class="fa-regular fa-screwdriver-wrench fa-3x"></i>
+                </div>
+                <h4 class="mb-3">Service Ringan</h4>
+                <p>
+                  Menerima service ringan (Tune Up, Ganti Oli, Service Rem,
+                  dll).
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="service-item rounded overflow-hidden">
+              <img class="img-fluid" src="img/img-600x400-2.webp" alt="" />
+              <div class="position-relative p-4 pt-0">
+                <div class="service-icon">
+                  <i class="fa-regular fa-engine-warning fa-3x"></i>
+                </div>
+                <h4 class="mb-3">Overhoul</h4>
+                <p>Menerima overhoul Mesin, Transmisi Manual & Automatic.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="service-item rounded overflow-hidden">
+              <img class="img-fluid" src="img/img-600x400-3.webp" alt="" />
+              <div class="position-relative p-4 pt-0">
+                <div class="service-icon">
+                  <i class="fa-regular fa-truck-tow fa-3x"></i>
+                </div>
+                <h4 class="mb-3">Panggilan Darurat</h4>
+                <p>
+                  Menerima Storing (Memperbaiki Mobil di luar bengkel) sepulau
+                  Jawa.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="service-item rounded overflow-hidden">
+              <img class="img-fluid" src="img/img-600x400-4.webp" alt="" />
+              <div class="position-relative p-4 pt-0">
+                <div class="service-icon">
+                  <i class="fa-regular fa-car-battery fa-3x"></i>
+                </div>
+                <h4 class="mb-3">Baterai/Accu</h4>
+                <p>
+                  Menerima perbaikan dan menyediakan Baterai/Accu baru ataupun
+                  bekas.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="service-item rounded overflow-hidden">
+              <img class="img-fluid" src="img/img-600x400-5.webp" alt="" />
+              <div class="position-relative p-4 pt-0">
+                <div class="service-icon">
+                  <i class="fa-regular fa-laptop-code fa-3x"></i>
+                </div>
+                <h4 class="mb-3">Scanning</h4>
+                <p>
+                  Menerima perbaikan kelistrikan dengan menggunakan alat Scan
+                  Modern.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="service-item rounded overflow-hidden">
+              <img class="img-fluid" src="img/img-600x400-6.webp" alt="" />
+              <div class="position-relative p-4 pt-0">
+                <div class="service-icon">
+                  <i class="fa-light fa-tire fa-3x"></i>
+                </div>
+                <h4 class="mb-3">Kaki - Kaki</h4>
+                <p>Menerima perbaikan kaki-kaki mobil Anda.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Service End -->
 
-
     <!-- Feature Start -->
     <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
-        <div class="container feature px-lg-0">
-            <div class="row g-0 mx-lg-0">
-                <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="p-lg-5 ps-lg-0">
-                        <h6 class="text-primary">Kenapa Memilih Kami?</h6>
-                        <h1 class="mb-4">Layanan Bengkel Mobil Lengkap untuk Kendaraan Pribadi dan Komersial</h1>
-                        <p class="mb-4 pb-2">Kami menyediakan layanan bengkel mobil lengkap, mulai dari perawatan rutin hingga perbaikan besar, untuk semua jenis kendaraan pribadi maupun kendaraan komersial seperti mobil niaga, truk ringan, dan armada perusahaan.</p>
-                        <div class="row g-4">
-                            <div class="col-6">
-                                <div class="d-flex align-items-center">
-                                    <div class="btn-lg-square bg-primary rounded-circle">
-                                        <i class="fa fa-check text-white"></i>
-                                    </div>
-                                    <div class="ms-4">
-                                        <p class="mb-0">Layanan</p>
-                                        <h5 class="mb-0">Berkualitas</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="d-flex align-items-center">
-                                    <div class="btn-lg-square bg-primary rounded-circle">
-                                        <i class="fa fa-user-check text-white"></i>
-                                    </div>
-                                    <div class="ms-4">
-                                        <p class="mb-0">Pekerja</p>
-                                        <h5 class="mb-0">Ahli</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="d-flex align-items-center">
-                                    <div class="btn-lg-square bg-primary rounded-circle">
-                                        <i class="fa-regular fa-messages-question text-white"></i>
-                                    </div>
-                                    <div class="ms-4">
-                                        <p class="mb-0">Gratis</p>
-                                        <h5 class="mb-0">Konsultasi</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="d-flex align-items-center">
-                                    <div class="btn-lg-square bg-primary rounded-circle">
-                                        <i class="fa-regular fa-user-headset text-white"></i>
-                                    </div>
-                                    <div class="ms-4">
-                                        <p class="mb-0">Dukungan</p>
-                                        <h5 class="mb-0">Pelanggan</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+      <div class="container feature px-lg-0">
+        <div class="row g-0 mx-lg-0">
+          <div
+            class="col-lg-6 feature-text py-5 wow fadeIn"
+            data-wow-delay="0.1s"
+          >
+            <div class="p-lg-5 ps-lg-0">
+              <h6 class="text-primary">Kenapa Memilih Kami?</h6>
+              <h1 class="mb-4">
+                Layanan Bengkel Mobil Lengkap untuk Kendaraan Pribadi dan
+                Komersial
+              </h1>
+              <p class="mb-4 pb-2">
+                Kami menyediakan layanan bengkel mobil lengkap, mulai dari
+                perawatan rutin hingga perbaikan besar, untuk semua jenis
+                kendaraan pribadi maupun kendaraan komersial seperti mobil
+                niaga, truk ringan, dan armada perusahaan.
+              </p>
+              <div class="row g-4">
+                <div class="col-6">
+                  <div class="d-flex align-items-center">
+                    <div class="btn-lg-square bg-primary rounded-circle">
+                      <i class="fa fa-check text-white"></i>
                     </div>
-                </div>
-                <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="">
+                    <div class="ms-4">
+                      <p class="mb-0">Layanan</p>
+                      <h5 class="mb-0">Berkualitas</h5>
                     </div>
+                  </div>
                 </div>
+                <div class="col-6">
+                  <div class="d-flex align-items-center">
+                    <div class="btn-lg-square bg-primary rounded-circle">
+                      <i class="fa fa-user-check text-white"></i>
+                    </div>
+                    <div class="ms-4">
+                      <p class="mb-0">Pekerja</p>
+                      <h5 class="mb-0">Ahli</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="d-flex align-items-center">
+                    <div class="btn-lg-square bg-primary rounded-circle">
+                      <i class="fa-regular fa-messages-question text-white"></i>
+                    </div>
+                    <div class="ms-4">
+                      <p class="mb-0">Gratis</p>
+                      <h5 class="mb-0">Konsultasi</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="d-flex align-items-center">
+                    <div class="btn-lg-square bg-primary rounded-circle">
+                      <i class="fa-regular fa-user-headset text-white"></i>
+                    </div>
+                    <div class="ms-4">
+                      <p class="mb-0">Dukungan</p>
+                      <h5 class="mb-0">Pelanggan</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div
+            class="col-lg-6 pe-lg-0 wow fadeIn"
+            data-wow-delay="0.5s"
+            style="min-height: 400px"
+          >
+            <div class="position-relative h-100">
+              <img
+                class="position-absolute img-fluid w-100 h-100"
+                src="img/feature.webp"
+                style="object-fit: cover"
+                alt=""
+              />
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Feature End -->
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-body footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white mb-4">Alamat</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Arya Wangsakara, RT.001/001, Bugel, Kec. Karawaci, Kota Tangerang, Banten 15114</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 877-8823-6277</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>wijayamotortng@gmail.com</p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white mb-4">Tautan Cepat</h5>
-                    <a class="btn btn-link" href="about.html">Tentang Kami</a>
-                    <a class="btn btn-link" href="contact.html">Kontak Kami</a>
-                    <a class="btn btn-link" href="service.html">Layanan Kami</a>
-                    <a class="btn btn-link" target="_blank" href="https://www.google.com/maps/place/WIJAYA+MOTOR/@-6.1758297,106.5845965,14z/data=!4m8!3m7!1s0x2e69ff1392c7c165:0x92463838076380d1!8m2!3d-6.1758297!4d106.6051959!9m1!1b1!16s%2Fg%2F11jv30pqsg?authuser=1&entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoJLDEwMjExNjQwSAFQAw%3D%3D">Dukung Kami</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white mb-4">Galeri Bengkel</h5>
-                    <div class="row g-2">
-                        <div class="col-4">
-                            <img class="img-fluid rounded" src="img/img-600x400-1.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid rounded" src="img/img-600x400-2.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid rounded" src="img/img-600x400-3.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid rounded" src="img/img-600x400-4.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid rounded" src="img/img-600x400-5.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid rounded" src="img/img-600x400-6.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid rounded" src="img/carousel-1.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid rounded" src="img/carousel-2.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid rounded" src="img/carousel-3.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white mb-4">Jam Buka</h5>
-                    <div style="line-height: 0.8;">
-                        <p>Buka Setiap Hari Dari Mulai Jam:</p>
-                        <p>08:00 - 18:00</p>
-                        <p>08:00 AM - 08:00 PM</p>
-                    </div>
-                </div>
+    <div
+      class="container-fluid bg-dark text-body footer mt-5 pt-5 wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-lg-3 col-md-6">
+            <h5 class="text-white mb-4">Alamat</h5>
+            <p class="mb-2">
+              <i class="fa fa-map-marker-alt me-3"></i>Jl. Arya Wangsakara,
+              RT.001/001, Bugel, Kec. Karawaci, Kota Tangerang, Banten 15114
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-phone-alt me-3"></i>+62 877-8823-6277
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-envelope me-3"></i>wijayamotortng@gmail.com
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="text-white mb-4">Tautan Cepat</h5>
+            <a class="btn btn-link" href="about.html">Tentang Kami</a>
+            <a class="btn btn-link" href="contact.html">Kontak Kami</a>
+            <a class="btn btn-link" href="service.html">Layanan Kami</a>
+            <a
+              class="btn btn-link"
+              target="_blank"
+              href="https://www.google.com/maps/place/WIJAYA+MOTOR/@-6.1758297,106.5845965,14z/data=!4m8!3m7!1s0x2e69ff1392c7c165:0x92463838076380d1!8m2!3d-6.1758297!4d106.6051959!9m1!1b1!16s%2Fg%2F11jv30pqsg?authuser=1&entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoJLDEwMjExNjQwSAFQAw%3D%3D"
+              >Dukung Kami</a
+            >
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="text-white mb-4">Galeri Bengkel</h5>
+            <div class="row g-2">
+              <div class="col-4">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-1.webp"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-2.webp"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-3.webp"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-4.webp"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-5.webp"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid rounded"
+                  src="img/img-600x400-6.webp"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid rounded"
+                  src="img/carousel-1.webp"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid rounded"
+                  src="img/carousel-2.webp"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid rounded"
+                  src="img/carousel-3.webp"
+                  alt=""
+                />
+              </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; 2025, All Right Reserved.
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        Designed By <a href="https://github.com/DhaniKWP" target="_blank">DhaniKWP</a>, <a href="https://github.com/RizlH" target="_blank">RizlH</a>
-                    </div>
-                </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="text-white mb-4">Jam Buka</h5>
+            <div style="line-height: 0.8">
+              <p>Buka Setiap Hari Dari Mulai Jam:</p>
+              <p>08:00 - 18:00</p>
+              <p>08:00 AM - 08:00 PM</p>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              &copy; 2025, All Right Reserved.
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              Designed By
+              <a href="https://github.com/DhaniKWP" target="_blank">DhaniKWP</a
+              >, <a href="https://github.com/RizlH" target="_blank">RizlH</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Footer End -->
 
-
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
-
+    <a
+      href="#"
+      class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -416,63 +599,62 @@
 
     <!-- Modal Login -->
     <div id="loginModal" class="custom-modal hidden">
-        <div class="modal-content">
-          <span class="close" id="closeLoginModal">&times;</span>
-          <h2>Login</h2>
-          <form id="loginForm">
-            <input type="email" name="email" placeholder="Email" required /><br />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              required
-            /><br />
-            <button type="submit">Login</button>
-          </form>
-          <p>
-            Belum punya akun?
-            <a href="#" id="openRegisterFromLogin">Daftar di sini</a>
-          </p>
-        </div>
+      <div class="modal-content">
+        <span class="close" id="closeLoginModal">&times;</span>
+        <h2>Login</h2>
+        <form id="loginForm">
+          <input type="email" name="email" placeholder="Email" required /><br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          /><br />
+          <button type="submit">Login</button>
+        </form>
+        <p>
+          Belum punya akun?
+          <a href="#" id="openRegisterFromLogin">Daftar di sini</a>
+        </p>
       </div>
-  
-      <!-- Modal Register -->
-      <div id="registerModal" class="custom-modal hidden">
-        <div class="modal-content">
-          <span class="close" id="closeRegisterModal">&times;</span>
-          <h2>Register</h2>
-          <form id="registerForm">
-            <input type="text" name="name" placeholder="Nama" required /><br />
-            <input type="text" name="phone" placeholder="No Telepon" required>
-            <input type="email" name="email" placeholder="Email" required /><br />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              required
-            /><br />
-            <button type="submit">Register</button>
-          </form>
-        </div>
+    </div>
+
+    <!-- Modal Register -->
+    <div id="registerModal" class="custom-modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeRegisterModal">&times;</span>
+        <h2>Register</h2>
+        <form id="registerForm">
+          <input type="text" name="name" placeholder="Nama" required /><br />
+          <input type="text" name="phone" placeholder="No Telepon" required />
+          <input type="email" name="email" placeholder="Email" required /><br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          /><br />
+          <button type="submit">Register</button>
+        </form>
       </div>
-      <!-- Modal OTP Verification -->
-      <div id="otpModal" class="custom-modal hidden">
-        <div class="modal-content">
-          <span class="close" id="closeOtpModal">&times;</span>
-          <h2>Verify OTP</h2>
-          <form id="otpForm">
-            <input
-              type="text"
-              name="otp"
-              placeholder="Masukkan Kode OTP"
-              required
-            /><br />
-            <button type="submit">Verifikasi</button>
-          </form>
-        </div>
+    </div>
+    <!-- Modal OTP Verification -->
+    <div id="otpModal" class="custom-modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeOtpModal">&times;</span>
+        <h2>Verify OTP</h2>
+        <form id="otpForm">
+          <input
+            type="text"
+            name="otp"
+            placeholder="Masukkan Kode OTP"
+            required
+          /><br />
+          <button type="submit">Verifikasi</button>
+        </form>
       </div>
+    </div>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>
