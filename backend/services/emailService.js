@@ -53,4 +53,37 @@ Tim Keamanan WIJAYA MOTOR`,
   await transporter.sendMail(mailOptions);
 }
 
-module.exports = { sendOTP };
+async function sendResetLink(email, token) {
+  const resetUrl = `https://b72f-103-168-190-114.ngrok-free.app/reset-password.html?token=${token}`;
+  // const resetUrl = `http://localhost:8080/reset-password.html?token=${token}`;
+
+  const mailOptions = {
+    from: `"WIJAYA MOTOR" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: '🔐 Reset Password Anda - WIJAYA MOTOR',
+    html: `
+      <div style="font-family: Arial, sans-serif; color: #333; background-color: #f9f9f9; padding: 20px;">
+        <div style="max-width: 600px; margin: auto; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+          <h2 style="color: #d32f2f;">WIJAYA MOTOR</h2>
+          <p>Halo,</p>
+          <p>Kami menerima permintaan untuk mereset password akun Anda.</p>
+          <p>Silakan klik tombol di bawah ini untuk membuat password baru Anda:</p>
+          <p style="text-align: center; margin: 30px 0;">
+            <a href="${resetUrl}" style="background-color: #d32f2f; color: white; padding: 12px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">Reset Password</a>
+          </p>
+          <p>Atau salin dan tempel link berikut ke browser Anda jika tombol di atas tidak berfungsi:</p>
+          <p style="word-break: break-all;"><a href="${resetUrl}">${resetUrl}</a></p>
+          <p><strong>Catatan:</strong> Link ini hanya berlaku selama 10 menit.</p>
+          <p>Jika Anda tidak meminta reset password, abaikan email ini.</p>
+          <br>
+          <p>Salam hangat,</p>
+          <p><em>Tim WIJAYA MOTOR</em></p>
+        </div>
+      </div>
+    `
+  };
+
+  await transporter.sendMail(mailOptions);
+}
+
+module.exports = { sendOTP, sendResetLink };

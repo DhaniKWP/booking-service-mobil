@@ -179,6 +179,16 @@ $(document).ready(function () {
       $("#otpModal").addClass("hidden");
     });
 
+    // Modal Lupa Password
+    $("#openForgotPassword").on("click", function () {
+      $("#loginModal").addClass("hidden");
+      $("#forgotPasswordModal").removeClass("hidden");
+    });
+
+    $("#closeForgotPasswordModal").on("click", function () {
+      $("#forgotPasswordModal").addClass("hidden");
+    });
+
     $(window).on("click", function (e) {
       if (e.target.id === "otpModal") {
         $("#otpModal").addClass("hidden");
@@ -341,6 +351,46 @@ $(document).ready(function () {
         icon: "error",
         title: "Login gagal",
         text: "Terjadi kesalahan saat login.",
+      });
+    }
+  });
+
+    // ===========================
+    // Submit Forgot Password
+    // ===========================
+    $("#forgotPasswordForm").submit(async function (e) {
+    e.preventDefault();
+    const email = $(this).find('input[name="email"]').val();
+
+    try {
+      const response = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Link Terkirim!",
+          text: "Cek email kamu untuk instruksi reset password.",
+        });
+        $("#forgotPasswordModal").addClass("hidden");
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Gagal",
+          text: result.message || "Email tidak ditemukan.",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Kesalahan",
+        text: "Terjadi kesalahan saat mengirim permintaan.",
       });
     }
   });

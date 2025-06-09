@@ -8,12 +8,20 @@ const adminRoutes = require('./routes/adminRoutes');
 const { text } = require('body-parser');
 const invoiceController = require('./controllers/invoiceController');
 const rekapController = require('./controllers/rekapController');
+const cors = require('cors');
+
+const corsOptions = {
+  origin: 'https://b72f-103-168-190-114.ngrok-free.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
 
 //requiring modules
 require('./models/user');
 require('./models/booking');
 require('./models/additionalService'); 
 
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(express.json());

@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user.js');
 const OTP = require('../models/otp.js');
 const jwt = require('jsonwebtoken'); // tambahkan ini di atas (jika belum)
-const { sendOTP } = require('../services/emailService.js');
+const { sendOTP, sendResetLink } = require('../services/emailService.js');
+const crypto = require('crypto');
 
 function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -123,5 +124,54 @@ exports.login = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Login gagal.' });
+  }
+};
+
+// LUPA PASSWORD - Kirim Link
+exports.forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user) return res.status(404).json({ error: 'Email tidak ditemukan' });
+
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const expiresAt = Date.now() + 10 * 60 * 1000; // 10 menit
+
+    user.resetToken = resetToken;
+    user.resetTokenExpires = expiresAt;
+    await user.save();
+
+    await sendResetLink(email, resetToken);
+    res.status(200).json({ message: 'Link reset dikirim ke email.' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Gagal mengirim link reset.' });
+  }
+};
+
+// RESET PASSWORD - Pakai Token
+exports.resetPassword = async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  try {
+    const user = await User.findOne({
+      where: {
+        resetToken: token,
+        resetTokenExpires: { [require('sequelize').Op.gt]: Date.now() },
+      },
+    });
+
+    if (!user) return res.status(400).json({ error: 'Token tidak valid atau kadaluarsa' });
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    user.resetToken = null;
+    user.resetTokenExpires = null;
+    await user.save();
+
+    res.status(200).json({ message: 'Password berhasil direset.' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Gagal mereset password.' });
   }
 };
