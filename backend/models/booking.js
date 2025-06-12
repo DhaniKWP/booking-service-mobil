@@ -14,15 +14,15 @@ const Booking = db.define("Booking", {
     allowNull: false,
   },
   name: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     allowNull: false,
   },
   phone: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(15),
     allowNull: false,
   },
   serviceType: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   date: {
@@ -30,31 +30,31 @@ const Booking = db.define("Booking", {
     allowNull: false,
   },
   time: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(10),
     allowNull: false,
   },
   notes: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(150),
   },
   vehicleType: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   vehicleYear: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(4),
     allowNull: false,
   },
   licensePlate: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(10),
     allowNull: false,
   },
   estimatedPrice: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: true,
     defaultValue: 0,
   },
   workshopName: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     allowNull: false,
     defaultValue: "Wijaya Motor",
   },
@@ -65,7 +65,7 @@ const Booking = db.define("Booking", {
     defaultValue: Sequelize.UUIDV4,
   },
   status: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(20),
     defaultValue: "pending",
   },
   completedAt: {

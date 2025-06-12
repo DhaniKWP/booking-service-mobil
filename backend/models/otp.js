@@ -3,11 +3,11 @@ const db = require('../config/database.js');
 
 const OTP = db.define('OTP', {
   email: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     allowNull: false
   },
   otp: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(6),
     allowNull: false
   },
   expiresAt: {

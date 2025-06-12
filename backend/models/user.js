@@ -8,22 +8,20 @@ const User = db.define('User', {
     autoIncrement: true
   },
   name: {
-    type: DataTypes.STRING,
-    unique: true,
+    type: DataTypes.STRING(100),
     allowNull: false
   },
   phone: {
-    type: DataTypes.STRING,
-    unique: true,
+    type: DataTypes.STRING(15),
     allowNull: false
   },
   email: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     unique: true,
     allowNull: false
   },
   password: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(255),
     allowNull: false
   },
   isVerified: {
@@ -35,7 +33,7 @@ const User = db.define('User', {
   defaultValue: 'user'
 },
   resetToken: {
-  type: DataTypes.STRING,
+  type: DataTypes.STRING(100),
   allowNull: true
 },
 resetTokenExpires: {
