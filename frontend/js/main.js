@@ -277,11 +277,17 @@ $(document).ready(function () {
         localStorage.removeItem("pending_verification_email");
         $("#otpModal").addClass("hidden");
         $("#loginModal").removeClass("hidden");
+      } else if (response.status === 410) {
+        Swal.fire({
+          icon: "info",
+          title: "OTP Kadaluarsa",
+          text: result.error || "OTP kadaluarsa, kode baru telah dikirim ke email.",
+        });
       } else {
         Swal.fire({
           icon: "error",
           title: "Verifikasi Gagal",
-          text: "OTP salah atau tidak valid.",
+          text: result.error || "OTP salah atau tidak valid.",
         });
       }
     } catch (error) {
@@ -341,7 +347,7 @@ $(document).ready(function () {
           Swal.fire({
             icon: "error",
             title: "Login gagal",
-            text: "Email atau password salah.",
+            text: result.error || "Terjadi kesalahan saat login.",
           });
         }
       }

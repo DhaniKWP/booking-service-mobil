@@ -54,8 +54,8 @@ Tim Keamanan WIJAYA MOTOR`,
 }
 
 async function sendResetLink(email, token) {
-  const resetUrl = `https://b72f-103-168-190-114.ngrok-free.app/reset-password.html?token=${token}`;
-  // const resetUrl = `http://localhost:8080/reset-password.html?token=${token}`;
+  // const resetUrl = `https://b1e7-2404-c0-2420-00-adb-a81b.ngrok-free.app/reset-password.html?token=${token}`;
+  const resetUrl = `http://localhost:8080/reset-password.html?token=${token}`;
 
   const mailOptions = {
     from: `"WIJAYA MOTOR" <${process.env.EMAIL_USER}>`,

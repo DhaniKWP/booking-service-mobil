@@ -11,7 +11,7 @@ const rekapController = require('./controllers/rekapController');
 const cors = require('cors');
 
 const corsOptions = {
-  origin: 'https://b72f-103-168-190-114.ngrok-free.app',
+  origin: 'https://b1e7-2404-c0-2420-00-adb-a81b.ngrok-free.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 };

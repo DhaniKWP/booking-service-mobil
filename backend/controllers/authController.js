@@ -29,7 +29,7 @@ exports.register = async (req, res) => {
     });
 
     const otp = generateOTP();
-    const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+    const expiresAt = new Date(Date.now() + 1 * 60 * 1000);
 
     await OTP.create({ email, otp, expiresAt });
 
@@ -49,27 +49,37 @@ exports.register = async (req, res) => {
 
 
 
-
-// Verifikasi OTP
+// otp
 exports.verifyOTP = async (req, res) => {
   const { email, otp } = req.body;
 
   try {
-    const otpRecord = await OTP.findOne({ where: { email, otp } });
+    // Cari OTP berdasarkan email saja
+    const otpRecord = await OTP.findOne({ where: { email } });
 
     if (!otpRecord) {
-      return res.status(400).json({ error: 'Kode OTP salah atau tidak ditemukan.' });
+      return res.status(400).json({ error: 'OTP tidak ditemukan. Silakan minta ulang.' });
     }
 
-    // Cek expired
+    // Cek expired dulu
     if (otpRecord.expiresAt < new Date()) {
-      return res.status(400).json({ error: 'Kode OTP sudah kadaluarsa.' });
+      await OTP.destroy({ where: { email } });
+
+      const newOtp = generateOTP();
+      const newExpiry = new Date(Date.now() + 1 * 60 * 1000);
+      await OTP.create({ email, otp: newOtp, expiresAt: newExpiry });
+      await sendOTP(email, newOtp);
+
+      return res.status(410).json({ error: 'Kode OTP sudah kadaluarsa. OTP baru telah dikirim ke email Anda.' });
     }
 
-    // Update user menjadi verified
-    await User.update({ isVerified: true }, { where: { email } });
+    // Bandingkan OTP
+    if (otpRecord.otp !== otp) {
+      return res.status(400).json({ error: 'Kode OTP salah.' });
+    }
 
-    // Hapus OTP setelah sukses
+    // Verifikasi berhasil
+    await User.update({ isVerified: true }, { where: { email } });
     await OTP.destroy({ where: { email } });
 
     res.status(200).json({ message: 'Verifikasi OTP berhasil.' });
@@ -78,6 +88,7 @@ exports.verifyOTP = async (req, res) => {
     res.status(500).json({ error: 'Verifikasi OTP gagal.' });
   }
 };
+
 
 
 // Login
