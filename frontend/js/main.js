@@ -238,7 +238,7 @@ $(document).ready(function () {
         Swal.fire({
           icon: "error",
           title: "Gagal Register",
-          text: "Register gagal.",
+          text: result.error || "Register gagal.",
         });
       }
     } catch (error) {
