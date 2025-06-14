@@ -301,6 +301,52 @@ $(document).ready(function () {
   });
 
   // ===========================
+  // Handler Resend OTP
+  // ===========================
+  $("#resendOtpBtn").on("click", async function () {
+  const email = localStorage.getItem("pending_verification_email");
+  if (!email) {
+    Swal.fire({
+      icon: "warning",
+      title: "Email tidak tersedia",
+      text: "Silakan lakukan registrasi terlebih dahulu.",
+    });
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/auth/resend-otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      Swal.fire({
+        icon: "success",
+        title: "OTP Dikirim Ulang",
+        text: "Kode OTP baru telah dikirim ke email kamu.",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal Kirim OTP",
+        text: result.error || "Gagal mengirim ulang OTP.",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    Swal.fire({
+      icon: "error",
+      title: "Kesalahan",
+      text: "Terjadi kesalahan saat mengirim ulang OTP.",
+    });
+  }
+});
+
+  // ===========================
   // Submit Form Login
   // ===========================
   $("#loginForm").submit(async function (e) {
