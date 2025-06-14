@@ -89,6 +89,32 @@ exports.verifyOTP = async (req, res) => {
   }
 };
 
+// resend otp
+exports.resendOTP = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user || user.isVerified) {
+      return res.status(400).json({ error: 'Email tidak valid atau sudah terverifikasi.' });
+    }
+
+    // Hapus OTP lama
+    await OTP.destroy({ where: { email } });
+
+    // Buat OTP baru
+    const newOtp = generateOTP();
+    const expiresAt = new Date(Date.now() + 1 * 60 * 1000);
+    await OTP.create({ email, otp: newOtp, expiresAt });
+    await sendOTP(email, newOtp);
+
+    res.status(200).json({ message: 'OTP baru telah dikirim.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Gagal mengirim ulang OTP.' });
+  }
+};
+
 
 
 // Login
