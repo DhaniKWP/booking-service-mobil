@@ -350,6 +350,7 @@
           <input type="hidden" name="bookingId" id="editBookingId" />
           <select name="vehicleType" required>
             <option value="">-- Pilih Jenis Mobil --</option>
+            <option value="Lainnya">Lainnya (Isi manual)</option>
             <option value="Daihatsu Ayla">Daihatsu Ayla</option>
             <option value="Daihatsu Terios">Daihatsu Terios</option>
             <option value="Daihatsu Xenia">Daihatsu Xenia</option>
@@ -384,17 +385,17 @@
           /><br />
           <select name="serviceType" class="form-select" required>
             <option value="">-- Pilih Layanan --</option>
+            <option value="Lainnya">Lainnya (Isi manual)</option>
             <option value="Ganti Oli">Ganti Oli</option>
             <option value="Service Ringan">Service Ringan</option>
             <option value="Overhoul">Overhoul</option>
             <option value="Panggilan Darurat">Panggilan Darurat</option>
             <option value="Scanning">Scanning</option>
             <option value="Kaki - Kaki">Kaki - Kaki</option>
-            <option value="Lainnya">Lainnya</option>
           </select>
           <input type="date" name="date" required /><br />
           <input type="time" name="time" required /><br />
-          <textarea name="notes" placeholder="Catatan"></textarea><br />
+          <textarea name="notes" placeholder="Catatan tambahan (jika jenis serivce dan jenis mobil tidak ada di pilihan/tambahan jenis service)"></textarea><br />
           <button type="submit">Simpan Perubahan</button>
         </form>
       </div>

@@ -49,7 +49,7 @@ const Booking = db.define("Booking", {
     allowNull: false,
   },
   estimatedPrice: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING(100),
     allowNull: true,
     defaultValue: 0,
   },

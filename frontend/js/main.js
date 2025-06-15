@@ -681,7 +681,9 @@ $(document).ready(function () {
         "Kaki - Kaki": 4150000
       },
     };
-
+    if (!vehicle || !service || vehicle === "Lainnya" || service === "Lainnya") {
+      return "Rp -";
+  }
     return priceMap[vehicle]?.[service] || "Rp -";
   }
 
