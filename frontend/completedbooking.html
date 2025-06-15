@@ -80,6 +80,7 @@
                 <th style="cursor:pointer" data-sort="date">Tanggal <i class="fas fa-sort"></i></th>
                 <th style="cursor:pointer" data-sort="serviceNumber">No Servis <i class="fas fa-sort"></i></th>
                 <th>Status</th>
+                <th>Detail</th>
               </tr>
             </thead>
             <tbody id="completed-booking-list">
@@ -181,10 +182,11 @@
             <td>${b.date}</td>
             <td>${b.serviceNumber}</td>
             <td><span class="badge bg-success">Selesai</span></td>
+            <td><button class="btn btn-sm btn-primary view-detail" data-id="${b.serviceNumber}"><i class="fas fa-eye"></i>Lihat</button></td>
           </tr>
         `).join("");
       }
-      
+
       document.querySelectorAll('#completed-booking-table thead th').forEach(th => {
         th.addEventListener('click', () => {
           const col = th.dataset.sort;
@@ -201,7 +203,32 @@
         localStorage.removeItem("user");
         window.location.href = "index.html";
       });
+
+      document.addEventListener('click', function(e) {
+        if (e.target.closest('.view-detail')) {
+          const serviceNumber = e.target.closest('.view-detail').dataset.id;
+          const data = bookings.find(b => b.serviceNumber === serviceNumber);
+
+          Swal.fire({
+            title: `Detail Servis: ${data.serviceNumber}`,
+            html: `
+              <div class="text-start">
+                <p><strong>Nama:</strong> ${data.name}</p>
+                <p><strong>No HP:</strong> ${data.phone}</p>
+                <p><strong>Mobil:</strong> ${data.vehicleType} (${data.vehicleYear})</p>
+                <p><strong>Layanan:</strong> ${data.serviceType}</p>
+                <p><strong>Tanggal:</strong> ${data.date}</p>
+                <p><strong>Catatan:</strong> ${data.notes}</p>
+                <p><strong>Status:</strong> <span class="badge bg-success">${data.status}</span></p>
+              </div>
+            `,
+            confirmButtonText: 'Tutup',
+            width: '500px'
+          });
+        }
+      });
     });
+    
 </script>
 </body>
 </html>
