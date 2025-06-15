@@ -72,13 +72,13 @@
           <table class="table table-bordered table-striped align-middle bg-white shadow-sm" id="completed-booking-table">
             <thead class="table-danger">
               <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>No HP</th>
-                <th>Mobil</th>
-                <th>Layanan</th>
-                <th>Tanggal</th>
-                <th>No Servis</th>
+                <th style="cursor:pointer" data-sort="no">No <i class="fas fa-sort"></i></th>
+                <th style="cursor:pointer" data-sort="name">Nama <i class="fas fa-sort"></i></th>
+                <th style="cursor:pointer" data-sort="phone">No HP <i class="fas fa-sort"></i></th>
+                <th style="cursor:pointer" data-sort="vehicleType">Mobil <i class="fas fa-sort"></i></th>
+                <th style="cursor:pointer" data-sort="serviceType">Layanan <i class="fas fa-sort"></i></th>
+                <th style="cursor:pointer" data-sort="date">Tanggal <i class="fas fa-sort"></i></th>
+                <th style="cursor:pointer" data-sort="serviceNumber">No Servis <i class="fas fa-sort"></i></th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -93,7 +93,7 @@
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script>
+    <script>
     document.addEventListener("DOMContentLoaded", async () => {
       const token = localStorage.getItem("token");
       const user = JSON.parse(localStorage.getItem("user"));
@@ -108,6 +108,8 @@
       document.body.classList.remove("protected");
 
       let bookings = [];
+      let filteredBookings = [];
+      let currentSort = { column: null, order: 'asc' };
 
       try {
         const res = await fetch("http://localhost:8080/api/admin/bookings", {
@@ -115,7 +117,8 @@
         });
         const all = await res.json();
         bookings = all.filter(b => b.status === "completed");
-        renderList(bookings);
+        filteredBookings = bookings.slice();
+        renderList(filteredBookings);
       } catch (err) {
         console.error(err);
         Swal.fire("Gagal", "Tidak bisa memuat data booking selesai", "error");
@@ -130,12 +133,36 @@
           return;
         }
 
-        const filtered = bookings.filter(b => {
-          return b.date >= start && b.date <= end;
-        });
-
-        renderList(filtered);
+        filteredBookings = bookings.filter(b => b.date >= start && b.date <= end);
+        sortBookings(currentSort.column || 'date');
+        renderList(filteredBookings);
       });
+
+      function sortBookings(column) {
+        if (currentSort.column === column) {
+          currentSort.order = currentSort.order === 'asc' ? 'desc' : 'asc';
+        } else {
+          currentSort.column = column;
+          currentSort.order = 'asc';
+        }
+
+        filteredBookings.sort((a, b) => {
+          let valA = a[column];
+          let valB = b[column];
+
+          if (column === 'date') {
+            valA = new Date(valA);
+            valB = new Date(valB);
+          } else if (typeof valA === 'string') {
+            valA = valA.toLowerCase();
+            valB = valB.toLowerCase();
+          }
+
+          if (valA < valB) return currentSort.order === 'asc' ? -1 : 1;
+          if (valA > valB) return currentSort.order === 'asc' ? 1 : -1;
+          return 0;
+        });
+      }
 
       function renderList(data) {
         const container = document.getElementById("completed-booking-list");
@@ -157,16 +184,24 @@
           </tr>
         `).join("");
       }
+      
+      document.querySelectorAll('#completed-booking-table thead th').forEach(th => {
+        th.addEventListener('click', () => {
+          const col = th.dataset.sort;
+          if (!col) return;
+          sortBookings(col);
+          renderList(filteredBookings);
+        });
+      });
 
-    $(document).on("click", "#logoutBtn", function (e) {
-      e.preventDefault();
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      window.location.href = "index.html";
+      // logout
+      $(document).on("click", "#logoutBtn", function (e) {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.href = "index.html";
+      });
     });
-  });
-
-    
-  </script>
+</script>
 </body>
 </html>
