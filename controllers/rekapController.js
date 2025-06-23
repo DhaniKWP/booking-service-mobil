@@ -34,7 +34,7 @@ router.post("/pdf", async (req, res) => {
     doc.pipe(res);
 
     try {
-      const logoPath = path.join(__dirname, "../../frontend/img/WJM2.jpg");
+      const logoPath = path.join(__dirname, "frontend/img/WJM2.jpg");
       doc.image(logoPath, 50, 30, { width: 60 });
     } catch (e) {
       console.warn("Logo gagal dimuat:", e.message);
