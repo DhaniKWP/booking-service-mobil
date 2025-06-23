@@ -11,10 +11,12 @@ const rekapController = require('./controllers/rekapController');
 const cors = require('cors');
 
 const corsOptions = {
-  origin: 'https://b1e7-2404-c0-2420-00-adb-a81b.ngrok-free.app',
+  origin: process.env.CORS_ORIGIN || '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 };
+
+app.use(cors(corsOptions));
 
 //requiring modules
 require('./models/user');
