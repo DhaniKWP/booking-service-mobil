@@ -113,7 +113,7 @@
       let currentSort = { column: null, order: 'asc' };
 
       try {
-        const res = await fetch("http://localhost:8080/api/admin/bookings", {
+        const res = await fetch("https://booking-service-mobil-production.up.railway.app/api/admin/bookings", {
           headers: { Authorization: `Bearer ${token}` }
         });
         const all = await res.json();
