@@ -37,14 +37,14 @@ app.use('/api', invoiceController);
 app.use('/api/admin/rekap', rekapController);
 
 // Serve static files dari frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 
 // Fallback route: selain API dan file yang ada, balikin index.html
 app.use((req, res, next) => {
   const accept = req.headers.accept || '';
   if (accept.includes('html')) {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
   } else {
     next();
   }
