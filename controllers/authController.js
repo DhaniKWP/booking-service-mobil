@@ -29,7 +29,7 @@ exports.register = async (req, res) => {
     });
 
     const otp = generateOTP();
-    const expiresAt = new Date(Date.now() + 1 * 60 * 1000);
+    const expiresAt = new Date(Date.now() + 2 * 60 * 1000);
 
     await OTP.create({ email, otp, expiresAt });
 
@@ -66,7 +66,7 @@ exports.verifyOTP = async (req, res) => {
       await OTP.destroy({ where: { email } });
 
       const newOtp = generateOTP();
-      const newExpiry = new Date(Date.now() + 1 * 60 * 1000);
+      const newExpiry = new Date(Date.now() + 2 * 60 * 1000);
       await OTP.create({ email, otp: newOtp, expiresAt: newExpiry });
       await sendOTP(email, newOtp);
 
@@ -104,7 +104,7 @@ exports.resendOTP = async (req, res) => {
 
     // Buat OTP baru
     const newOtp = generateOTP();
-    const expiresAt = new Date(Date.now() + 1 * 60 * 1000);
+    const expiresAt = new Date(Date.now() + 2 * 60 * 1000);
     await OTP.create({ email, otp: newOtp, expiresAt });
     await sendOTP(email, newOtp);
 
