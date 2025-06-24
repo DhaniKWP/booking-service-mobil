@@ -114,7 +114,7 @@
       let currentSort = { column: null, order: 'asc' };
 
       try {
-        const res = await fetch("https://wijayamotor-service.up.railway.app/api/admin/bookings", {
+        const res = await fetch("https://wijayamotor.ti24se3.my.id/api/admin/bookings", {
           headers: { Authorization: `Bearer ${token}` }
         });
         const all = await res.json();
